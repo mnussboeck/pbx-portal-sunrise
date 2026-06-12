@@ -2293,8 +2293,8 @@
       <div class="card">
         <div class="card-header">
           <div>
-            <div class="card-title">Schweizer Feiertage importieren</div>
-            <div class="card-subtitle">Nationale und kantonale Feiertage für <span id="ch-import-year">2025</span></div>
+            <div class="card-title" data-i18n="hol_ch_card_title">Schweizer Feiertage importieren</div>
+            <div class="card-subtitle"><span data-i18n="hol_ch_card_sub">Nationale und kantonale Feiertage für</span> <span id="ch-import-year">2025</span></div>
           </div>
           <div style="display:flex;gap:8px;align-items:center">
             <select class="filter-select" id="ch-year-select" onchange="renderChPresets()">
@@ -2711,7 +2711,7 @@
       </div>
       <div class="page-actions"><button class="btn btn-secondary" onclick="exportCDR()" data-i18n="ta_btn_export_csv">Export CSV</button></div>
     </div>
-    <div class="card"><div class="card-header"><div class="card-title" data-i18n="ta_cdr_log_title">Gesprächsprotokoll</div></div><div class="table-wrap"><table><thead><tr><th>Datum/Zeit</th><th data-i18n="ta_th_caller">Von</th><th data-i18n="ta_th_callee">An</th><th data-i18n="ta_th_duration_col">Dauer</th><th data-i18n="ta_th_direction">Typ</th><th data-i18n="th_status">Status</th></tr></thead><tbody id="cdr-tbody"></tbody></table></div></div>
+    <div class="card"><div class="card-header"><div class="card-title" data-i18n="ta_cdr_log_title">Gesprächsprotokoll</div></div><div class="table-wrap"><table><thead><tr><th data-i18n="ta_cdr_th_datetime">Datum/Zeit</th><th data-i18n="ta_th_caller">Von</th><th data-i18n="ta_th_callee">An</th><th data-i18n="ta_th_duration_col">Dauer</th><th data-i18n="ta_th_direction">Typ</th><th data-i18n="th_status">Status</th></tr></thead><tbody id="cdr-tbody"></tbody></table></div></div>
   </div>
   </div>
 
@@ -2785,12 +2785,12 @@
       <div class="card" style="overflow:hidden">
         <div class="ab-alpha-bar" id="ab-alpha-bar"></div>
         <div class="card-header" style="border-top:1px solid var(--border)">
-          <div class="card-title" id="ab-list-title">Alle Kontakte</div>
+          <div class="card-title" id="ab-list-title" data-i18n="ab_all_contacts">Alle Kontakte</div>
           <div style="display:flex;gap:8px">
             <select class="filter-select" onchange="filterAbByGroup(this.value)" id="ab-group-filter">
-              <option value="">Alle Gruppen</option>
+              <option value="" data-i18n="ab_all_groups">Alle Gruppen</option>
             </select>
-            <button class="btn btn-secondary btn-sm" onclick="exportAb()">Export vCard</button>
+            <button class="btn btn-secondary btn-sm" onclick="exportAb()" data-i18n="ab_export_vcard">Export vCard</button>
           </div>
         </div>
         <div id="ab-contact-list" style="max-height:520px;overflow-y:auto"></div>
@@ -2869,11 +2869,11 @@
       <div class="card-header"><div class="card-title" data-i18n="ta_card_my_numbers">Alle Rufnummern</div></div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Nummer</th><th>Typ</th><th>Zugewiesen an</th><th>Routing</th><th data-i18n="th_status">Status</th><th data-i18n="th_actions">Aktionen</th></tr></thead>
+          <thead><tr><th data-i18n="ta_num_th_number">Nummer</th><th data-i18n="ta_num_th_type">Typ</th><th data-i18n="ta_num_th_assigned">Zugewiesen an</th><th data-i18n="ta_num_th_routing">Routing</th><th data-i18n="th_status">Status</th><th data-i18n="th_actions">Aktionen</th></tr></thead>
           <tbody>
-            <tr><td><span class="sip-chip">+41 44 100 00 00</span></td><td>DID</td><td>Hauptnummer</td><td>IVR Hauptmenü</td><td><span class="badge badge-green">Aktiv</span></td><td><div class="actions-cell"><button class="btn btn-secondary btn-sm">Bearbeiten</button></div></td></tr>
-            <tr><td><span class="sip-chip">+41 44 100 00 01</span></td><td>DID</td><td>Support</td><td>Hunt Group Support</td><td><span class="badge badge-green">Aktiv</span></td><td><div class="actions-cell"><button class="btn btn-secondary btn-sm">Bearbeiten</button></div></td></tr>
-            <tr><td><span class="sip-chip">+41 44 100 00 02</span></td><td>DID</td><td>Vertrieb</td><td>Hunt Group Vertrieb</td><td><span class="badge badge-orange">Umleitung</span></td><td><div class="actions-cell"><button class="btn btn-secondary btn-sm">Bearbeiten</button></div></td></tr>
+            <tr><td><span class="sip-chip">+41 44 100 00 00</span></td><td>DID</td><td>Hauptnummer</td><td>IVR Hauptmenü</td><td><span class="badge badge-green">Aktiv</span></td><td><div class="actions-cell"><button class="btn btn-secondary btn-sm" data-i18n="btn_edit">Bearbeiten</button></div></td></tr>
+            <tr><td><span class="sip-chip">+41 44 100 00 01</span></td><td>DID</td><td>Support</td><td>Hunt Group Support</td><td><span class="badge badge-green">Aktiv</span></td><td><div class="actions-cell"><button class="btn btn-secondary btn-sm" data-i18n="btn_edit">Bearbeiten</button></div></td></tr>
+            <tr><td><span class="sip-chip">+41 44 100 00 02</span></td><td>DID</td><td>Vertrieb</td><td>Hunt Group Vertrieb</td><td><span class="badge badge-orange">Umleitung</span></td><td><div class="actions-cell"><button class="btn btn-secondary btn-sm" data-i18n="btn_edit">Bearbeiten</button></div></td></tr>
           </tbody>
         </table>
       </div>
@@ -7447,6 +7447,49 @@ const translations = {
     ab_btn_call_title: "Anrufen",
     sa_toast_cdr_full: "{name}: CDR Nummern vollständig",
     sa_toast_cdr_anon: "{name}: CDR Nummern anonymisiert",
+    sa_numbers_stats: "500 Nummern total · 143 vergeben · 357 frei",
+    sa_trunks_card_active: "Aktive Trunks",
+    sa_pricing_btn_save: "Preise speichern",
+    sa_pricing_number_prices: "Rufnummern-Preise",
+    sa_pricing_feature_prices: "Feature-Preise",
+    sa_pricing_approval_prefix: "Alle Shop-Bestellungen werden ",
+    sa_pricing_approval_bold: "sofort automatisch aktiviert",
+    sa_pricing_approval_suffix: " und monatlich abgerechnet.",
+    sa_pricing_email_tenant: "E-Mail-Bestätigung an Mandanten",
+    sa_pricing_email_tenant_desc: "Bestellbestätigung automatisch versenden",
+    sa_pricing_email_admin: "E-Mail-Kopie an Sunrise Admin",
+    sa_prov_devices_title: "Alle provisionierten Geräte",
+    sa_prov_devices_sub: "Plattformweit · mit Provisionierungs-Status",
+    sa_prov_th_device: "Gerät / Modell",
+    sa_prov_th_mac: "MAC-Adresse",
+    sa_prov_th_user: "Benutzer",
+    sa_prov_th_sip: "SIP-Account",
+    sa_prov_th_firmware: "Firmware",
+    sa_asterisk_sub_updated: "Globaler PBX Health-Check · Letzte Aktualisierung: gerade eben",
+    btn_import_csv: "Import CSV",
+    ucc_vm_title: "Voicemail",
+    ucc_vm_sub: "Postfach vm_101 · 3 neue Nachrichten",
+    ucc_hist_title: "Gesprächsverlauf",
+    ucc_hist_sub: "Letzte 30 Tage",
+    ta_num_th_number: "Nummer",
+    ta_num_th_type: "Typ",
+    ta_num_th_assigned: "Zugewiesen an",
+    ta_num_th_routing: "Routing",
+    ab_sync_photos: "Fotos synchronisieren",
+    ab_sync_photos_desc: "Kontaktfotos aus Exchange übernehmen",
+    ab_sync_delete: "Gelöschte Kontakte entfernen",
+    ab_sync_delete_desc: "Bei Sync aus Exchange entfernte Kontakte auch lokal löschen",
+    res_th_qty: "Anzahl",
+    ab_all_contacts: "Alle Kontakte",
+    ab_all_groups: "Alle Gruppen",
+    ab_export_vcard: "Export vCard",
+    hol_ch_card_title: "Schweizer Feiertage importieren",
+    hol_ch_card_sub: "Nationale und kantonale Feiertage für",
+    ta_cdr_th_datetime: "Datum/Zeit",
+    sa_tenants_stat_line: "6 Mandanten · 5 aktiv · 1 gesperrt",
+    sa_nt_card_feat_pkg: "Feature-Paket",
+    ucc_ext_fmt: "Durchwahl {ext}",
+    ucc_chat_hdr_status: "● {status} · Durchwahl {ext}",
 
   },
   fr: {
@@ -9555,6 +9598,49 @@ const translations = {
     ab_btn_call_title: "Appeler",
     sa_toast_cdr_full: "{name} : numéros CDR complets",
     sa_toast_cdr_anon: "{name} : numéros CDR anonymisés",
+    sa_numbers_stats: "500 numéros au total · 143 attribués · 357 libres",
+    sa_trunks_card_active: "Trunks actifs",
+    sa_pricing_btn_save: "Enregistrer les prix",
+    sa_pricing_number_prices: "Prix des numéros",
+    sa_pricing_feature_prices: "Prix des fonctionnalités",
+    sa_pricing_approval_prefix: "Toutes les commandes shop sont ",
+    sa_pricing_approval_bold: "activées automatiquement immédiatement",
+    sa_pricing_approval_suffix: " et facturées mensuellement.",
+    sa_pricing_email_tenant: "E-mail de confirmation au mandant",
+    sa_pricing_email_tenant_desc: "Envoyer automatiquement la confirmation de commande",
+    sa_pricing_email_admin: "Copie e-mail à l'admin Sunrise",
+    sa_prov_devices_title: "Tous les appareils provisionnés",
+    sa_prov_devices_sub: "Plateforme · avec statut de provisionnement",
+    sa_prov_th_device: "Appareil / Modèle",
+    sa_prov_th_mac: "Adresse MAC",
+    sa_prov_th_user: "Utilisateur",
+    sa_prov_th_sip: "Compte SIP",
+    sa_prov_th_firmware: "Firmware",
+    sa_asterisk_sub_updated: "Health-check PBX global · Dernière mise à jour : à l'instant",
+    btn_import_csv: "Importer CSV",
+    ucc_vm_title: "Messagerie vocale",
+    ucc_vm_sub: "Boîte vm_101 · 3 nouveaux messages",
+    ucc_hist_title: "Historique des appels",
+    ucc_hist_sub: "30 derniers jours",
+    ta_num_th_number: "Numéro",
+    ta_num_th_type: "Type",
+    ta_num_th_assigned: "Attribué à",
+    ta_num_th_routing: "Routage",
+    ab_sync_photos: "Synchroniser les photos",
+    ab_sync_photos_desc: "Reprendre les photos de contacts depuis Exchange",
+    ab_sync_delete: "Supprimer les contacts effacés",
+    ab_sync_delete_desc: "Supprimer localement les contacts retirés d'Exchange lors de la sync",
+    res_th_qty: "Quantité",
+    ab_all_contacts: "Tous les contacts",
+    ab_all_groups: "Tous les groupes",
+    ab_export_vcard: "Exporter vCard",
+    hol_ch_card_title: "Importer les jours fériés suisses",
+    hol_ch_card_sub: "Jours fériés nationaux et cantonaux pour",
+    ta_cdr_th_datetime: "Date/Heure",
+    sa_tenants_stat_line: "6 mandants · 5 actifs · 1 bloqué",
+    sa_nt_card_feat_pkg: "Forfait de fonctionnalités",
+    ucc_ext_fmt: "Extension {ext}",
+    ucc_chat_hdr_status: "● {status} · Extension {ext}",
 
   },
   it: {
@@ -11663,6 +11749,49 @@ const translations = {
     ab_btn_call_title: "Chiama",
     sa_toast_cdr_full: "{name}: numeri CDR completi",
     sa_toast_cdr_anon: "{name}: numeri CDR anonimizzati",
+    sa_numbers_stats: "500 numeri totali · 143 assegnati · 357 liberi",
+    sa_trunks_card_active: "Trunk attivi",
+    sa_pricing_btn_save: "Salva prezzi",
+    sa_pricing_number_prices: "Prezzi numeri",
+    sa_pricing_feature_prices: "Prezzi funzioni",
+    sa_pricing_approval_prefix: "Tutti gli ordini shop sono ",
+    sa_pricing_approval_bold: "attivati automaticamente subito",
+    sa_pricing_approval_suffix: " e fatturati mensilmente.",
+    sa_pricing_email_tenant: "E-mail di conferma al mandante",
+    sa_pricing_email_tenant_desc: "Invia automaticamente conferma ordine",
+    sa_pricing_email_admin: "Copia e-mail all'admin Sunrise",
+    sa_prov_devices_title: "Tutti i dispositivi provisionati",
+    sa_prov_devices_sub: "Piattaforma · con stato di provisioning",
+    sa_prov_th_device: "Dispositivo / Modello",
+    sa_prov_th_mac: "Indirizzo MAC",
+    sa_prov_th_user: "Utente",
+    sa_prov_th_sip: "Account SIP",
+    sa_prov_th_firmware: "Firmware",
+    sa_asterisk_sub_updated: "Health-check PBX globale · Ultimo aggiornamento: adesso",
+    btn_import_csv: "Importa CSV",
+    ucc_vm_title: "Segreteria",
+    ucc_vm_sub: "Casella vm_101 · 3 nuovi messaggi",
+    ucc_hist_title: "Cronologia chiamate",
+    ucc_hist_sub: "Ultimi 30 giorni",
+    ta_num_th_number: "Numero",
+    ta_num_th_type: "Tipo",
+    ta_num_th_assigned: "Assegnato a",
+    ta_num_th_routing: "Routing",
+    ab_sync_photos: "Sincronizza foto",
+    ab_sync_photos_desc: "Importa foto contatti da Exchange",
+    ab_sync_delete: "Rimuovi contatti eliminati",
+    ab_sync_delete_desc: "Elimina localmente i contatti rimossi da Exchange durante la sync",
+    res_th_qty: "Quantità",
+    ab_all_contacts: "Tutti i contatti",
+    ab_all_groups: "Tutti i gruppi",
+    ab_export_vcard: "Esporta vCard",
+    hol_ch_card_title: "Importa festività svizzere",
+    hol_ch_card_sub: "Festività nazionali e cantonali per",
+    ta_cdr_th_datetime: "Data/Ora",
+    sa_tenants_stat_line: "6 mandanti · 5 attivi · 1 bloccato",
+    sa_nt_card_feat_pkg: "Pacchetto funzioni",
+    ucc_ext_fmt: "Interno {ext}",
+    ucc_chat_hdr_status: "● {status} · Interno {ext}",
 
   },
   en: {
@@ -13771,6 +13900,49 @@ const translations = {
     ab_btn_call_title: "Call",
     sa_toast_cdr_full: "{name}: CDR numbers full",
     sa_toast_cdr_anon: "{name}: CDR numbers anonymized",
+    sa_numbers_stats: "500 numbers total · 143 assigned · 357 free",
+    sa_trunks_card_active: "Active trunks",
+    sa_pricing_btn_save: "Save prices",
+    sa_pricing_number_prices: "Number prices",
+    sa_pricing_feature_prices: "Feature prices",
+    sa_pricing_approval_prefix: "All shop orders are ",
+    sa_pricing_approval_bold: "activated automatically immediately",
+    sa_pricing_approval_suffix: " and billed monthly.",
+    sa_pricing_email_tenant: "Email confirmation to tenant",
+    sa_pricing_email_tenant_desc: "Send order confirmation automatically",
+    sa_pricing_email_admin: "Email copy to Sunrise admin",
+    sa_prov_devices_title: "All provisioned devices",
+    sa_prov_devices_sub: "Platform-wide · with provisioning status",
+    sa_prov_th_device: "Device / Model",
+    sa_prov_th_mac: "MAC address",
+    sa_prov_th_user: "User",
+    sa_prov_th_sip: "SIP account",
+    sa_prov_th_firmware: "Firmware",
+    sa_asterisk_sub_updated: "Global PBX health check · Last updated: just now",
+    btn_import_csv: "Import CSV",
+    ucc_vm_title: "Voicemail",
+    ucc_vm_sub: "Mailbox vm_101 · 3 new messages",
+    ucc_hist_title: "Call history",
+    ucc_hist_sub: "Last 30 days",
+    ta_num_th_number: "Number",
+    ta_num_th_type: "Type",
+    ta_num_th_assigned: "Assigned to",
+    ta_num_th_routing: "Routing",
+    ab_sync_photos: "Sync photos",
+    ab_sync_photos_desc: "Import contact photos from Exchange",
+    ab_sync_delete: "Remove deleted contacts",
+    ab_sync_delete_desc: "Delete locally contacts removed from Exchange during sync",
+    res_th_qty: "Qty",
+    ab_all_contacts: "All contacts",
+    ab_all_groups: "All groups",
+    ab_export_vcard: "Export vCard",
+    hol_ch_card_title: "Import Swiss public holidays",
+    hol_ch_card_sub: "National and cantonal holidays for",
+    ta_cdr_th_datetime: "Date/Time",
+    sa_tenants_stat_line: "6 tenants · 5 active · 1 locked",
+    sa_nt_card_feat_pkg: "Feature package",
+    ucc_ext_fmt: "Extension {ext}",
+    ucc_chat_hdr_status: "● {status} · Extension {ext}",
 
   },
 };
@@ -13863,6 +14035,9 @@ function setLang(lang) {
       if (upPage && typeof showUpPage === 'function') {
         showUpPage(upPage.id.replace('up-page-', ''), null);
       }
+    } else if (currentRole === 'ucc') {
+      if (typeof renderPresenceList === 'function') renderPresenceList(UCC_CONTACTS);
+      if (typeof renderChatThread === 'function') renderChatThread(activeChatThread);
     }
     if (typeof renderUpHelpTutorials === 'function') renderUpHelpTutorials();
     var upHelpBtn = document.getElementById('up-topbar-help-btn');
@@ -16230,6 +16405,8 @@ function initAddressbook() {
   if (totalEl) totalEl.textContent = abContacts.length;
   const impEl = document.getElementById('ab-stat-imported');
   if (impEl) impEl.textContent = abContacts.filter(c=>c.source==='exchange').length + ' (Exchange)';
+  const titleEl = document.getElementById('ab-list-title');
+  if (titleEl) titleEl.textContent = abFilterGroup || t('ab_all_contacts');
 }
 
 // ── Groups sidebar ─────────────────────────────────────────────────────────────
@@ -16263,7 +16440,7 @@ function setAbGroup(group) {
   renderAbGroups();
   renderAbContacts();
   const titleEl = document.getElementById('ab-list-title');
-  if (titleEl) titleEl.textContent = group || 'Alle Kontakte';
+  if (titleEl) titleEl.textContent = group || t('ab_all_contacts');
 }
 
 function filterAbByGroup(group) { setAbGroup(group); }
@@ -22109,7 +22286,7 @@ function renderPresenceList(contacts) {
         '</div>' +
         '<div style="flex:1;min-width:0">' +
           '<div class="presence-name">' + c.name + '</div>' +
-          '<div class="presence-ext">Durchwahl ' + c.ext + '</div>' +
+          '<div class="presence-ext">' + tf('ucc_ext_fmt', { ext: c.ext }) + '</div>' +
           '<div class="presence-status-txt">' + c.statusTxt + '</div>' +
         '</div>' +
         '<button class="presence-call-btn" data-action="call-contact" data-ext="' + c.ext + '" data-name="' + c.name + '">' +
@@ -22165,7 +22342,7 @@ function renderChatThread(threadId) {
     if (ha) { ha.textContent = thread.initials; ha.style.background = thread.color; }
     if (hn) hn.textContent = thread.contact;
     const c = UCC_CONTACTS.find(c => c.initials === thread.initials);
-    if (hs && c) hs.textContent = '● ' + c.statusTxt + ' · Durchwahl ' + c.ext;
+    if (hs && c) hs.textContent = tf('ucc_chat_hdr_status', { status: c.statusTxt, ext: c.ext });
     if (hs && c) hs.style.color = STATUS_COLORS[c.status];
   }
 
@@ -24967,12 +25144,12 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="page-header">
       <div>
         <div class="page-title" data-i18n="sa_page_tenants">Alle Mandanten</div>
-        <div class="page-subtitle">6 Mandanten · 5 aktiv · 1 gesperrt</div>
+        <div class="page-subtitle" data-i18n="sa_tenants_stat_line">6 Mandanten · 5 aktiv · 1 gesperrt</div>
       </div>
       <div class="page-actions">
         <button class="btn btn-primary" onclick="openNewTenantModal()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Mandant erstellen
+          <span data-i18n="sa_nav_create_tenant">Mandant erstellen</span>
         </button>
       </div>
     </div>
@@ -24985,14 +25162,14 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="page-header">
       <div>
         <div class="page-title" data-i18n="sa_page_new_tenant">Neuer Mandant</div>
-        <div class="page-subtitle">Firma, Ressourcen und Features konfigurieren</div>
+        <div class="page-subtitle" data-i18n="sa_nt_subtitle">Firma, Ressourcen und Features konfigurieren</div>
       </div>
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
       <!-- Left: Stammdaten -->
       <div class="card">
-        <div class="card-header"><div class="card-title">Stammdaten</div></div>
+        <div class="card-header"><div class="card-title" data-i18n="sa_nt_step_stamm">Stammdaten</div></div>
         <div class="modal-body" style="padding:20px">
           <div class="form-row">
             <div class="form-group">
@@ -25057,7 +25234,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <!-- Right: Ressourcen & Features -->
       <div style="display:flex;flex-direction:column;gap:16px">
         <div class="card">
-          <div class="card-header"><div class="card-title">Ressourcen</div></div>
+          <div class="card-header"><div class="card-title" data-i18n="sa_nt_step_resources">Ressourcen</div></div>
           <div class="modal-body" style="padding:20px">
             <div class="form-row">
               <div class="form-group">
@@ -25093,7 +25270,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
 
         <div class="card">
-          <div class="card-header"><div class="card-title">Feature-Paket</div></div>
+          <div class="card-header"><div class="card-title" data-i18n="sa_nt_card_feat_pkg">Feature-Paket</div></div>
           <div style="padding:16px 20px">
             <div class="feature-grid">
               <div class="feature-item">
@@ -25135,10 +25312,10 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <div style="display:flex;justify-content:flex-end;gap:10px">
-      <button class="btn btn-secondary" onclick="showSaPage('sa-tenants', null)">Abbrechen</button>
+      <button class="btn btn-secondary" onclick="showSaPage('sa-tenants', null)"><span data-i18n="btn_cancel">Abbrechen</span></button>
       <button class="btn btn-primary" onclick="createTenantDemo()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-        Mandant erstellen
+        <span data-i18n="sa_nt_btn_create">Mandant erstellen</span>
       </button>
     </div>
   </div>
@@ -25148,18 +25325,18 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="page-header">
       <div>
         <div class="page-title" data-i18n="sa_page_numbers">Rufnummern-Pool</div>
-        <div class="page-subtitle">500 Nummern total · 143 vergeben · 357 frei</div>
+        <div class="page-subtitle" data-i18n="sa_numbers_stats">500 Nummern total · 143 vergeben · 357 frei</div>
       </div>
       <div class="page-actions">
-        <button class="btn btn-secondary" onclick="openModal('modal-import-numbers-csv')">Import CSV</button>
-        <button class="btn btn-primary" onclick="openAddPoolBlockModal()">+ Nummernblock hinzufügen</button>
+        <button class="btn btn-secondary" onclick="openModal('modal-import-numbers-csv')"><span data-i18n="btn_import_csv">Import CSV</span></button>
+        <button class="btn btn-primary" onclick="openAddPoolBlockModal()"><span data-i18n="res_btn_add_block">+ Nummernblock</span></button>
       </div>
     </div>
     <div class="card">
-      <div class="card-header"><div class="card-title">Nummernblöcke</div></div>
+      <div class="card-header"><div class="card-title" data-i18n="res_card_blocks">Nummernblöcke</div></div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Block</th><th>Von</th><th>Bis</th><th>Total</th><th>Vergeben</th><th>Frei</th><th>Stadt</th><th>Status</th><th style="text-align:right">Aktionen</th></tr></thead>
+          <thead><tr><th data-i18n="res_th_block">Block</th><th data-i18n="res_th_from">Von</th><th data-i18n="res_th_to">Bis</th><th data-i18n="res_th_total">Total</th><th data-i18n="res_th_assigned">Vergeben</th><th data-i18n="res_th_free">Frei</th><th data-i18n="res_th_city">Stadt</th><th data-i18n="th_status">Status</th><th style="text-align:right" data-i18n="th_actions">Aktionen</th></tr></thead>
           <tbody id="pool-blocks-tbody"></tbody>
         </table>
       </div>
@@ -25171,17 +25348,17 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="page-header">
       <div>
         <div class="page-title" data-i18n="sa_page_trunks">SIP Trunks</div>
-        <div class="page-subtitle">Carrier-Anbindungen für alle Mandanten</div>
+        <div class="page-subtitle" data-i18n="sa_page_trunks_sub">Carrier-Anbindungen und Kapazitäten</div>
       </div>
       <div class="page-actions">
-        <button class="btn btn-primary" onclick="openAddTrunkModal(null)">+ Trunk hinzufügen</button>
+        <button class="btn btn-primary" onclick="openAddTrunkModal(null)"><span data-i18n="res_btn_add_trunk">+ Trunk hinzufügen</span></button>
       </div>
     </div>
     <div class="card">
-      <div class="card-header"><div class="card-title">Aktive Trunks</div></div>
+      <div class="card-header"><div class="card-title" data-i18n="sa_trunks_card_active">Aktive Trunks</div></div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Trunk ID</th><th>Host / IP</th><th>Standort</th><th>Kapazität</th><th>Belegt</th><th>Protokoll</th><th>Mandanten</th><th>Status</th><th style="text-align:right">Aktionen</th></tr></thead>
+          <thead><tr><th data-i18n="res_th_trunk_id">Trunk ID</th><th data-i18n="res_th_host">Host / IP</th><th data-i18n="res_th_location">Standort</th><th data-i18n="res_th_capacity">Kapazität</th><th data-i18n="res_th_used">Belegt</th><th data-i18n="res_th_protocol">Protokoll</th><th data-i18n="sm_res_th_tenants">Mandanten</th><th data-i18n="th_status">Status</th><th style="text-align:right" data-i18n="th_actions">Aktionen</th></tr></thead>
           <tbody id="sa-trunks-tbody">
           </tbody>
         </table>
@@ -25194,25 +25371,25 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="page-header">
       <div>
         <div class="page-title" data-i18n="sa_page_features">Feature-Pakete</div>
-        <div class="page-subtitle">Globale Feature-Konfiguration pro Mandant</div>
+        <div class="page-subtitle" data-i18n="sa_page_features_sub">Funktionspakete für Mandanten</div>
       </div>
     </div>
     <div class="card">
-      <div class="card-header"><div class="card-title">Mandanten · Feature-Matrix</div></div>
+      <div class="card-header"><div class="card-title" data-i18n="res_card_feature_matrix">Feature-Matrix — Mandanten</div></div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Mandant</th>
-              <th>IVR</th>
-              <th>Hunt Groups</th>
-              <th>Recording</th>
-              <th>Warteschlange</th>
-              <th>VM per E-Mail</th>
-              <th>API</th>
-              <th>CDR</th>
-              <th>Fax over IP</th>
-              <th>CDR Vollnummern</th>
+              <th data-i18n="th_tenant">Mandant</th>
+              <th data-i18n="res_feat_ivr">IVR</th>
+              <th data-i18n="res_feat_hg">Hunt Groups</th>
+              <th data-i18n="res_feat_rec">Recording</th>
+              <th data-i18n="res_feat_queue">Warteschlange</th>
+              <th data-i18n="res_feat_vm">VM per E-Mail</th>
+              <th data-i18n="res_feat_api">API</th>
+              <th data-i18n="res_feat_cdr">CDR</th>
+              <th data-i18n="res_feat_foip">Fax over IP</th>
+              <th data-i18n="res_feat_cdr_full">CDR Vollnummern</th>
             </tr>
           </thead>
           <tbody id="feature-matrix-tbody"></tbody>
@@ -25226,7 +25403,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="page-header">
       <div>
         <div class="page-title" data-i18n="sa_page_asterisk">Asterisk System-Status</div>
-        <div class="page-subtitle">Globaler PBX Health-Check · Letzte Aktualisierung: gerade eben</div>
+        <div class="page-subtitle" data-i18n="sa_asterisk_sub_updated">Globaler PBX Health-Check · Letzte Aktualisierung: gerade eben</div>
       </div>
       <div class="page-actions">
         <button class="btn btn-secondary" onclick="showToast(t('asterisk_toast_updated'))">
@@ -25423,11 +25600,11 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="page-actions">
         <button class="btn btn-secondary" onclick="openAddVendorModal()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Hersteller hinzufügen
+          <span data-i18n="res_btn_add_vendor">Hersteller hinzufügen</span>
         </button>
         <button class="btn btn-primary" onclick="openEditModelModal(null)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Modell hinzufügen
+          <span data-i18n="res_btn_add_model">Modell hinzufügen</span>
         </button>
       </div>
     </div>
@@ -25435,19 +25612,19 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Stats -->
     <div class="stats-row" style="grid-template-columns:repeat(4,1fr)">
       <div class="stat-card">
-        <div><div class="stat-label">Hersteller</div><div class="stat-value">6</div></div>
+        <div><div class="stat-label" data-i18n="res_stat_vendors">Hersteller</div><div class="stat-value">6</div></div>
         <div class="stat-icon" style="background:#eef3f7"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E94CF" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
       </div>
       <div class="stat-card">
-        <div><div class="stat-label">Modelle total</div><div class="stat-value" id="prov-model-count">—</div></div>
+        <div><div class="stat-label" data-i18n="res_stat_models">Modelle total</div><div class="stat-value" id="prov-model-count">—</div></div>
         <div class="stat-icon" style="background:#e0f0f0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#008187" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
       </div>
       <div class="stat-card">
-        <div><div class="stat-label">Registrierte Geräte</div><div class="stat-value" id="prov-registered-count">—</div></div>
+        <div><div class="stat-label" data-i18n="res_stat_registered">Registrierte Geräte</div><div class="stat-value" id="prov-registered-count">—</div></div>
         <div class="stat-icon" style="background:#eaf5ee"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2d8653" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
       </div>
       <div class="stat-card">
-        <div><div class="stat-label">Firmware veraltet</div><div class="stat-value" id="prov-outdated-count" style="color:var(--orange)">—</div></div>
+        <div><div class="stat-label" data-i18n="res_stat_fw_outdated">Firmware veraltet</div><div class="stat-value" id="prov-outdated-count" style="color:var(--orange)">—</div></div>
         <div class="stat-icon" style="background:#fffbeb"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg></div>
       </div>
     </div>
@@ -25455,14 +25632,14 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Catalog table -->
     <div class="card">
       <div class="card-header">
-        <div class="card-title">Gerätekatalog</div>
+        <div class="card-title" data-i18n="res_card_catalog">Gerätekatalog</div>
         <div class="toolbar">
           <div class="search-wrap">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="text" class="search-input" placeholder="Modell suchen…" oninput="filterDeviceCatalog(this.value)">
+            <input type="text" class="search-input" data-i18n-placeholder="res_ph_search_model" placeholder="Modell suchen…" oninput="filterDeviceCatalog(this.value)">
           </div>
           <select class="filter-select" onchange="filterCatalogByVendor(this.value)" id="vendor-filter">
-            <option value="">Alle Hersteller</option>
+            <option value="" data-i18n="res_filter_all_vendors">Alle Hersteller</option>
           </select>
         </div>
       </div>
@@ -25470,14 +25647,14 @@ document.addEventListener('DOMContentLoaded', function() {
         <table>
           <thead>
             <tr>
-              <th>Hersteller</th>
-              <th>Modell</th>
-              <th>Typ</th>
-              <th>Aktive Firmware</th>
-              <th>Prov.-Methode</th>
-              <th>Unterstützt seit</th>
-              <th>Aktiv</th>
-              <th style="text-align:right">Aktionen</th>
+              <th data-i18n="res_th_vendor">Hersteller</th>
+              <th data-i18n="res_th_model">Modell</th>
+              <th data-i18n="res_th_type">Typ</th>
+              <th data-i18n="res_th_active_fw">Aktive Firmware</th>
+              <th data-i18n="res_th_prov_method">Prov.-Methode</th>
+              <th data-i18n="res_th_supported_since">Unterstützt seit</th>
+              <th data-i18n="th_status">Status</th>
+              <th style="text-align:right" data-i18n="th_actions">Aktionen</th>
             </tr>
           </thead>
           <tbody id="device-catalog-tbody"></tbody>
@@ -25489,23 +25666,23 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="card">
       <div class="card-header">
         <div>
-          <div class="card-title">Alle provisionierten Geräte</div>
-          <div class="card-subtitle">Plattformweit · mit Provisionierungs-Status</div>
+          <div class="card-title" data-i18n="sa_prov_devices_title">Alle provisionierten Geräte</div>
+          <div class="card-subtitle" data-i18n="sa_prov_devices_sub">Plattformweit · mit Provisionierungs-Status</div>
         </div>
-        <button class="btn btn-secondary" onclick="showToast(t('toast_export_started'))">Export CSV</button>
+        <button class="btn btn-secondary" onclick="showToast(t('toast_export_started'))"><span data-i18n="ta_btn_export_csv">Export CSV</span></button>
       </div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Gerät / Modell</th>
-              <th>MAC-Adresse</th>
-              <th>Mandant</th>
-              <th>Benutzer</th>
-              <th>SIP-Account</th>
-              <th>Firmware</th>
-              <th>Status</th>
-              <th style="text-align:right">Aktionen</th>
+              <th data-i18n="sa_prov_th_device">Gerät / Modell</th>
+              <th data-i18n="sa_prov_th_mac">MAC-Adresse</th>
+              <th data-i18n="th_tenant">Mandant</th>
+              <th data-i18n="sa_prov_th_user">Benutzer</th>
+              <th data-i18n="sa_prov_th_sip">SIP-Account</th>
+              <th data-i18n="sa_prov_th_firmware">Firmware</th>
+              <th data-i18n="th_status">Status</th>
+              <th style="text-align:right" data-i18n="th_actions">Aktionen</th>
             </tr>
           </thead>
           <tbody id="provisioned-devices-tbody"></tbody>
@@ -25519,12 +25696,12 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="page-header">
       <div>
         <div class="page-title" data-i18n="sa_page_pricing">Preiskatalog</div>
-        <div class="page-subtitle">Preise für Rufnummernblöcke und Feature-Pakete verwalten</div>
+        <div class="page-subtitle" data-i18n="sa_page_pricing_sub">Produkte und Preise verwalten</div>
       </div>
       <div class="page-actions">
         <button class="btn btn-primary" onclick="savePricing()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-          Preise speichern
+          <span data-i18n="sa_pricing_btn_save">Preise speichern</span>
         </button>
       </div>
     </div>
@@ -25532,10 +25709,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
       <!-- Number block pricing -->
       <div class="card">
-        <div class="card-header"><div class="card-title">Rufnummern-Preise</div></div>
+        <div class="card-header"><div class="card-title" data-i18n="sa_pricing_number_prices">Rufnummern-Preise</div></div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Produkt</th><th>Anzahl</th><th style="text-align:right">Einmalig (CHF)</th><th style="text-align:right">Monatlich (CHF)</th></tr></thead>
+            <thead><tr><th data-i18n="res_th_product">Produkt</th><th data-i18n="res_th_qty">Anzahl</th><th style="text-align:right" data-i18n="res_th_onetime">Einmalig (CHF)</th><th style="text-align:right" data-i18n="res_th_monthly">Monatlich (CHF)</th></tr></thead>
             <tbody id="sa-pricing-numbers"></tbody>
           </table>
         </div>
@@ -25543,10 +25720,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <!-- Feature pricing -->
       <div class="card">
-        <div class="card-header"><div class="card-title">Feature-Preise</div></div>
+        <div class="card-header"><div class="card-title" data-i18n="sa_pricing_feature_prices">Feature-Preise</div></div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Feature</th><th style="text-align:right">Einmalig (CHF)</th><th style="text-align:right">Monatlich (CHF)</th></tr></thead>
+            <thead><tr><th data-i18n="res_th_feature">Feature</th><th style="text-align:right" data-i18n="res_th_onetime">Einmalig (CHF)</th><th style="text-align:right" data-i18n="res_th_monthly">Monatlich (CHF)</th></tr></thead>
             <tbody id="sa-pricing-features"></tbody>
           </table>
         </div>
@@ -25554,10 +25731,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <!-- User licence pricing -->
       <div class="card">
-        <div class="card-header"><div class="card-title">Benutzer-Lizenzen</div></div>
+        <div class="card-header"><div class="card-title" data-i18n="res_card_user_licenses">Benutzer-Lizenzen</div></div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Paket</th><th>Benutzer</th><th style="text-align:right">Einmalig (CHF)</th><th style="text-align:right">Monatlich (CHF)</th></tr></thead>
+            <thead><tr><th data-i18n="res_th_package">Paket</th><th data-i18n="res_th_type">Benutzer</th><th style="text-align:right" data-i18n="res_th_onetime">Einmalig (CHF)</th><th style="text-align:right" data-i18n="res_th_monthly">Monatlich (CHF)</th></tr></thead>
             <tbody id="sa-pricing-users"></tbody>
           </table>
         </div>
@@ -25565,22 +25742,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <!-- Approval rules -->
       <div class="card">
-        <div class="card-header"><div class="card-title">Genehmigungsregeln</div></div>
+        <div class="card-header"><div class="card-title" data-i18n="res_card_billing_rules">Abrechnungsregeln</div></div>
         <div style="padding:16px 20px;display:flex;flex-direction:column;gap:12px">
           <div style="display:flex;align-items:center;gap:8px;background:#eaf5ee;border:1px solid #a7d7b8;border-radius:var(--radius-sm);padding:10px 12px;font-size:12.5px;color:#2d6a4a">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Alle Shop-Bestellungen werden <strong>sofort automatisch aktiviert</strong> und monatlich abgerechnet.
+            <span data-i18n="sa_pricing_approval_prefix">Alle Shop-Bestellungen werden </span><strong data-i18n="sa_pricing_approval_bold">sofort automatisch aktiviert</strong><span data-i18n="sa_pricing_approval_suffix"> und monatlich abgerechnet.</span>
           </div>
           <div class="toggle-row" style="margin-top:8px">
             <div class="toggle-info">
-              <div class="toggle-label">E-Mail-Bestätigung an Mandanten</div>
-              <div class="toggle-desc">Bestellbestätigung automatisch versenden</div>
+              <div class="toggle-label" data-i18n="sa_pricing_email_tenant">E-Mail-Bestätigung an Mandanten</div>
+              <div class="toggle-desc" data-i18n="sa_pricing_email_tenant_desc">Bestellbestätigung automatisch versenden</div>
             </div>
             <button class="toggle on" onclick="this.classList.toggle('on')"></button>
           </div>
           <div class="toggle-row">
             <div class="toggle-info">
-              <div class="toggle-label">E-Mail-Kopie an Sunrise Admin</div>
+              <div class="toggle-label" data-i18n="sa_pricing_email_admin">E-Mail-Kopie an Sunrise Admin</div>
               <div class="toggle-desc">admin@sunrise.ch</div>
             </div>
             <button class="toggle on" onclick="this.classList.toggle('on')"></button>
@@ -27034,10 +27211,10 @@ document.addEventListener('DOMContentLoaded', function() {
           <div style="padding:20px 24px">
             <div class="page-header" style="margin-bottom:16px">
               <div>
-                <div class="page-title" style="font-size:18px">Voicemail</div>
-                <div class="page-subtitle">Postfach vm_101 · 3 neue Nachrichten</div>
+                <div class="page-title" style="font-size:18px" data-i18n="ucc_vm_title">Voicemail</div>
+                <div class="page-subtitle" data-i18n="ucc_vm_sub">Postfach vm_101 · 3 neue Nachrichten</div>
               </div>
-              <button class="btn btn-secondary btn-sm" onclick="showToast(t('ucc_toast_all_read'));document.getElementById('ucc-btn-voicemail').querySelector('.ucc-icon-badge').style.display='none'">Alle gelesen</button>
+              <button class="btn btn-secondary btn-sm" onclick="showToast(t('ucc_toast_all_read'));document.getElementById('ucc-btn-voicemail').querySelector('.ucc-icon-badge').style.display='none'"><span data-i18n="up_vm_mark_read">Alle gelesen</span></button>
             </div>
             <div class="card">
               <div class="vm-list" id="ucc-vm-list"></div>
@@ -27052,14 +27229,14 @@ document.addEventListener('DOMContentLoaded', function() {
           <div style="padding:20px 24px">
             <div class="page-header" style="margin-bottom:16px">
               <div>
-                <div class="page-title" style="font-size:18px">Gesprächsverlauf</div>
-                <div class="page-subtitle">Letzte 30 Tage</div>
+                <div class="page-title" style="font-size:18px" data-i18n="ucc_hist_title">Gesprächsverlauf</div>
+                <div class="page-subtitle" data-i18n="ucc_hist_sub">Letzte 30 Tage</div>
               </div>
               <select class="filter-select" onchange="filterUccCalls(this.value)">
-                <option value="">Alle</option>
-                <option value="inbound">Eingehend</option>
-                <option value="outbound">Ausgehend</option>
-                <option value="missed">Verpasst</option>
+                <option value="" data-i18n="res_filter_all_status">Alle</option>
+                <option value="inbound" data-i18n="up_filter_inbound">Eingehend</option>
+                <option value="outbound" data-i18n="up_filter_outbound">Ausgehend</option>
+                <option value="missed" data-i18n="stat_missed">Verpasst</option>
               </select>
             </div>
             <div class="card" id="ucc-history-list"></div>
@@ -28826,11 +29003,11 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
         <div class="toggle-row">
-          <div class="toggle-info"><div class="toggle-label">Fotos synchronisieren</div><div class="toggle-desc">Kontaktfotos aus Exchange übernehmen</div></div>
+          <div class="toggle-info"><div class="toggle-label" data-i18n="ab_sync_photos">Fotos synchronisieren</div><div class="toggle-desc" data-i18n="ab_sync_photos_desc">Kontaktfotos aus Exchange übernehmen</div></div>
           <button class="toggle on" onclick="this.classList.toggle('on')"></button>
         </div>
         <div class="toggle-row">
-          <div class="toggle-info"><div class="toggle-label">Gelöschte Kontakte entfernen</div><div class="toggle-desc">Bei Sync aus Exchange entfernte Kontakte auch lokal löschen</div></div>
+          <div class="toggle-info"><div class="toggle-label" data-i18n="ab_sync_delete">Gelöschte Kontakte entfernen</div><div class="toggle-desc" data-i18n="ab_sync_delete_desc">Bei Sync aus Exchange entfernte Kontakte auch lokal löschen</div></div>
           <button class="toggle on" onclick="this.classList.toggle('on')"></button>
         </div>
       </div>
