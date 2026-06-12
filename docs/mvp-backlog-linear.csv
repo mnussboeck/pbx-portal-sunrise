@@ -1,0 +1,337 @@
+Title,Description,Priority,Status,Labels,Estimate,Project
+[E0-1] Mandanten anlegen und Tenant-Isolation,"Als Betreiber möchte ich Mandanten (tenants) anlegen, damit Daten isoliert sind.
+
+**Akzeptanzkriterien:**
+- tenant_id in allen Tabellen
+- API lehnt Cross-Tenant-Zugriff ab (403)
+
+**Referenz:** Prototyp-ID `E0-1`",Urgent,Backlog,backend;platform;database,5,E0 Plattform-Fundament
+[E0-2] SSO/OIDC Login,"Als User möchte ich mich per Sunrise-SSO anmelden.
+
+**Akzeptanzkriterien:**
+- OIDC-Flow implementiert
+- Session/JWT mit Refresh
+- Logout funktioniert
+
+**Referenz:** Prototyp-ID `E0-2`",Urgent,Backlog,backend;auth;security,8,E0 Plattform-Fundament
+[E0-3] RBAC pro API-Request,"Als System soll jede API-Anfrage eine Rolle kennen.
+
+**Akzeptanzkriterien:**
+- Rollen: end_user, tenant_admin, platform_admin
+- Middleware prüft Rolle pro Endpoint
+
+**Referenz:** Prototyp-ID `E0-3`",Urgent,Backlog,backend;auth;security,5,E0 Plattform-Fundament
+[E0-4] OpenAPI 3.1 Spec + CI-Validierung,"Als Entwickler möchte ich eine OpenAPI-Spec für parallele Entwicklung.
+
+**Akzeptanzkriterien:**
+- OpenAPI 3.1 im Repo
+- CI bricht bei Breaking Changes
+
+**Referenz:** Prototyp-ID `E0-4`",Urgent,Backlog,backend;api;dx,3,E0 Plattform-Fundament
+[E0-5] Health-Checks und strukturiertes Logging,"Als Betreiber möchte ich Health-Checks und strukturierte Logs.
+
+**Akzeptanzkriterien:**
+- /health/live und /health/ready
+- Correlation-ID pro Request
+
+**Referenz:** Prototyp-ID `E0-5`",High,Backlog,backend;devops;observability,3,E0 Plattform-Fundament
+[E0-6] Audit-Log für Konfigurationsänderungen,"Als Auditor möchte ich Konfigurationsänderungen nachvollziehen.
+
+**Akzeptanzkriterien:**
+- audit_log: wer, was, wann, tenant, before/after JSON
+- Alle Schreiboperationen im MVP erfasst
+
+**Referenz:** Prototyp-ID `E0-6`",Urgent,Backlog,backend;security;compliance,5,E0 Plattform-Fundament
+[E0-T1] PostgreSQL HA + Redis Setup,"Technische Grundlage: PostgreSQL HA und Redis für Sessions/Queue.
+
+**Akzeptanzkriterien:**
+- Managed PostgreSQL mit Replikation
+- Redis für Sessions und Job-Queue
+- Migrations mit Flyway/Liquibase
+
+**Referenz:** Prototyp-ID `E0-T1`",Urgent,Backlog,devops;database;infrastructure,8,E0 Plattform-Fundament
+[E0-T2] CI/CD Pipeline,"Build, Test und Deploy Pipeline für API und Frontend.
+
+**Akzeptanzkriterien:**
+- PR-Checks (Lint, Test, OpenAPI)
+- Deploy auf Staging bei Merge main
+
+**Referenz:** Prototyp-ID `E0-T2`",Urgent,Backlog,devops;ci,5,E0 Plattform-Fundament
+[E1-1] GET /me — Profil anzeigen,"Als Endnutzer möchte ich nach Login mein Profil sehen (Name, Durchwahl, DID, Sprache).
+
+**Akzeptanzkriterien:**
+- GET /api/v1/me liefert DB-Daten
+- UI entspricht Prototyp Übersicht
+
+**Referenz:** Prototyp-ID `E1-1`",Urgent,Backlog,backend;frontend;user-portal,3,E1 Identität & Profil
+[E1-2] Portalsprache wählen (DE/FR/IT/EN),"Als Endnutzer möchte ich die Portalsprache wählen.
+
+**Akzeptanzkriterien:**
+- Sprache im Profil gespeichert
+- Bestehende i18n-Keys aus Prototyp
+
+**Referenz:** Prototyp-ID `E1-2`",Urgent,Backlog,frontend;user-portal;i18n,3,E1 Identität & Profil
+[E1-3] SIP-/Präsenzstatus anzeigen (read-only),"Als Endnutzer möchte ich meinen SIP-Status sehen (online/offline).
+
+**Akzeptanzkriterien:**
+- Status aus PBX-Registrierung
+- Fallback unbekannt wenn nicht verfügbar
+
+**Referenz:** Prototyp-ID `E1-3`",High,Backlog,backend;frontend;integration,3,E1 Identität & Profil
+[E1-4] Onboarding serverseitig,"Als Endnutzer möchte ich Onboarding nur beim ersten Besuch sehen.
+
+**Akzeptanzkriterien:**
+- onboarding_completed_at in users
+- Nicht nur localStorage
+
+**Referenz:** Prototyp-ID `E1-4`",Medium,Backlog,frontend;user-portal,2,E1 Identität & Profil
+[E2-1] Eigene Anrufliste im Benutzerportal,"Als Endnutzer möchte ich meine letzten Anrufe sehen (Ein/Aus/Verpasst).
+
+**Akzeptanzkriterien:**
+- Paginierte Liste
+- Filter nach Richtung
+- Felder wie Prototyp up-calls
+
+**Referenz:** Prototyp-ID `E2-1`",Urgent,Backlog,frontend;backend;user-portal;cdr,5,E2 Anrufprotokoll (CDR)
+[E2-2] Letzte 5 Anrufe auf Übersicht,"Als Endnutzer möchte ich auf der Übersicht die 5 letzten Anrufe sehen.
+
+**Akzeptanzkriterien:**
+- GET /api/v1/me/cdr?limit=5
+- Widget auf up-overview
+
+**Referenz:** Prototyp-ID `E2-2`",Urgent,Backlog,frontend;user-portal;cdr,2,E2 Anrufprotokoll (CDR)
+[E2-3] Tenant-Admin CDR-Suche,"Als Tenant-Admin möchte ich CDR des Mandanten durchsuchen.
+
+**Akzeptanzkriterien:**
+- Filter Zeitraum und User
+- Read-only, CSV-Export
+- Keine Aufnahmen im MVP
+
+**Referenz:** Prototyp-ID `E2-3`",High,Backlog,frontend;backend;tenant-admin;cdr,5,E2 Anrufprotokoll (CDR)
+[E2-4] CDR-Import aus PBX,"Als System möchte ich CDR aus der PBX importieren.
+
+**Akzeptanzkriterien:**
+- Batch-Job alle 5 Min oder Event-Stream
+- cdr_records Tabelle mit Partitionierung
+
+**Referenz:** Prototyp-ID `E2-4`",Urgent,Backlog,backend;integration;cdr,8,E2 Anrufprotokoll (CDR)
+[E3-1] Weiterleitungsregeln lesen,"Als Endnutzer möchte ich meine Weiterleitungsregeln lesen.
+
+**Akzeptanzkriterien:**
+- 4 Regeltypen: always, busy, no_answer, hours
+- Ziel: Nummer, Durchwahl oder Voicemail
+
+**Referenz:** Prototyp-ID `E3-1`",Urgent,Backlog,backend;frontend;user-portal;forwarding,3,E3 Rufweiterleitung
+[E3-2] Weiterleitungsregeln speichern,"Als Endnutzer möchte ich Regeln aktivieren/deaktivieren und Ziele ändern.
+
+**Akzeptanzkriterien:**
+- Validierung
+- Immer überschreibt andere Regeln
+- Speichern startet async Provision-Job
+
+**Referenz:** Prototyp-ID `E3-2`",Urgent,Backlog,backend;frontend;user-portal;forwarding,5,E3 Rufweiterleitung
+[E3-3] Provisionierungsstatus in UI,"Als Endnutzer möchte ich den Provisionierungsstatus sehen.
+
+**Akzeptanzkriterien:**
+- UI zeigt pending / applied / failed
+- Kein showToast als Erfolgs-Feedback
+
+**Referenz:** Prototyp-ID `E3-3`",Urgent,Backlog,frontend;user-portal;forwarding,3,E3 Rufweiterleitung
+[E3-4] Keine-Antwort mit Klingelzeit,"Als Endnutzer möchte ich Keine-Antwort mit Klingelzeit (5–60 s) setzen.
+
+**Akzeptanzkriterien:**
+- ring_timeout_sec validiert 5–60
+- Wie Prototyp up-forwarding
+
+**Referenz:** Prototyp-ID `E3-4`",Urgent,Backlog,frontend;backend;forwarding,2,E3 Rufweiterleitung
+[E3-5] Ausserhalb Bürozeiten mit Zeitplan,"Als Endnutzer möchte ich Ausserhalb Bürozeiten mit Zeitplan verknüpfen.
+
+**Akzeptanzkriterien:**
+- 2 vordefinierte Pläne im MVP
+- Kein Custom-Schedule-Editor
+
+**Referenz:** Prototyp-ID `E3-5`",High,Backlog,backend;forwarding,3,E3 Rufweiterleitung
+[E3-6] PBX applyForwardRules,"Als System soll die PBX Weiterleitungen anwenden.
+
+**Akzeptanzkriterien:**
+- Provisioning-Adapter applyForwardRules
+- Retry 3x, Fehler in UI + Audit-Log
+
+**Referenz:** Prototyp-ID `E3-6`",Urgent,Backlog,backend;integration;forwarding,8,E3 Rufweiterleitung
+[E4-1] Voicemail-Nachrichten auflisten,"Als Endnutzer möchte ich Voicemail-Nachrichten auflisten.
+
+**Akzeptanzkriterien:**
+- Absender, Datum, Dauer, gelesen/ungelesen
+- Paginiert
+
+**Referenz:** Prototyp-ID `E4-1`",Urgent,Backlog,frontend;backend;user-portal;voicemail,3,E4 Voicemail
+[E4-2] Voicemail gelesen/löschen,"Als Endnutzer möchte ich Nachrichten als gelesen markieren oder löschen.
+
+**Akzeptanzkriterien:**
+- PATCH /api/v1/me/voicemails/{id}
+- Soft-delete, PBX-Sync wenn API vorhanden
+
+**Referenz:** Prototyp-ID `E4-2`",High,Backlog,backend;user-portal;voicemail,3,E4 Voicemail
+[E4-3] Voicemail als Weiterleitungsziel,"Als Endnutzer möchte ich Voicemail als Weiterleitungsziel wählen.
+
+**Akzeptanzkriterien:**
+- target_type voicemail aus extension.voicemail_box_id
+- Dropdown in Forwarding-UI
+
+**Referenz:** Prototyp-ID `E4-3`",Urgent,Backlog,frontend;forwarding;voicemail,2,E4 Voicemail
+[E4-4] Voicemail-Audio abspielen,"Als Endnutzer möchte ich Voicemail-Audio abspielen.
+
+**Akzeptanzkriterien:**
+- Streaming aus Object Storage
+- Optional Phase 2 wenn PBX-API fehlt
+
+**Referenz:** Prototyp-ID `E4-4`",Medium,Backlog,frontend;voicemail;storage,5,E4 Voicemail
+[E5-1] Benutzerliste mit Suche und Filter,"Als Tenant-Admin möchte ich alle Benutzer des Mandanten listen und filtern.
+
+**Akzeptanzkriterien:**
+- Suche Name/E-Mail/Durchwahl
+- Pagination
+
+**Referenz:** Prototyp-ID `E5-1`",Urgent,Backlog,frontend;backend;tenant-admin,5,E5 Tenant Benutzerverwaltung
+[E5-2] Benutzerdetail mit Geräten,"Als Tenant-Admin möchte ich Benutzerdetails inkl. Geräte und SIP-Status sehen.
+
+**Akzeptanzkriterien:**
+- Read-only Geräteliste wie Prototyp
+- SIP registration_status
+
+**Referenz:** Prototyp-ID `E5-2`",Urgent,Backlog,frontend;tenant-admin,3,E5 Tenant Benutzerverwaltung
+[E5-3] Benutzer anlegen,"Als Tenant-Admin möchte ich einen Benutzer anlegen.
+
+**Akzeptanzkriterien:**
+- Name, E-Mail, Durchwahl, Rolle
+- Extension in DB + PBX Provision-Job
+
+**Referenz:** Prototyp-ID `E5-3`",Urgent,Backlog,backend;tenant-admin;integration,8,E5 Tenant Benutzerverwaltung
+[E5-4] Benutzer deaktivieren,"Als Tenant-Admin möchte ich einen Benutzer deaktivieren.
+
+**Akzeptanzkriterien:**
+- Kein Login mehr
+- Extension in PBX gesperrt
+
+**Referenz:** Prototyp-ID `E5-4`",Urgent,Backlog,backend;tenant-admin;integration,5,E5 Tenant Benutzerverwaltung
+[E5-5] Rollen zuweisen,"Als Tenant-Admin möchte ich Rollen zuweisen (Administrator, Benutzer, Agent).
+
+**Akzeptanzkriterien:**
+- Map auf RBAC
+- Agent-Rolle vorbereitet für Phase 2 Queues
+
+**Referenz:** Prototyp-ID `E5-5`",High,Backlog,backend;tenant-admin;auth,3,E5 Tenant Benutzerverwaltung
+[E6-1] Routing-Übersicht Tenant-Admin,"Als Tenant-Admin möchte ich die Routing-Übersicht pro Durchwahl sehen.
+
+**Akzeptanzkriterien:**
+- Import aus PBX
+- Keine Bearbeitung im MVP
+
+**Referenz:** Prototyp-ID `E6-1`",High,Backlog,frontend;backend;tenant-admin;routing,5,E6 Routing (read-only)
+[E6-2] Admin sieht User-Weiterleitungen,"Als Tenant-Admin möchte ich sehen welche Weiterleitungen ein User gesetzt hat.
+
+**Akzeptanzkriterien:**
+- Link User-Detail → Forward-Rules read-only
+
+**Referenz:** Prototyp-ID `E6-2`",High,Backlog,frontend;tenant-admin;forwarding,2,E6 Routing (read-only)
+[E7-1] Abstrakter Provisioning-Port,"Als System möchte ich einen abstrakten Provisioning-Port.
+
+**Akzeptanzkriterien:**
+- Interface: applyForwardRules, createExtension, deactivateExtension
+
+**Referenz:** Prototyp-ID `E7-1`",Urgent,Backlog,backend;integration,5,E7 PBX Provisioning Adapter
+[E7-2] Job-Queue für Provisioning,"Als System möchte ich Jobs in einer Queue verarbeiten.
+
+**Akzeptanzkriterien:**
+- Redis/RabbitMQ Worker
+- Retry + Dead-Letter Queue
+
+**Referenz:** Prototyp-ID `E7-2`",Urgent,Backlog,backend;infrastructure,5,E7 PBX Provisioning Adapter
+[E7-3] desired_state vs actual_state,"Als System möchte ich desired_state vs actual_state speichern.
+
+**Akzeptanzkriterien:**
+- Drift in UI anzeigbar
+- provision_jobs Tabelle
+
+**Referenz:** Prototyp-ID `E7-3`",Urgent,Backlog,backend;database,3,E7 PBX Provisioning Adapter
+[E7-4] Mock-Adapter für Dev/CI,"Als Entwickler möchte ich einen Mock-Adapter für lokale Entwicklung.
+
+**Akzeptanzkriterien:**
+- Ersetzt PBX in Dev/CI
+- Contract-Tests gegen Interface
+
+**Referenz:** Prototyp-ID `E7-4`",Urgent,Backlog,backend;testing;dx,5,E7 PBX Provisioning Adapter
+[E8-1] Prototyp nach Vite migrieren,"Als Entwickler möchte ich den Prototyp in ein Vite-Projekt überführen.
+
+**Akzeptanzkriterien:**
+- css/, js/, i18n/ Struktur
+- Role Bar für Dev erhalten
+
+**Referenz:** Prototyp-ID `E8-1`",Urgent,Backlog,frontend;dx,13,E8 Frontend-Migration
+[E8-2] Mobile Benutzerportal,"Als Endnutzer möchte ich das Benutzerportal mobil nutzen.
+
+**Akzeptanzkriterien:**
+- Bottom-Nav ≤768px wie Prototyp
+- Responsive Layout
+
+**Referenz:** Prototyp-ID `E8-2`",Urgent,Backlog,frontend;user-portal,5,E8 Frontend-Migration
+[E8-3] API-Client statt showToast,"Als Entwickler möchte ich API-Calls für MVP-Flows.
+
+**Akzeptanzkriterien:**
+- Fehlerbehandlung und Loading-States
+- Kein showToast für Persistenz
+
+**Referenz:** Prototyp-ID `E8-3`",Urgent,Backlog,frontend;api,5,E8 Frontend-Migration
+[E8-4] Hilfe/Tutorials beibehalten,"Als Endnutzer möchte ich Hilfe/Tutorials weiter nutzen.
+
+**Akzeptanzkriterien:**
+- Statische Tutorials clientseitig
+- i18n für Tutorial-Texte
+
+**Referenz:** Prototyp-ID `E8-4`",Medium,Backlog,frontend;user-portal,3,E8 Frontend-Migration
+[H-1] E2E-Tests Kernflows,"End-to-End Tests für Login, Forwarding, User CRUD, CDR.
+
+**Akzeptanzkriterien:**
+- Mindestens 1 E2E pro Epic E1–E5
+- Läuft in CI
+
+**Referenz:** Prototyp-ID `H-1`",Urgent,Backlog,testing;qa,8,Hardening & Pilot
+[H-2] Mandanten-Isolation Security-Tests,"Verifizieren dass Cross-Tenant-Zugriff unmöglich ist.
+
+**Akzeptanzkriterien:**
+- Automatisierte Tests für 403-Szenarien
+- Pen-Test light
+
+**Referenz:** Prototyp-ID `H-2`",Urgent,Backlog,security;testing,5,Hardening & Pilot
+[H-3] Pilot-Mandant Go-Live,"1 Pilot-Mandant mit 20–50 Usern produktiv schalten.
+
+**Akzeptanzkriterien:**
+- Runbook für Support
+- Monitoring-Dashboard
+- Rollback-Plan
+
+**Referenz:** Prototyp-ID `H-3`",Urgent,Backlog,devops;pilot,5,Hardening & Pilot
+[P2-1] Hunt Groups & Queues,"Hunt Groups und Warteschlangen verwalten
+
+**Referenz:** `P2-1` — Phase 2, nicht MVP",Medium,Backlog,phase-2,13,Phase 2
+[P2-2] Geräte-Provisioning,"TENANT_DEVICES, Firmware, TR-069
+
+**Referenz:** `P2-2` — Phase 2, nicht MVP",Medium,Backlog,phase-2,13,Phase 2
+[P2-3] Adressbuch + LDAP,"Adressbuch mit LDAP/365-Sync
+
+**Referenz:** `P2-3` — Phase 2, nicht MVP",Medium,Backlog,phase-2,8,Phase 2
+[P2-4] Shop & Orders,"Nummernshop und Bestellungen
+
+**Referenz:** `P2-4` — Phase 2, nicht MVP",Medium,Backlog,phase-2,13,Phase 2
+[P2-5] Super-Admin Billing,"Mandanten und Billing-Übersicht
+
+**Referenz:** `P2-5` — Phase 2, nicht MVP",Medium,Backlog,phase-2,13,Phase 2
+[P2-6] Service Management Trunks,"TRUNKS und Traffic-Monitoring
+
+**Referenz:** `P2-6` — Phase 2, nicht MVP",Medium,Backlog,phase-2,8,Phase 2
+[P2-7] Voicemail Audio & Recording,"Audio-Wiedergabe und Aufnahme Self-Service
+
+**Referenz:** `P2-7` — Phase 2, nicht MVP",Medium,Backlog,phase-2,8,Phase 2
+[P2-8] Persönliche Anruffilter,"up-settings Filterlisten
+
+**Referenz:** `P2-8` — Phase 2, nicht MVP",Medium,Backlog,phase-2,5,Phase 2

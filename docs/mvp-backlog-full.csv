@@ -1,0 +1,101 @@
+ID,Type,Epic,Title,Description,Acceptance Criteria,Priority,Story Points,Sprint,Labels,Linear Priority,Status,Project
+E0-1,Story,E0 Plattform-Fundament,Mandanten anlegen und Tenant-Isolation,"Als Betreiber möchte ich Mandanten (tenants) anlegen, damit Daten isoliert sind.","- tenant_id in allen Tabellen
+- API lehnt Cross-Tenant-Zugriff ab (403)",P0,5,1,"backend,platform,database",Urgent,Backlog,E0 Plattform-Fundament
+E0-2,Story,E0 Plattform-Fundament,SSO/OIDC Login,Als User möchte ich mich per Sunrise-SSO anmelden.,"- OIDC-Flow implementiert
+- Session/JWT mit Refresh
+- Logout funktioniert",P0,8,1,"backend,auth,security",Urgent,Backlog,E0 Plattform-Fundament
+E0-3,Story,E0 Plattform-Fundament,RBAC pro API-Request,Als System soll jede API-Anfrage eine Rolle kennen.,"- Rollen: end_user, tenant_admin, platform_admin
+- Middleware prüft Rolle pro Endpoint",P0,5,1,"backend,auth,security",Urgent,Backlog,E0 Plattform-Fundament
+E0-4,Story,E0 Plattform-Fundament,OpenAPI 3.1 Spec + CI-Validierung,Als Entwickler möchte ich eine OpenAPI-Spec für parallele Entwicklung.,"- OpenAPI 3.1 im Repo
+- CI bricht bei Breaking Changes",P0,3,1,"backend,api,dx",Urgent,Backlog,E0 Plattform-Fundament
+E0-5,Story,E0 Plattform-Fundament,Health-Checks und strukturiertes Logging,Als Betreiber möchte ich Health-Checks und strukturierte Logs.,"- /health/live und /health/ready
+- Correlation-ID pro Request",P1,3,1,"backend,devops,observability",High,Backlog,E0 Plattform-Fundament
+E0-6,Story,E0 Plattform-Fundament,Audit-Log für Konfigurationsänderungen,Als Auditor möchte ich Konfigurationsänderungen nachvollziehen.,"- audit_log: wer, was, wann, tenant, before/after JSON
+- Alle Schreiboperationen im MVP erfasst",P0,5,1,"backend,security,compliance",Urgent,Backlog,E0 Plattform-Fundament
+E0-T1,Task,E0 Plattform-Fundament,PostgreSQL HA + Redis Setup,Technische Grundlage: PostgreSQL HA und Redis für Sessions/Queue.,"- Managed PostgreSQL mit Replikation
+- Redis für Sessions und Job-Queue
+- Migrations mit Flyway/Liquibase",P0,8,1,"devops,database,infrastructure",Urgent,Backlog,E0 Plattform-Fundament
+E0-T2,Task,E0 Plattform-Fundament,CI/CD Pipeline,"Build, Test und Deploy Pipeline für API und Frontend.","- PR-Checks (Lint, Test, OpenAPI)
+- Deploy auf Staging bei Merge main",P0,5,1,"devops,ci",Urgent,Backlog,E0 Plattform-Fundament
+E1-1,Story,E1 Identität & Profil,GET /me — Profil anzeigen,"Als Endnutzer möchte ich nach Login mein Profil sehen (Name, Durchwahl, DID, Sprache).","- GET /api/v1/me liefert DB-Daten
+- UI entspricht Prototyp Übersicht",P0,3,2,"backend,frontend,user-portal",Urgent,Backlog,E1 Identität & Profil
+E1-2,Story,E1 Identität & Profil,Portalsprache wählen (DE/FR/IT/EN),Als Endnutzer möchte ich die Portalsprache wählen.,"- Sprache im Profil gespeichert
+- Bestehende i18n-Keys aus Prototyp",P0,3,2,"frontend,user-portal,i18n",Urgent,Backlog,E1 Identität & Profil
+E1-3,Story,E1 Identität & Profil,SIP-/Präsenzstatus anzeigen (read-only),Als Endnutzer möchte ich meinen SIP-Status sehen (online/offline).,"- Status aus PBX-Registrierung
+- Fallback unbekannt wenn nicht verfügbar",P1,3,2,"backend,frontend,integration",High,Backlog,E1 Identität & Profil
+E1-4,Story,E1 Identität & Profil,Onboarding serverseitig,Als Endnutzer möchte ich Onboarding nur beim ersten Besuch sehen.,"- onboarding_completed_at in users
+- Nicht nur localStorage",P2,2,6,"frontend,user-portal",Medium,Backlog,E1 Identität & Profil
+E2-1,Story,E2 Anrufprotokoll (CDR),Eigene Anrufliste im Benutzerportal,Als Endnutzer möchte ich meine letzten Anrufe sehen (Ein/Aus/Verpasst).,"- Paginierte Liste
+- Filter nach Richtung
+- Felder wie Prototyp up-calls",P0,5,3,"frontend,backend,user-portal,cdr",Urgent,Backlog,E2 Anrufprotokoll (CDR)
+E2-2,Story,E2 Anrufprotokoll (CDR),Letzte 5 Anrufe auf Übersicht,Als Endnutzer möchte ich auf der Übersicht die 5 letzten Anrufe sehen.,"- GET /api/v1/me/cdr?limit=5
+- Widget auf up-overview",P0,2,3,"frontend,user-portal,cdr",Urgent,Backlog,E2 Anrufprotokoll (CDR)
+E2-3,Story,E2 Anrufprotokoll (CDR),Tenant-Admin CDR-Suche,Als Tenant-Admin möchte ich CDR des Mandanten durchsuchen.,"- Filter Zeitraum und User
+- Read-only, CSV-Export
+- Keine Aufnahmen im MVP",P1,5,3,"frontend,backend,tenant-admin,cdr",High,Backlog,E2 Anrufprotokoll (CDR)
+E2-4,Story,E2 Anrufprotokoll (CDR),CDR-Import aus PBX,Als System möchte ich CDR aus der PBX importieren.,"- Batch-Job alle 5 Min oder Event-Stream
+- cdr_records Tabelle mit Partitionierung",P0,8,3,"backend,integration,cdr",Urgent,Backlog,E2 Anrufprotokoll (CDR)
+E3-1,Story,E3 Rufweiterleitung,Weiterleitungsregeln lesen,Als Endnutzer möchte ich meine Weiterleitungsregeln lesen.,"- 4 Regeltypen: always, busy, no_answer, hours
+- Ziel: Nummer, Durchwahl oder Voicemail",P0,3,4,"backend,frontend,user-portal,forwarding",Urgent,Backlog,E3 Rufweiterleitung
+E3-2,Story,E3 Rufweiterleitung,Weiterleitungsregeln speichern,Als Endnutzer möchte ich Regeln aktivieren/deaktivieren und Ziele ändern.,"- Validierung
+- Immer überschreibt andere Regeln
+- Speichern startet async Provision-Job",P0,5,4,"backend,frontend,user-portal,forwarding",Urgent,Backlog,E3 Rufweiterleitung
+E3-3,Story,E3 Rufweiterleitung,Provisionierungsstatus in UI,Als Endnutzer möchte ich den Provisionierungsstatus sehen.,"- UI zeigt pending / applied / failed
+- Kein showToast als Erfolgs-Feedback",P0,3,4,"frontend,user-portal,forwarding",Urgent,Backlog,E3 Rufweiterleitung
+E3-4,Story,E3 Rufweiterleitung,Keine-Antwort mit Klingelzeit,Als Endnutzer möchte ich Keine-Antwort mit Klingelzeit (5–60 s) setzen.,"- ring_timeout_sec validiert 5–60
+- Wie Prototyp up-forwarding",P0,2,4,"frontend,backend,forwarding",Urgent,Backlog,E3 Rufweiterleitung
+E3-5,Story,E3 Rufweiterleitung,Ausserhalb Bürozeiten mit Zeitplan,Als Endnutzer möchte ich Ausserhalb Bürozeiten mit Zeitplan verknüpfen.,"- 2 vordefinierte Pläne im MVP
+- Kein Custom-Schedule-Editor",P1,3,4,"backend,forwarding",High,Backlog,E3 Rufweiterleitung
+E3-6,Story,E3 Rufweiterleitung,PBX applyForwardRules,Als System soll die PBX Weiterleitungen anwenden.,"- Provisioning-Adapter applyForwardRules
+- Retry 3x, Fehler in UI + Audit-Log",P0,8,4,"backend,integration,forwarding",Urgent,Backlog,E3 Rufweiterleitung
+E4-1,Story,E4 Voicemail,Voicemail-Nachrichten auflisten,Als Endnutzer möchte ich Voicemail-Nachrichten auflisten.,"- Absender, Datum, Dauer, gelesen/ungelesen
+- Paginiert",P0,3,5,"frontend,backend,user-portal,voicemail",Urgent,Backlog,E4 Voicemail
+E4-2,Story,E4 Voicemail,Voicemail gelesen/löschen,Als Endnutzer möchte ich Nachrichten als gelesen markieren oder löschen.,"- PATCH /api/v1/me/voicemails/{id}
+- Soft-delete, PBX-Sync wenn API vorhanden",P1,3,5,"backend,user-portal,voicemail",High,Backlog,E4 Voicemail
+E4-3,Story,E4 Voicemail,Voicemail als Weiterleitungsziel,Als Endnutzer möchte ich Voicemail als Weiterleitungsziel wählen.,"- target_type voicemail aus extension.voicemail_box_id
+- Dropdown in Forwarding-UI",P0,2,5,"frontend,forwarding,voicemail",Urgent,Backlog,E4 Voicemail
+E4-4,Story,E4 Voicemail,Voicemail-Audio abspielen,Als Endnutzer möchte ich Voicemail-Audio abspielen.,"- Streaming aus Object Storage
+- Optional Phase 2 wenn PBX-API fehlt",P2,5,6,"frontend,voicemail,storage",Medium,Backlog,E4 Voicemail
+E5-1,Story,E5 Tenant Benutzerverwaltung,Benutzerliste mit Suche und Filter,Als Tenant-Admin möchte ich alle Benutzer des Mandanten listen und filtern.,"- Suche Name/E-Mail/Durchwahl
+- Pagination",P0,5,5,"frontend,backend,tenant-admin",Urgent,Backlog,E5 Tenant Benutzerverwaltung
+E5-2,Story,E5 Tenant Benutzerverwaltung,Benutzerdetail mit Geräten,Als Tenant-Admin möchte ich Benutzerdetails inkl. Geräte und SIP-Status sehen.,"- Read-only Geräteliste wie Prototyp
+- SIP registration_status",P0,3,5,"frontend,tenant-admin",Urgent,Backlog,E5 Tenant Benutzerverwaltung
+E5-3,Story,E5 Tenant Benutzerverwaltung,Benutzer anlegen,Als Tenant-Admin möchte ich einen Benutzer anlegen.,"- Name, E-Mail, Durchwahl, Rolle
+- Extension in DB + PBX Provision-Job",P0,8,5,"backend,tenant-admin,integration",Urgent,Backlog,E5 Tenant Benutzerverwaltung
+E5-4,Story,E5 Tenant Benutzerverwaltung,Benutzer deaktivieren,Als Tenant-Admin möchte ich einen Benutzer deaktivieren.,"- Kein Login mehr
+- Extension in PBX gesperrt",P0,5,5,"backend,tenant-admin,integration",Urgent,Backlog,E5 Tenant Benutzerverwaltung
+E5-5,Story,E5 Tenant Benutzerverwaltung,Rollen zuweisen,"Als Tenant-Admin möchte ich Rollen zuweisen (Administrator, Benutzer, Agent).","- Map auf RBAC
+- Agent-Rolle vorbereitet für Phase 2 Queues",P1,3,5,"backend,tenant-admin,auth",High,Backlog,E5 Tenant Benutzerverwaltung
+E6-1,Story,E6 Routing (read-only),Routing-Übersicht Tenant-Admin,Als Tenant-Admin möchte ich die Routing-Übersicht pro Durchwahl sehen.,"- Import aus PBX
+- Keine Bearbeitung im MVP",P1,5,6,"frontend,backend,tenant-admin,routing",High,Backlog,E6 Routing (read-only)
+E6-2,Story,E6 Routing (read-only),Admin sieht User-Weiterleitungen,Als Tenant-Admin möchte ich sehen welche Weiterleitungen ein User gesetzt hat.,- Link User-Detail → Forward-Rules read-only,P1,2,6,"frontend,tenant-admin,forwarding",High,Backlog,E6 Routing (read-only)
+E7-1,Story,E7 PBX Provisioning Adapter,Abstrakter Provisioning-Port,Als System möchte ich einen abstrakten Provisioning-Port.,"- Interface: applyForwardRules, createExtension, deactivateExtension",P0,5,1,"backend,integration",Urgent,Backlog,E7 PBX Provisioning Adapter
+E7-2,Story,E7 PBX Provisioning Adapter,Job-Queue für Provisioning,Als System möchte ich Jobs in einer Queue verarbeiten.,"- Redis/RabbitMQ Worker
+- Retry + Dead-Letter Queue",P0,5,4,"backend,infrastructure",Urgent,Backlog,E7 PBX Provisioning Adapter
+E7-3,Story,E7 PBX Provisioning Adapter,desired_state vs actual_state,Als System möchte ich desired_state vs actual_state speichern.,"- Drift in UI anzeigbar
+- provision_jobs Tabelle",P0,3,4,"backend,database",Urgent,Backlog,E7 PBX Provisioning Adapter
+E7-4,Story,E7 PBX Provisioning Adapter,Mock-Adapter für Dev/CI,Als Entwickler möchte ich einen Mock-Adapter für lokale Entwicklung.,"- Ersetzt PBX in Dev/CI
+- Contract-Tests gegen Interface",P0,5,1,"backend,testing,dx",Urgent,Backlog,E7 PBX Provisioning Adapter
+E8-1,Story,E8 Frontend-Migration,Prototyp nach Vite migrieren,Als Entwickler möchte ich den Prototyp in ein Vite-Projekt überführen.,"- css/, js/, i18n/ Struktur
+- Role Bar für Dev erhalten",P0,13,2,"frontend,dx",Urgent,Backlog,E8 Frontend-Migration
+E8-2,Story,E8 Frontend-Migration,Mobile Benutzerportal,Als Endnutzer möchte ich das Benutzerportal mobil nutzen.,"- Bottom-Nav ≤768px wie Prototyp
+- Responsive Layout",P0,5,2,"frontend,user-portal",Urgent,Backlog,E8 Frontend-Migration
+E8-3,Story,E8 Frontend-Migration,API-Client statt showToast,Als Entwickler möchte ich API-Calls für MVP-Flows.,"- Fehlerbehandlung und Loading-States
+- Kein showToast für Persistenz",P0,5,2,"frontend,api",Urgent,Backlog,E8 Frontend-Migration
+E8-4,Story,E8 Frontend-Migration,Hilfe/Tutorials beibehalten,Als Endnutzer möchte ich Hilfe/Tutorials weiter nutzen.,"- Statische Tutorials clientseitig
+- i18n für Tutorial-Texte",P2,3,6,"frontend,user-portal",Medium,Backlog,E8 Frontend-Migration
+H-1,Task,Hardening & Pilot,E2E-Tests Kernflows,"End-to-End Tests für Login, Forwarding, User CRUD, CDR.","- Mindestens 1 E2E pro Epic E1–E5
+- Läuft in CI",P0,8,6,"testing,qa",Urgent,Backlog,Hardening & Pilot
+H-2,Task,Hardening & Pilot,Mandanten-Isolation Security-Tests,Verifizieren dass Cross-Tenant-Zugriff unmöglich ist.,"- Automatisierte Tests für 403-Szenarien
+- Pen-Test light",P0,5,6,"security,testing",Urgent,Backlog,Hardening & Pilot
+H-3,Task,Hardening & Pilot,Pilot-Mandant Go-Live,1 Pilot-Mandant mit 20–50 Usern produktiv schalten.,"- Runbook für Support
+- Monitoring-Dashboard
+- Rollback-Plan",P0,5,6,"devops,pilot",Urgent,Backlog,Hardening & Pilot
+P2-1,Story,Phase 2,Hunt Groups & Queues,Hunt Groups und Warteschlangen verwalten,,P2,13,,phase-2,Low,Backlog,Phase 2
+P2-2,Story,Phase 2,Geräte-Provisioning,"TENANT_DEVICES, Firmware, TR-069",,P2,13,,phase-2,Low,Backlog,Phase 2
+P2-3,Story,Phase 2,Adressbuch + LDAP,Adressbuch mit LDAP/365-Sync,,P2,8,,phase-2,Low,Backlog,Phase 2
+P2-4,Story,Phase 2,Shop & Orders,Nummernshop und Bestellungen,,P2,13,,phase-2,Low,Backlog,Phase 2
+P2-5,Story,Phase 2,Super-Admin Billing,Mandanten und Billing-Übersicht,,P2,13,,phase-2,Low,Backlog,Phase 2
+P2-6,Story,Phase 2,Service Management Trunks,TRUNKS und Traffic-Monitoring,,P2,8,,phase-2,Low,Backlog,Phase 2
+P2-7,Story,Phase 2,Voicemail Audio & Recording,Audio-Wiedergabe und Aufnahme Self-Service,,P2,8,,phase-2,Low,Backlog,Phase 2
+P2-8,Story,Phase 2,Persönliche Anruffilter,up-settings Filterlisten,,P2,5,,phase-2,Low,Backlog,Phase 2
