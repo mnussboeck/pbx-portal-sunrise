@@ -3092,8 +3092,8 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="form-label">Beschreibung</label>
-      <input type="text" class="form-input" id="smfm-desc" placeholder="Kurzbeschreibung des Pakets">
+      <label class="form-label" data-i18n="sm_fm_desc">Beschreibung</label>
+      <input type="text" class="form-input" id="smfm-desc" data-i18n-placeholder="sm_fm_desc_ph" placeholder="Kurzbeschreibung des Pakets">
     </div>
     <div class="form-row">
       <div class="form-group">
@@ -4193,7 +4193,7 @@ function generateConfigTemplate(deviceId) {
   var lineConfig = lines.map(function(l, i) {
     return [
       'account.' + (i+1) + '.enable = 1',
-      'account.' + (i+1) + '.label = ' + (l.label || ('Linie ' + (i+1))),
+      'account.' + (i+1) + '.label = ' + (l.label || tf('dev_key_line_fmt', { n: i + 1 })),
       'account.' + (i+1) + '.display_name = ' + (l.label || ''),
       'account.' + (i+1) + '.user_name = ' + (l.sipId || ''),
       'account.' + (i+1) + '.sip_server_host = sip.sunrise.ch',
@@ -7490,6 +7490,115 @@ const translations = {
     sa_nt_card_feat_pkg: "Feature-Paket",
     ucc_ext_fmt: "Durchwahl {ext}",
     ucc_chat_hdr_status: "● {status} · Durchwahl {ext}",
+    ab_no_contacts: "Keine Kontakte gefunden",
+    ab_pager_fmt: "{n} Kontakte",
+    ab_grp_all: "Alle",
+    ab_grp_internal: "Intern",
+    ab_grp_customers: "Kunden",
+    ab_grp_suppliers: "Lieferanten",
+    ab_grp_partners: "Partner",
+    ab_grp_none: "Keine Gruppe",
+    ab_contact_new: "Neuer Kontakt",
+    ab_contact_edit: "Kontakt bearbeiten",
+    ab_lbl_company: "Firma",
+    ab_lbl_dept: "Abteilung",
+    ab_lbl_phone_office: "Telefon (Büro)",
+    ab_lbl_mobile: "Mobile",
+    ab_lbl_email: "E-Mail",
+    ab_lbl_group: "Gruppe",
+    ab_lbl_note: "Notiz",
+    ab_imp_title: "Import & Synchronisation",
+    ab_imp_sub: "Kontakte importieren oder mit Exchange/Outlook verbinden",
+    ab_imp_choose_src: "Importquelle wählen",
+    ab_imp_exchange: "Microsoft Exchange / Outlook",
+    ab_imp_exchange_desc: "Exchange Server, Microsoft 365 oder Outlook.com",
+    ab_imp_csv: "CSV / Excel-Import",
+    ab_imp_csv_desc: "Kontaktliste aus Tabellendatei importieren",
+    ab_imp_vcard: "vCard (.vcf)",
+    ab_imp_vcard_desc: "Einzelne oder mehrere vCard-Dateien",
+    ab_imp_ldap: "LDAP-Verzeichnis",
+    ab_imp_ldap_desc: "Active Directory oder OpenLDAP",
+    ab_imp_connected: "● Verbunden",
+    ab_imp_disconnect: "Trennen",
+    ab_imp_lbl_ews: "Exchange Server / EWS URL",
+    ab_imp_lbl_auth: "Authentifizierung",
+    ab_imp_lbl_user: "Benutzer / Service Account",
+    ab_imp_lbl_interval: "Sync-Intervall",
+    ab_imp_lbl_direction: "Sync-Richtung",
+    ab_imp_lbl_gal: "Globales Adressbuch (GAL)",
+    ab_imp_lbl_ldap_srv: "LDAP Server",
+    ab_imp_lbl_base_dn: "Base DN",
+    ab_imp_lbl_bind_dn: "Bind DN",
+    ab_imp_lbl_password: "Passwort",
+    ab_imp_lbl_filter: "Filter",
+    ab_imp_lbl_attr_map: "Attribut-Mapping",
+    ab_imp_csv_drop: "CSV oder Excel-Datei hierher ziehen",
+    ab_imp_csv_click: "oder klicken zum Auswählen · .csv, .xlsx, .xls",
+    ab_imp_csv_cols: "Erwartete Spalten:",
+    ab_imp_btn_template: "Vorlage herunterladen",
+    ab_imp_vcard_select: ".vcf Datei auswählen",
+    ab_imp_vcard_hint: "Einzelne oder mehrere vCards · vCard 2.1, 3.0, 4.0",
+    ab_imp_btn_save_sync: "Speichern & Synchronisieren",
+    tm_hol_lbl_vm_box: "Voicemail-Postfach",
+    tm_hol_lbl_vm_greeting: "VM-Ansage",
+    tm_hol_lbl_fwd_target: "Weiterleitungsziel",
+    tm_hol_lbl_notes: "Notiz (intern)",
+    tm_hol_notify_admin: "E-Mail-Benachrichtigung an Admin",
+    tm_hol_notify_admin_desc: "Bei Aktivierung der Schaltung benachrichtigen",
+    sa_nt_admin_first: "Admin Vorname",
+    sa_nt_admin_last: "Admin Nachname",
+    sa_nt_admin_email: "Admin E-Mail",
+    sa_nt_admin_phone: "Admin Telefon",
+    sa_nt_lbl_num_count: "Rufnummern (Anzahl)",
+    sa_nt_hint_pool_free_fmt: "{n} freie Nummern im Pool",
+    shop_port_title: "Hinweis zur Nummernportierung",
+    shop_port_sub: "Portierte Rufnummern werden erst nach Abschluss der Portierung aktiv.",
+    shop_port_body: "Für portierte Nummern ist eine LOA-Vollmacht erforderlich. Möchten Sie den Checkout fortsetzen oder einen Portierungsauftrag erfassen?",
+    shop_port_btn_request: "Portierung beantragen",
+    shop_port_btn_continue: "Checkout fortsetzen",
+    shop_port_req_title: "Portierungsauftrag",
+    shop_port_req_sub: "Rufnummern und gewünschtes Portierungsdatum",
+    shop_port_lbl_numbers: "Rufnummern (eine pro Zeile)",
+    shop_port_btn_loa: "LOA herunterladen & registrieren",
+    dev_key_sip_id: "SIP-ID",
+    dev_key_auto: "(auto)",
+    dev_key_config: "Konfiguration",
+    dev_key_clear: "Taste leeren",
+    dev_key_line_fmt: "Linie {n}",
+    dev_key_fkey_fmt: "Funktionstaste F{n}",
+    dev_key_click_hint: "Taste anklicken zum Konfigurieren",
+    dev_key_no_model: "Kein Modell gewählt",
+    dev_key_lines_hdr: "LINIEN",
+    dev_key_fkeys_hdr: "FUNK-TASTEN",
+    dev_opt_select_hg: "— Hunt Group wählen —",
+    dev_opt_select_ivr: "— IVR wählen —",
+    dev_opt_select_queue: "— Warteschlange wählen —",
+    dev_ph_number_label: "Nummer oder Bezeichnung",
+    dev_ext_fmt: "Ext. {ext}",
+    dev_sip_lines_fmt: "SIP-Linien ({filled}/{max} belegt)",
+    dev_fkeys_fmt: "Funktionstasten ({filled}/{max} belegt)",
+    dev_btn_add_line: "+ Linie",
+    dev_btn_add_fkey: "+ Funktionstaste",
+    dev_key_unassigned: "Nicht belegt",
+    dev_model_lines_part: "{n} Linien",
+    dev_model_fkeys_part: "{n} Funktionstasten",
+    dev_model_no_fkeys: "Keine Funktionstasten",
+    dev_fkey_blf: "BLF (Präsenz)",
+    dev_fkey_speeddial: "Speed Dial",
+    dev_fkey_park: "Parking",
+    dev_fkey_dnd: "DND an/aus",
+    dev_fkey_forward: "Weiterleitung",
+    dev_fkey_line: "Zusatz-Linie",
+    dev_line_user: "Benutzer",
+    dev_line_hg: "Hunt Group",
+    dev_line_ivr: "IVR",
+    dev_line_queue: "Warteschlange",
+    dev_fkey_count_one: "{n} Funktionstaste",
+    dev_fkey_count_many: "{n} Funktionstasten",
+    dev_no_lines: "Keine Linien",
+    dev_dect_empty: "Noch keine Handapparate — oben hinzufügen",
+    dev_opt_select_line: "— Linie wählen —",
+    dev_lbl_line_user: "Linie / Benutzer",
 
   },
   fr: {
@@ -9641,6 +9750,115 @@ const translations = {
     sa_nt_card_feat_pkg: "Forfait de fonctionnalités",
     ucc_ext_fmt: "Extension {ext}",
     ucc_chat_hdr_status: "● {status} · Extension {ext}",
+    ab_no_contacts: "Aucun contact trouvé",
+    ab_pager_fmt: "{n} contacts",
+    ab_grp_all: "Tous",
+    ab_grp_internal: "Interne",
+    ab_grp_customers: "Clients",
+    ab_grp_suppliers: "Fournisseurs",
+    ab_grp_partners: "Partenaires",
+    ab_grp_none: "Aucun groupe",
+    ab_contact_new: "Nouveau contact",
+    ab_contact_edit: "Modifier le contact",
+    ab_lbl_company: "Entreprise",
+    ab_lbl_dept: "Département",
+    ab_lbl_phone_office: "Téléphone (bureau)",
+    ab_lbl_mobile: "Mobile",
+    ab_lbl_email: "E-mail",
+    ab_lbl_group: "Groupe",
+    ab_lbl_note: "Note",
+    ab_imp_title: "Import & synchronisation",
+    ab_imp_sub: "Importer des contacts ou se connecter à Exchange/Outlook",
+    ab_imp_choose_src: "Choisir la source d'import",
+    ab_imp_exchange: "Microsoft Exchange / Outlook",
+    ab_imp_exchange_desc: "Exchange Server, Microsoft 365 ou Outlook.com",
+    ab_imp_csv: "Import CSV / Excel",
+    ab_imp_csv_desc: "Importer une liste de contacts depuis un fichier",
+    ab_imp_vcard: "vCard (.vcf)",
+    ab_imp_vcard_desc: "Un ou plusieurs fichiers vCard",
+    ab_imp_ldap: "Annuaire LDAP",
+    ab_imp_ldap_desc: "Active Directory ou OpenLDAP",
+    ab_imp_connected: "● Connecté",
+    ab_imp_disconnect: "Déconnecter",
+    ab_imp_lbl_ews: "Serveur Exchange / URL EWS",
+    ab_imp_lbl_auth: "Authentification",
+    ab_imp_lbl_user: "Utilisateur / compte de service",
+    ab_imp_lbl_interval: "Intervalle de sync",
+    ab_imp_lbl_direction: "Direction de sync",
+    ab_imp_lbl_gal: "Carnet d'adresses global (GAL)",
+    ab_imp_lbl_ldap_srv: "Serveur LDAP",
+    ab_imp_lbl_base_dn: "Base DN",
+    ab_imp_lbl_bind_dn: "Bind DN",
+    ab_imp_lbl_password: "Mot de passe",
+    ab_imp_lbl_filter: "Filtre",
+    ab_imp_lbl_attr_map: "Mapping d'attributs",
+    ab_imp_csv_drop: "Glisser un fichier CSV ou Excel ici",
+    ab_imp_csv_click: "ou cliquer pour sélectionner · .csv, .xlsx, .xls",
+    ab_imp_csv_cols: "Colonnes attendues :",
+    ab_imp_btn_template: "Télécharger le modèle",
+    ab_imp_vcard_select: "Sélectionner un fichier .vcf",
+    ab_imp_vcard_hint: "Une ou plusieurs vCards · vCard 2.1, 3.0, 4.0",
+    ab_imp_btn_save_sync: "Enregistrer & synchroniser",
+    tm_hol_lbl_vm_box: "Boîte vocale",
+    tm_hol_lbl_vm_greeting: "Annonce VM",
+    tm_hol_lbl_fwd_target: "Destination du renvoi",
+    tm_hol_lbl_notes: "Note (interne)",
+    tm_hol_notify_admin: "Notification e-mail à l'admin",
+    tm_hol_notify_admin_desc: "Notifier lors de l'activation de la commutation",
+    sa_nt_admin_first: "Prénom admin",
+    sa_nt_admin_last: "Nom admin",
+    sa_nt_admin_email: "E-mail admin",
+    sa_nt_admin_phone: "Téléphone admin",
+    sa_nt_lbl_num_count: "Numéros (quantité)",
+    sa_nt_hint_pool_free_fmt: "{n} numéros libres dans le pool",
+    shop_port_title: "Note sur la portabilité",
+    shop_port_sub: "Les numéros portés ne sont actifs qu'après portabilité réussie.",
+    shop_port_body: "Une procuration LOA est requise pour les numéros portés. Continuer le checkout ou enregistrer une demande de portabilité ?",
+    shop_port_btn_request: "Demander la portabilité",
+    shop_port_btn_continue: "Continuer le checkout",
+    shop_port_req_title: "Demande de portabilité",
+    shop_port_req_sub: "Numéros et date de portabilité souhaitée",
+    shop_port_lbl_numbers: "Numéros (un par ligne)",
+    shop_port_btn_loa: "Télécharger LOA & enregistrer",
+    dev_key_sip_id: "ID SIP",
+    dev_key_auto: "(auto)",
+    dev_key_config: "Configuration",
+    dev_key_clear: "Effacer la touche",
+    dev_key_line_fmt: "Ligne {n}",
+    dev_key_fkey_fmt: "Touche fonction F{n}",
+    dev_key_click_hint: "Cliquer sur une touche pour configurer",
+    dev_key_no_model: "Aucun modèle sélectionné",
+    dev_key_lines_hdr: "LIGNES",
+    dev_key_fkeys_hdr: "TOUCHES FONCT.",
+    dev_opt_select_hg: "— Choisir un groupe d'appel —",
+    dev_opt_select_ivr: "— Choisir un IVR —",
+    dev_opt_select_queue: "— Choisir une file d'attente —",
+    dev_ph_number_label: "Numéro ou libellé",
+    dev_ext_fmt: "Ext. {ext}",
+    dev_sip_lines_fmt: "Lignes SIP ({filled}/{max} occupées)",
+    dev_fkeys_fmt: "Touches fonction ({filled}/{max} occupées)",
+    dev_btn_add_line: "+ Ligne",
+    dev_btn_add_fkey: "+ Touche fonction",
+    dev_key_unassigned: "Non assigné",
+    dev_model_lines_part: "{n} lignes",
+    dev_model_fkeys_part: "{n} touches fonction",
+    dev_model_no_fkeys: "Aucune touche fonction",
+    dev_fkey_blf: "BLF (présence)",
+    dev_fkey_speeddial: "Numérotation rapide",
+    dev_fkey_park: "Parking",
+    dev_fkey_dnd: "DND on/off",
+    dev_fkey_forward: "Renvoi",
+    dev_fkey_line: "Ligne supplémentaire",
+    dev_line_user: "Utilisateur",
+    dev_line_hg: "Groupe d'appel",
+    dev_line_ivr: "IVR",
+    dev_line_queue: "File d'attente",
+    dev_fkey_count_one: "{n} touche fonction",
+    dev_fkey_count_many: "{n} touches fonction",
+    dev_no_lines: "Aucune ligne",
+    dev_dect_empty: "Aucun combiné — ajouter ci-dessus",
+    dev_opt_select_line: "— Choisir une ligne —",
+    dev_lbl_line_user: "Ligne / utilisateur",
 
   },
   it: {
@@ -11792,6 +12010,115 @@ const translations = {
     sa_nt_card_feat_pkg: "Pacchetto funzioni",
     ucc_ext_fmt: "Interno {ext}",
     ucc_chat_hdr_status: "● {status} · Interno {ext}",
+    ab_no_contacts: "Nessun contatto trovato",
+    ab_pager_fmt: "{n} contatti",
+    ab_grp_all: "Tutti",
+    ab_grp_internal: "Interno",
+    ab_grp_customers: "Clienti",
+    ab_grp_suppliers: "Fornitori",
+    ab_grp_partners: "Partner",
+    ab_grp_none: "Nessun gruppo",
+    ab_contact_new: "Nuovo contatto",
+    ab_contact_edit: "Modifica contatto",
+    ab_lbl_company: "Azienda",
+    ab_lbl_dept: "Reparto",
+    ab_lbl_phone_office: "Telefono (ufficio)",
+    ab_lbl_mobile: "Mobile",
+    ab_lbl_email: "E-mail",
+    ab_lbl_group: "Gruppo",
+    ab_lbl_note: "Nota",
+    ab_imp_title: "Import & sincronizzazione",
+    ab_imp_sub: "Importa contatti o connetti a Exchange/Outlook",
+    ab_imp_choose_src: "Scegli fonte di import",
+    ab_imp_exchange: "Microsoft Exchange / Outlook",
+    ab_imp_exchange_desc: "Exchange Server, Microsoft 365 o Outlook.com",
+    ab_imp_csv: "Import CSV / Excel",
+    ab_imp_csv_desc: "Importa elenco contatti da file tabellare",
+    ab_imp_vcard: "vCard (.vcf)",
+    ab_imp_vcard_desc: "Uno o più file vCard",
+    ab_imp_ldap: "Directory LDAP",
+    ab_imp_ldap_desc: "Active Directory o OpenLDAP",
+    ab_imp_connected: "● Connesso",
+    ab_imp_disconnect: "Disconnetti",
+    ab_imp_lbl_ews: "Server Exchange / URL EWS",
+    ab_imp_lbl_auth: "Autenticazione",
+    ab_imp_lbl_user: "Utente / account di servizio",
+    ab_imp_lbl_interval: "Intervallo sync",
+    ab_imp_lbl_direction: "Direzione sync",
+    ab_imp_lbl_gal: "Rubrica globale (GAL)",
+    ab_imp_lbl_ldap_srv: "Server LDAP",
+    ab_imp_lbl_base_dn: "Base DN",
+    ab_imp_lbl_bind_dn: "Bind DN",
+    ab_imp_lbl_password: "Password",
+    ab_imp_lbl_filter: "Filtro",
+    ab_imp_lbl_attr_map: "Mapping attributi",
+    ab_imp_csv_drop: "Trascina qui file CSV o Excel",
+    ab_imp_csv_click: "o clicca per selezionare · .csv, .xlsx, .xls",
+    ab_imp_csv_cols: "Colonne attese:",
+    ab_imp_btn_template: "Scarica modello",
+    ab_imp_vcard_select: "Seleziona file .vcf",
+    ab_imp_vcard_hint: "Una o più vCard · vCard 2.1, 3.0, 4.0",
+    ab_imp_btn_save_sync: "Salva & sincronizza",
+    tm_hol_lbl_vm_box: "Casella voicemail",
+    tm_hol_lbl_vm_greeting: "Messaggio VM",
+    tm_hol_lbl_fwd_target: "Destinazione inoltro",
+    tm_hol_lbl_notes: "Nota (interna)",
+    tm_hol_notify_admin: "Notifica e-mail all'admin",
+    tm_hol_notify_admin_desc: "Notifica all'attivazione della commutazione",
+    sa_nt_admin_first: "Nome admin",
+    sa_nt_admin_last: "Cognome admin",
+    sa_nt_admin_email: "E-mail admin",
+    sa_nt_admin_phone: "Telefono admin",
+    sa_nt_lbl_num_count: "Numeri (quantità)",
+    sa_nt_hint_pool_free_fmt: "{n} numeri liberi nel pool",
+    shop_port_title: "Nota sul porting",
+    shop_port_sub: "I numeri portati sono attivi solo dopo porting completato.",
+    shop_port_body: "Per i numeri portati è richiesta una LOA. Continuare il checkout o registrare una richiesta di porting?",
+    shop_port_btn_request: "Richiedi porting",
+    shop_port_btn_continue: "Continua checkout",
+    shop_port_req_title: "Richiesta di porting",
+    shop_port_req_sub: "Numeri e data di porting desiderata",
+    shop_port_lbl_numbers: "Numeri (uno per riga)",
+    shop_port_btn_loa: "Scarica LOA & registra",
+    dev_key_sip_id: "ID SIP",
+    dev_key_auto: "(auto)",
+    dev_key_config: "Configurazione",
+    dev_key_clear: "Svuota tasto",
+    dev_key_line_fmt: "Linea {n}",
+    dev_key_fkey_fmt: "Tasto funzione F{n}",
+    dev_key_click_hint: "Clicca un tasto per configurare",
+    dev_key_no_model: "Nessun modello selezionato",
+    dev_key_lines_hdr: "LINEE",
+    dev_key_fkeys_hdr: "TASTI FUNZ.",
+    dev_opt_select_hg: "— Scegli hunt group —",
+    dev_opt_select_ivr: "— Scegli IVR —",
+    dev_opt_select_queue: "— Scegli coda —",
+    dev_ph_number_label: "Numero o etichetta",
+    dev_ext_fmt: "Int. {ext}",
+    dev_sip_lines_fmt: "Linee SIP ({filled}/{max} assegnate)",
+    dev_fkeys_fmt: "Tasti funzione ({filled}/{max} assegnati)",
+    dev_btn_add_line: "+ Linea",
+    dev_btn_add_fkey: "+ Tasto funzione",
+    dev_key_unassigned: "Non assegnato",
+    dev_model_lines_part: "{n} linee",
+    dev_model_fkeys_part: "{n} tasti funzione",
+    dev_model_no_fkeys: "Nessun tasto funzione",
+    dev_fkey_blf: "BLF (presenza)",
+    dev_fkey_speeddial: "Speed dial",
+    dev_fkey_park: "Parking",
+    dev_fkey_dnd: "DND on/off",
+    dev_fkey_forward: "Inoltro",
+    dev_fkey_line: "Linea aggiuntiva",
+    dev_line_user: "Utente",
+    dev_line_hg: "Hunt group",
+    dev_line_ivr: "IVR",
+    dev_line_queue: "Coda",
+    dev_fkey_count_one: "{n} tasto funzione",
+    dev_fkey_count_many: "{n} tasti funzione",
+    dev_no_lines: "Nessuna linea",
+    dev_dect_empty: "Nessun cordless — aggiungi sopra",
+    dev_opt_select_line: "— Scegli linea —",
+    dev_lbl_line_user: "Linea / utente",
 
   },
   en: {
@@ -13943,6 +14270,115 @@ const translations = {
     sa_nt_card_feat_pkg: "Feature package",
     ucc_ext_fmt: "Extension {ext}",
     ucc_chat_hdr_status: "● {status} · Extension {ext}",
+    ab_no_contacts: "No contacts found",
+    ab_pager_fmt: "{n} contacts",
+    ab_grp_all: "All",
+    ab_grp_internal: "Internal",
+    ab_grp_customers: "Customers",
+    ab_grp_suppliers: "Suppliers",
+    ab_grp_partners: "Partners",
+    ab_grp_none: "No group",
+    ab_contact_new: "New contact",
+    ab_contact_edit: "Edit contact",
+    ab_lbl_company: "Company",
+    ab_lbl_dept: "Department",
+    ab_lbl_phone_office: "Phone (office)",
+    ab_lbl_mobile: "Mobile",
+    ab_lbl_email: "Email",
+    ab_lbl_group: "Group",
+    ab_lbl_note: "Note",
+    ab_imp_title: "Import & sync",
+    ab_imp_sub: "Import contacts or connect to Exchange/Outlook",
+    ab_imp_choose_src: "Choose import source",
+    ab_imp_exchange: "Microsoft Exchange / Outlook",
+    ab_imp_exchange_desc: "Exchange Server, Microsoft 365 or Outlook.com",
+    ab_imp_csv: "CSV / Excel import",
+    ab_imp_csv_desc: "Import contact list from spreadsheet file",
+    ab_imp_vcard: "vCard (.vcf)",
+    ab_imp_vcard_desc: "Single or multiple vCard files",
+    ab_imp_ldap: "LDAP directory",
+    ab_imp_ldap_desc: "Active Directory or OpenLDAP",
+    ab_imp_connected: "● Connected",
+    ab_imp_disconnect: "Disconnect",
+    ab_imp_lbl_ews: "Exchange server / EWS URL",
+    ab_imp_lbl_auth: "Authentication",
+    ab_imp_lbl_user: "User / service account",
+    ab_imp_lbl_interval: "Sync interval",
+    ab_imp_lbl_direction: "Sync direction",
+    ab_imp_lbl_gal: "Global address list (GAL)",
+    ab_imp_lbl_ldap_srv: "LDAP server",
+    ab_imp_lbl_base_dn: "Base DN",
+    ab_imp_lbl_bind_dn: "Bind DN",
+    ab_imp_lbl_password: "Password",
+    ab_imp_lbl_filter: "Filter",
+    ab_imp_lbl_attr_map: "Attribute mapping",
+    ab_imp_csv_drop: "Drop CSV or Excel file here",
+    ab_imp_csv_click: "or click to select · .csv, .xlsx, .xls",
+    ab_imp_csv_cols: "Expected columns:",
+    ab_imp_btn_template: "Download template",
+    ab_imp_vcard_select: "Select .vcf file",
+    ab_imp_vcard_hint: "Single or multiple vCards · vCard 2.1, 3.0, 4.0",
+    ab_imp_btn_save_sync: "Save & sync",
+    tm_hol_lbl_vm_box: "Voicemail mailbox",
+    tm_hol_lbl_vm_greeting: "VM greeting",
+    tm_hol_lbl_fwd_target: "Forward target",
+    tm_hol_lbl_notes: "Note (internal)",
+    tm_hol_notify_admin: "Email notification to admin",
+    tm_hol_notify_admin_desc: "Notify when routing rule activates",
+    sa_nt_admin_first: "Admin first name",
+    sa_nt_admin_last: "Admin last name",
+    sa_nt_admin_email: "Admin email",
+    sa_nt_admin_phone: "Admin phone",
+    sa_nt_lbl_num_count: "Numbers (count)",
+    sa_nt_hint_pool_free_fmt: "{n} free numbers in pool",
+    shop_port_title: "Number porting notice",
+    shop_port_sub: "Ported numbers become active only after porting completes.",
+    shop_port_body: "A LOA authorization is required for ported numbers. Continue checkout or submit a porting request?",
+    shop_port_btn_request: "Request porting",
+    shop_port_btn_continue: "Continue checkout",
+    shop_port_req_title: "Porting request",
+    shop_port_req_sub: "Numbers and desired porting date",
+    shop_port_lbl_numbers: "Numbers (one per line)",
+    shop_port_btn_loa: "Download LOA & register",
+    dev_key_sip_id: "SIP ID",
+    dev_key_auto: "(auto)",
+    dev_key_config: "Configuration",
+    dev_key_clear: "Clear key",
+    dev_key_line_fmt: "Line {n}",
+    dev_key_fkey_fmt: "Function key F{n}",
+    dev_key_click_hint: "Click a key to configure",
+    dev_key_no_model: "No model selected",
+    dev_key_lines_hdr: "LINES",
+    dev_key_fkeys_hdr: "FUNC KEYS",
+    dev_opt_select_hg: "— Select hunt group —",
+    dev_opt_select_ivr: "— Select IVR —",
+    dev_opt_select_queue: "— Select queue —",
+    dev_ph_number_label: "Number or label",
+    dev_ext_fmt: "Ext. {ext}",
+    dev_sip_lines_fmt: "SIP lines ({filled}/{max} assigned)",
+    dev_fkeys_fmt: "Function keys ({filled}/{max} assigned)",
+    dev_btn_add_line: "+ Line",
+    dev_btn_add_fkey: "+ Function key",
+    dev_key_unassigned: "Unassigned",
+    dev_model_lines_part: "{n} lines",
+    dev_model_fkeys_part: "{n} function keys",
+    dev_model_no_fkeys: "No function keys",
+    dev_fkey_blf: "BLF (presence)",
+    dev_fkey_speeddial: "Speed dial",
+    dev_fkey_park: "Parking",
+    dev_fkey_dnd: "DND on/off",
+    dev_fkey_forward: "Forward",
+    dev_fkey_line: "Additional line",
+    dev_line_user: "User",
+    dev_line_hg: "Hunt group",
+    dev_line_ivr: "IVR",
+    dev_line_queue: "Queue",
+    dev_fkey_count_one: "{n} function key",
+    dev_fkey_count_many: "{n} function keys",
+    dev_no_lines: "No lines",
+    dev_dect_empty: "No handsets yet — add above",
+    dev_opt_select_line: "— Select line —",
+    dev_lbl_line_user: "Line / user",
 
   },
 };
@@ -14050,6 +14486,7 @@ function setLang(lang) {
     refreshSaTenantModalsI18n();
     refreshSaTeamsModalI18n();
     refreshSmModalsI18n();
+    refreshAbModalsI18n();
     if (typeof renderStatusBanner === 'function') renderStatusBanner();
   } catch (e) {
     console.error('setLang render:', e);
@@ -15953,6 +16390,24 @@ function refreshTaModalsI18n() {
   if (document.getElementById('modal-schedule')?.classList.contains('active')) renderScheduleDaysEditor();
   if (document.getElementById('modal-ivr')?.classList.contains('active') && window.ivrOptions) renderIvrOptions(window.ivrOptions);
   refreshTeamsUserModalI18n();
+  refreshDevKeyEditorI18n();
+}
+
+function refreshDevKeyEditorI18n() {
+  if (!document.getElementById('modal-device')?.classList.contains('active')) return;
+  var modelId = document.getElementById('dev-model')?.value;
+  if (!modelId) return;
+  var sub = document.getElementById('device-modal-sub');
+  var model = DEVICE_CATALOG ? DEVICE_CATALOG.find(function(m) { return m.id === modelId; }) : null;
+  if (sub && model) {
+    var vendor = (typeof VENDORS !== 'undefined') ? VENDORS.find(function(v) { return v.id === model.vendor; })?.name : model.vendor;
+    var fkeysPart = model.fkeys > 0 ? tf('dev_model_fkeys_part', { n: model.fkeys }) : t('dev_model_no_fkeys');
+    sub.textContent = (vendor || '') + ' ' + model.model + ' · ' + tf('dev_model_lines_part', { n: model.lines }) + ' · ' + fkeysPart;
+  }
+  renderPhoneGraphic(modelId);
+  renderKeysEditor(modelId);
+  renderHandsetsSection(modelId);
+  if (selectedKeyIndex) renderKeyDetailEditor(selectedKeyIndex.side, selectedKeyIndex.index);
 }
 
 function refreshTeamsUserModalI18n() {
@@ -15969,6 +16424,19 @@ function refreshCallfilterModalTitle() {
   var typeLbl = editingFilterType === 'blacklist' ? t('tm_cf_blacklist') : t('tm_cf_whitelist');
   var scopeLbl = editingFilterScope === 'user' ? t('tm_cf_personal') : t('tm_cf_company');
   titleEl.textContent = base + ' — ' + typeLbl + scopeLbl;
+}
+
+function refreshAbModalsI18n() {
+  var abTitle = document.getElementById('ab-contact-modal-title');
+  if (abTitle) abTitle.textContent = editingAbId ? t('ab_contact_edit') : t('ab_contact_new');
+  if (typeof abFilterGroup !== 'undefined') {
+    var titleEl = document.getElementById('ab-list-title');
+    if (titleEl) titleEl.textContent = abFilterGroup ? abGroupLabel(abFilterGroup) : t('ab_all_contacts');
+    if (document.getElementById('page-addressbook')?.classList.contains('active')) {
+      renderAbGroups();
+      renderAbContacts();
+    }
+  }
 }
 
 function refreshTaModalSelectOptions() {
@@ -16386,6 +16854,11 @@ const AB_GROUPS = ['Alle', 'Intern', 'Kunden', 'Lieferanten', 'Partner'];
 const AB_GROUP_ICONS = {
   'Alle':'🌐', 'Intern':'🏢', 'Kunden':'🤝', 'Lieferanten':'📦', 'Partner':'🔗'
 };
+const AB_GROUP_KEYS = {
+  'Alle': 'ab_grp_all', 'Intern': 'ab_grp_internal', 'Kunden': 'ab_grp_customers',
+  'Lieferanten': 'ab_grp_suppliers', 'Partner': 'ab_grp_partners'
+};
+function abGroupLabel(g) { return AB_GROUP_KEYS[g] ? t(AB_GROUP_KEYS[g]) : g; }
 
 let abFilterGroup   = '';
 let abFilterQuery   = '';
@@ -16406,7 +16879,7 @@ function initAddressbook() {
   const impEl = document.getElementById('ab-stat-imported');
   if (impEl) impEl.textContent = abContacts.filter(c=>c.source==='exchange').length + ' (Exchange)';
   const titleEl = document.getElementById('ab-list-title');
-  if (titleEl) titleEl.textContent = abFilterGroup || t('ab_all_contacts');
+  if (titleEl) titleEl.textContent = abFilterGroup ? abGroupLabel(abFilterGroup) : t('ab_all_contacts');
 }
 
 // ── Groups sidebar ─────────────────────────────────────────────────────────────
@@ -16417,7 +16890,7 @@ function renderAbGroups() {
     const count = g === 'Alle' ? abContacts.length : abContacts.filter(c=>c.group===g).length;
     const active = abFilterGroup === (g==='Alle'?'':g);
     return '<div class="ab-group-item' + (active?' active':'') + '" onclick="setAbGroup(\'' + (g==='Alle'?'':g) + '\')">' +
-      '<span>' + (AB_GROUP_ICONS[g]||'📁') + ' ' + g + '</span>' +
+      '<span>' + (AB_GROUP_ICONS[g]||'📁') + ' ' + abGroupLabel(g) + '</span>' +
       '<span class="ab-group-count">' + count + '</span>' +
     '</div>';
   }).join('');
@@ -16440,7 +16913,7 @@ function setAbGroup(group) {
   renderAbGroups();
   renderAbContacts();
   const titleEl = document.getElementById('ab-list-title');
-  if (titleEl) titleEl.textContent = group || t('ab_all_contacts');
+  if (titleEl) titleEl.textContent = group ? abGroupLabel(group) : t('ab_all_contacts');
 }
 
 function filterAbByGroup(group) { setAbGroup(group); }
@@ -16482,7 +16955,7 @@ function renderAbContacts() {
 
   el.innerHTML = '';
   if (page.length === 0) {
-    el.innerHTML = '<div style="padding:32px;text-align:center;color:var(--text-muted);font-size:13px">Keine Kontakte gefunden</div>';
+    el.innerHTML = '<div style="padding:32px;text-align:center;color:var(--text-muted);font-size:13px">' + t('ab_no_contacts') + '</div>';
   } else {
     page.forEach((c, i) => {
       const initials = (c.first[0]||'') + (c.last[0]||'');
@@ -16513,7 +16986,7 @@ function renderAbContacts() {
 
   // Pager
   const info = document.getElementById('ab-pager-info');
-  if (info) info.textContent = filtered.length + ' Kontakte' + (abFilterGroup?' · '+abFilterGroup:'') + (abFilterLetter?' · '+abFilterLetter:'');
+  if (info) info.textContent = tf('ab_pager_fmt', { n: filtered.length }) + (abFilterGroup ? ' · ' + abGroupLabel(abFilterGroup) : '') + (abFilterLetter ? ' · ' + abFilterLetter : '');
   renderAbPager(filtered.length);
 }
 
@@ -16546,7 +17019,7 @@ function openAbContactModal(id) {
   editingAbId = id;
   const c = id ? abContacts.find(c => c.id === id) : null;
   const title = document.getElementById('ab-contact-modal-title');
-  if (title) title.textContent = c ? 'Kontakt bearbeiten' : 'Neuer Kontakt';
+  if (title) title.textContent = c ? t('ab_contact_edit') : t('ab_contact_new');
   const set = (eid, val) => { const e = document.getElementById(eid); if(e) e.value = val||''; };
   if (c) {
     set('abc-firstname', c.first); set('abc-lastname', c.last);
@@ -19349,20 +19822,23 @@ let devLines = [];
 let devFkeys = [];
 
 const FKEY_TYPES = {
-  blf:       'BLF (Präsenz)',
-  speeddial: 'Speed Dial',
-  park:      'Parking',
-  dnd:       'DND an/aus',
-  forward:   'Weiterleitung',
-  line:      'Zusatz-Linie',
+  blf:       'dev_fkey_blf',
+  speeddial: 'dev_fkey_speeddial',
+  park:      'dev_fkey_park',
+  dnd:       'dev_fkey_dnd',
+  forward:   'dev_fkey_forward',
+  line:      'dev_fkey_line',
 };
 
 const LINE_TARGET_TYPES = {
-  user:  'Benutzer',
-  hg:    'Hunt Group',
-  ivr:   'IVR',
-  queue: 'Warteschlange',
+  user:  'dev_line_user',
+  hg:    'dev_line_hg',
+  ivr:   'dev_line_ivr',
+  queue: 'dev_line_queue',
 };
+
+function fkeyTypeLabel(type) { return t(FKEY_TYPES[type] || type); }
+function lineTargetTypeLabel(type) { return t(LINE_TARGET_TYPES[type] || type); }
 
 function initProvisioningPage() {
   renderDevicesTable();
@@ -19410,15 +19886,15 @@ function renderDevicesTable(filter, statusFilter) {
     tr.innerHTML =
       '<td>' +
         '<div style="font-weight:500;font-size:13.5px">' + modelName + '</div>' +
-        (fkeyCount > 0 ? '<div style="font-size:11.5px;color:var(--text-muted);margin-top:2px">' + fkeyCount + ' Funktionstaste' + (fkeyCount!==1?'n':'') + '</div>' : '') +
+        (fkeyCount > 0 ? '<div style="font-size:11.5px;color:var(--text-muted);margin-top:2px">' + tf(fkeyCount === 1 ? 'dev_fkey_count_one' : 'dev_fkey_count_many', { n: fkeyCount }) + '</div>' : '') +
       '</td>' +
       '<td style="font-family:monospace;font-size:12.5px">' + d.mac + '</td>' +
-      '<td style="min-width:160px">' + (linesSummary || '<span style="color:var(--text-muted);font-size:12px">Keine Linien</span>') + '</td>' +
+      '<td style="min-width:160px">' + (linesSummary || '<span style="color:var(--text-muted);font-size:12px">' + t('dev_no_lines') + '</span>') + '</td>' +
       '<td style="font-family:monospace;font-size:12px">' + d.firmware + '</td>' +
       '<td>' + statusBadge + '</td>' +
       '<td><div class="actions-cell">' +
         '<button class="btn btn-secondary btn-sm" onclick="openDeviceModal(\'' + d.id + '\')">' + t('btn_edit') + '</button>' +
-        '<button class="btn btn-secondary btn-sm" onclick="reprovisionDevice(\'' + d.id + '\')">Neu prov.</button>' +
+        '<button class="btn btn-secondary btn-sm" onclick="reprovisionDevice(\'' + d.id + '\')">' + t('ta_toast_reprov_btn') + '</button>' +
         '<button class="btn btn-danger btn-sm" onclick="deleteDevice(\'' + d.id + '\')">' + t('btn_delete') + '</button>' +
       '</div></td>';
     tbody.appendChild(tr);
@@ -19660,12 +20136,14 @@ function onDeviceModelChange(modelId) {
   if (model) {
     const vendor = (typeof VENDORS !== 'undefined') ? VENDORS.find(v=>v.id===model.vendor)?.name : model.vendor;
     const sub = document.getElementById('device-modal-sub');
-    if (sub) sub.textContent = (vendor||'') + ' ' + model.model +
-      ' · ' + model.lines + ' Linien · ' + (model.fkeys > 0 ? model.fkeys + ' Funktionstasten' : 'Keine Funktionstasten');
+    if (sub) {
+      const fkeysPart = model.fkeys > 0 ? tf('dev_model_fkeys_part', { n: model.fkeys }) : t('dev_model_no_fkeys');
+      sub.textContent = (vendor || '') + ' ' + model.model + ' · ' + tf('dev_model_lines_part', { n: model.lines }) + ' · ' + fkeysPart;
+    }
   }
 
   // Ensure devLines has at least 1 line
-  if (!devLines.length) devLines = [{ lineNo:1, type:'user', target:'', label:'Linie 1', sipId:'' }];
+  if (!devLines.length) devLines = [{ lineNo:1, type:'user', target:'', label: tf('dev_key_line_fmt', { n: 1 }), sipId:'' }];
 
   renderPhoneGraphic(modelId);
   renderKeysEditor(modelId);
@@ -19688,7 +20166,7 @@ function renderPhoneGraphic(modelId) {
   if (!container) return;
   const model = DEVICE_CATALOG ? DEVICE_CATALOG.find(function(m){return m.id===modelId;}) : null;
   if (!model) {
-    container.innerHTML = '<div style="color:var(--text-muted);font-size:12.5px;text-align:center">Kein Modell gewählt</div>';
+    container.innerHTML = '<div style="color:var(--text-muted);font-size:12.5px;text-align:center">' + t('dev_key_no_model') + '</div>';
     return;
   }
 
@@ -19717,7 +20195,7 @@ function renderPhoneGraphic(modelId) {
         + '</button>';
     }
     linesHtml = '<div>'
-      + '<div style="font-size:8px;color:rgba(255,255,255,0.4);text-align:center;margin-bottom:4px">LINIEN</div>'
+      + '<div style="font-size:8px;color:rgba(255,255,255,0.4);text-align:center;margin-bottom:4px">' + t('dev_key_lines_hdr') + '</div>'
       + '<div style="display:grid;grid-template-columns:repeat(' + layout.lineCols + ',1fr);gap:3px">'
       + lineBtns + '</div></div>';
   }
@@ -19740,7 +20218,7 @@ function renderPhoneGraphic(modelId) {
         + '</button>';
     }
     fkeysHtml = '<div>'
-      + '<div style="font-size:8px;color:rgba(255,255,255,0.4);text-align:center;margin-bottom:4px">FUNK-TASTEN</div>'
+      + '<div style="font-size:8px;color:rgba(255,255,255,0.4);text-align:center;margin-bottom:4px">' + t('dev_key_fkeys_hdr') + '</div>'
       + '<div style="display:grid;grid-template-columns:repeat(' + fkeyCols + ',1fr);gap:3px">'
       + fkeyBtns + '</div></div>';
   }
@@ -19765,7 +20243,7 @@ function renderPhoneGraphic(modelId) {
     + '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">' + linesHtml + fkeysHtml + '</div>'
     + '<div style="margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;opacity:0.3">' + dialpad + '</div>'
     + '</div>'
-    + '<div style="margin-top:8px;font-size:11px;color:var(--text-muted)">Taste anklicken zum Konfigurieren</div>'
+    + '<div style="margin-top:8px;font-size:11px;color:var(--text-muted)">' + t('dev_key_click_hint') + '</div>'
     + '</div>';
 }
 
@@ -19786,16 +20264,17 @@ function renderKeyDetailEditor(side, index) {
     ? (devLines[index] || { lineNo:index+1, type:'user', target:'', label:'', sipId:'' })
     : (devFkeys[index] || { keyNo:index+1,  type:'blf',  target:'', label:'' });
   var typeOptions = isLine ? LINE_TARGET_TYPES : FKEY_TYPES;
-  var keyLabel    = isLine ? 'Linie ' + (index+1) : 'Funktionstaste F' + (index+1);
+  var keyLabel = isLine ? tf('dev_key_line_fmt', { n: index + 1 }) : tf('dev_key_fkey_fmt', { n: index + 1 });
+  var targetLbl = isLine ? t('ta_cl_th_entity') : t('tm_lbl_target');
 
   var typeOptHtml = '';
   Object.keys(typeOptions).forEach(function(v) {
-    typeOptHtml += '<option value="'+v+'"'+(keyObj.type===v?' selected':'')+'>'+typeOptions[v]+'</option>';
+    typeOptHtml += '<option value="'+v+'"'+(keyObj.type===v?' selected':'')+'>'+(isLine ? lineTargetTypeLabel(v) : fkeyTypeLabel(v))+'</option>';
   });
 
   var sipIdHtml = isLine
     ? '<div class="form-group" style="margin-top:10px">'
-      + '<label class="form-label">SIP-ID <span style="font-size:11px;color:var(--text-muted)">(auto)</span></label>'
+      + '<label class="form-label">' + t('dev_key_sip_id') + ' <span style="font-size:11px;color:var(--text-muted)">' + t('dev_key_auto') + '</span></label>'
       + '<input type="text" class="form-input" id="kd-sipid" value="'+(keyObj.sipId||'')+'" style="font-family:monospace;font-size:12px" oninput="devLines['+index+'].sipId=this.value">'
       + '</div>'
     : '';
@@ -19805,17 +20284,17 @@ function renderKeyDetailEditor(side, index) {
     '<div style="background:var(--surface2);border-radius:var(--radius-sm);padding:14px 16px">'
     + '<div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;color:var(--text-muted);margin-bottom:12px;display:flex;align-items:center;gap:8px">'
     + '<span style="background:var(--grey-dusk);color:#fff;padding:2px 8px;border-radius:4px;font-size:10px">'+keyLabel+'</span>'
-    + 'Konfiguration</div>'
+    + t('dev_key_config') + '</div>'
     + '<div class="form-group">'
-    + '<label class="form-label">Typ</label>'
+    + '<label class="form-label">' + t('ta_cl_th_type') + '</label>'
     + '<select class="form-select" id="kd-type" onchange="onKeyTypeChange('+(isLine?1:0)+','+index+',this.value)">'
     + typeOptHtml + '</select></div>'
     + '<div class="form-group" id="kd-target-group">'
-    + '<label class="form-label">'+(isLine?'Benutzer / Gruppe':'Ziel')+'</label>'
+    + '<label class="form-label">' + targetLbl + '</label>'
     + renderKeyTargetPicker(keyObj.type, keyObj.target, isLine, index)
     + '</div>'
     + sipIdHtml
-    + '<button class="btn btn-danger btn-sm" onclick="clearKey(\''+side+'\','+index+')" style="margin-top:8px">Taste leeren</button>'
+    + '<button class="btn btn-danger btn-sm" onclick="clearKey(\''+side+'\','+index+')" style="margin-top:8px">' + t('dev_key_clear') + '</button>'
     + '</div>';
 }
 
@@ -19840,7 +20319,7 @@ function renderKeyTargetPicker(type, selected, isLine, index) {
         + '</div>'
         + '<div style="min-width:0">'
         + '<div style="font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + u.first + ' ' + u.last + '</div>'
-        + '<div style="font-size:11px;color:var(--text-muted)">Ext. ' + u.ext + '</div>'
+        + '<div style="font-size:11px;color:var(--text-muted)">' + tf('dev_ext_fmt', { ext: u.ext }) + '</div>'
         + '</div></button>';
     });
     return html + '</div>';
@@ -19848,24 +20327,24 @@ function renderKeyTargetPicker(type, selected, isLine, index) {
 
   if (type === 'hg') {
     var hgs = (typeof HUNT_GROUPS !== 'undefined') ? HUNT_GROUPS : [];
-    var opts = '<option value="">— Hunt Group wählen —</option>';
+    var opts = '<option value="">' + t('dev_opt_select_hg') + '</option>';
     hgs.forEach(function(h){ opts += '<option value="'+h.id+'"'+(selected===h.id?' selected':'')+'>'+h.name+' ('+h.ext+')</option>'; });
     return '<select class="form-select" onchange="'+onChange+'">' + opts + '</select>';
   }
   if (type === 'ivr') {
     var ivrs = (typeof IVR_MENUS !== 'undefined') ? IVR_MENUS : [];
-    var opts = '<option value="">— IVR wählen —</option>';
+    var opts = '<option value="">' + t('dev_opt_select_ivr') + '</option>';
     ivrs.forEach(function(m){ opts += '<option value="'+m.id+'"'+(selected===m.id?' selected':'')+'>'+m.name+'</option>'; });
     return '<select class="form-select" onchange="'+onChange+'">' + opts + '</select>';
   }
   if (type === 'queue') {
     var qs = (typeof QUEUES !== 'undefined') ? QUEUES : [];
-    var opts = '<option value="">— Warteschlange wählen —</option>';
+    var opts = '<option value="">' + t('dev_opt_select_queue') + '</option>';
     qs.forEach(function(q){ opts += '<option value="'+q.id+'"'+(selected===q.id?' selected':'')+'>'+q.name+'</option>'; });
     return '<select class="form-select" onchange="'+onChange+'">' + opts + '</select>';
   }
   var val = typeof selected === 'string' ? selected : '';
-  return '<input type="text" class="form-input" value="'+val+'" placeholder="Nummer oder Bezeichnung" oninput="(isLine?devLines:devFkeys)['+index+'].target=this.value;(isLine?devLines:devFkeys)['+index+'].label=this.value">';
+  return '<input type="text" class="form-input" value="'+val+'" placeholder="' + t('dev_ph_number_label') + '" oninput="(isLine?devLines:devFkeys)['+index+'].target=this.value;(isLine?devLines:devFkeys)['+index+'].label=this.value">';
 }
 
 function onKeyTypeChange(isLine, index, type) {
@@ -19874,7 +20353,7 @@ function onKeyTypeChange(isLine, index, type) {
   const cur = isLine ? devLines[index] : devFkeys[index];
   cur.target = ''; cur.label = '';
   const tg = document.getElementById('kd-target-group');
-  if (tg) tg.innerHTML = '<label class="form-label">' + (isLine ? 'Benutzer / Gruppe' : 'Ziel') + '</label>' +
+  if (tg) tg.innerHTML = '<label class="form-label">' + (isLine ? t('ta_cl_th_entity') : t('tm_lbl_target')) + '</label>' +
     renderKeyTargetPicker(type, '', !!isLine, index);
   const modelId = document.getElementById('dev-model')?.value;
   if (modelId) renderPhoneGraphic(modelId);
@@ -19932,13 +20411,13 @@ function renderKeysEditor(modelId) {
   }
 
   var addLineBtn = filledLines < maxLines
-    ? '<button class="btn btn-secondary btn-sm" onclick="addKeySlot(\'line\')" style="font-size:10px">+ Linie</button>' : '';
+    ? '<button class="btn btn-secondary btn-sm" onclick="addKeySlot(\'line\')" style="font-size:10px">' + t('dev_btn_add_line') + '</button>' : '';
   var addFkeyBtn = maxFkeys > 0 && devFkeys.length < maxFkeys
-    ? '<button class="btn btn-secondary btn-sm" onclick="addKeySlot(\'fkey\')" style="font-size:10px">+ Funktionstaste</button>' : '';
+    ? '<button class="btn btn-secondary btn-sm" onclick="addKeySlot(\'fkey\')" style="font-size:10px">' + t('dev_btn_add_fkey') + '</button>' : '';
 
   var html = '<div style="margin-bottom:16px">'
     + '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;color:var(--text-muted);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">'
-    + 'SIP-Linien (' + filledLines + '/' + maxLines + ' belegt)' + addLineBtn
+    + tf('dev_sip_lines_fmt', { filled: filledLines, max: maxLines }) + addLineBtn
     + '</div>'
     + '<div style="display:flex;flex-direction:column;gap:5px">' + linesHtml + '</div>'
     + '</div>';
@@ -19946,7 +20425,7 @@ function renderKeysEditor(modelId) {
   if (maxFkeys > 0) {
     html += '<div>'
       + '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;color:var(--text-muted);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">'
-      + 'Funktionstasten (' + filledFkeys + '/' + maxFkeys + ' belegt)' + addFkeyBtn
+      + tf('dev_fkeys_fmt', { filled: filledFkeys, max: maxFkeys }) + addFkeyBtn
       + '</div>'
       + '<div style="display:flex;flex-direction:column;gap:5px">' + fkeysHtml + '</div>'
       + '</div>';
@@ -19964,12 +20443,12 @@ function renderKeySummaryRow(side, index) {
   var type  = obj ? (obj.type||(isLine?'user':'blf')) : (isLine?'user':'blf');
   var color = isEmpty ? 'var(--border)' : (KEY_TYPE_COLORS[type]||'#999');
   var badge = isLine ? 'L'+(index+1) : 'F'+(index+1);
-  var typeLabel = isLine ? (LINE_TARGET_TYPES[type]||type) : (FKEY_TYPES[type]||type);
+  var typeLabel = isLine ? lineTargetTypeLabel(type) : fkeyTypeLabel(type);
   var isSel = selectedKeyIndex && selectedKeyIndex.side===side && selectedKeyIndex.index===index;
   var border = isSel ? '2px solid var(--sunrise-red)' : (isEmpty ? '2px solid var(--border)' : '2px solid transparent');
   var bg     = isSel ? '#fdecea' : (isEmpty ? 'var(--surface2)' : 'var(--surface)');
   var content = isEmpty
-    ? '<span style="font-size:12.5px;color:var(--text-muted);flex:1">Nicht belegt</span>'
+    ? '<span style="font-size:12.5px;color:var(--text-muted);flex:1">' + t('dev_key_unassigned') + '</span>'
     : '<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+label+'</div><div style="font-size:11px;color:var(--text-muted)">'+typeLabel+'</div></div>';
   return '<div onclick="selectKey(\''+side+'\','+index+')" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--radius-sm);border:'+border+';background:'+bg+';cursor:pointer;transition:all 0.1s">'
     + '<div style="width:32px;height:28px;border-radius:5px;background:'+color+';display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;flex-shrink:0">'+badge+'</div>'
@@ -20928,11 +21407,11 @@ function renderHandsetsSection(modelId) {
   listEl.innerHTML = '';
 
   if (devHandsets.length === 0) {
-    listEl.innerHTML = '<div style="font-size:12.5px;color:var(--text-muted);padding:6px 0">Noch keine Handapparate — oben hinzufügen</div>';
+    listEl.innerHTML = '<div style="font-size:12.5px;color:var(--text-muted);padding:6px 0">' + t('dev_dect_empty') + '</div>';
   }
 
   devHandsets.forEach(function(hs, i) {
-    var lineOpts = '<option value="">— Linie wählen —</option>';
+    var lineOpts = '<option value="">' + t('dev_opt_select_line') + '</option>';
     devLines.forEach(function(l) {
       if (l.target) lineOpts += '<option value="' + l.lineNo + '"' + (hs.lineNo === l.lineNo ? ' selected' : '') + '>L' + l.lineNo + ' \xB7 ' + l.label + '</option>';
     });
@@ -20958,7 +21437,7 @@ function renderHandsetsSection(modelId) {
     imeiWrap.appendChild(imeiInput);
 
     var lineWrap = document.createElement('div');
-    lineWrap.innerHTML = '<div style="font-size:10px;color:var(--text-muted);margin-bottom:2px">Linie / Benutzer</div><select style="width:100%;font-size:12.5px;padding:4px 8px;border:1px solid var(--border);border-radius:4px" data-idx="' + i + '">' + lineOpts + '</select>';
+    lineWrap.innerHTML = '<div style="font-size:10px;color:var(--text-muted);margin-bottom:2px">' + t('dev_lbl_line_user') + '</div><select style="width:100%;font-size:12.5px;padding:4px 8px;border:1px solid var(--border);border-radius:4px" data-idx="' + i + '">' + lineOpts + '</select>';
     lineWrap.querySelector('select').onchange = function() {
       var idx = parseInt(this.dataset.idx);
       devHandsets[idx].lineNo = parseInt(this.value);
@@ -25205,26 +25684,26 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">Adresse</label>
+            <label class="form-label" data-i18n="sa_nt_lbl_addr">Adresse</label>
             <input type="text" class="form-input" placeholder="Musterstrasse 1, 8000 Zürich">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Admin Vorname</label>
+              <label class="form-label" data-i18n="sa_nt_admin_first">Admin Vorname</label>
               <input type="text" class="form-input" placeholder="Max">
             </div>
             <div class="form-group">
-              <label class="form-label">Admin Nachname</label>
+              <label class="form-label" data-i18n="sa_nt_admin_last">Admin Nachname</label>
               <input type="text" class="form-input" placeholder="Muster">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Admin E-Mail</label>
+              <label class="form-label" data-i18n="sa_nt_admin_email">Admin E-Mail</label>
               <input type="email" class="form-input" placeholder="admin@muster.ch">
             </div>
             <div class="form-group">
-              <label class="form-label">Admin Telefon</label>
+              <label class="form-label" data-i18n="sa_nt_admin_phone">Admin Telefon</label>
               <input type="text" class="form-input" placeholder="+41 44 000 00 00">
             </div>
           </div>
@@ -25242,15 +25721,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 <input type="number" class="form-input" value="25">
               </div>
               <div class="form-group">
-                <label class="form-label">Max. gleichz. Anrufe</label>
+                <label class="form-label" data-i18n="sa_nt_lbl_max_calls">Max. gleichz. Anrufe</label>
                 <input type="number" class="form-input" value="10">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Rufnummern (Anzahl)</label>
+                <label class="form-label" data-i18n="sa_nt_lbl_num_count">Rufnummern (Anzahl)</label>
                 <input type="number" class="form-input" value="5">
-                <span class="form-hint">357 freie Nummern im Pool</span>
+                <span class="form-hint">357 <span data-i18n="sa_nt_pool_free_nums">freie Nummern</span> im Pool</span>
               </div>
               <div class="form-group">
                 <label class="form-label" data-i18n="sa_nt_lbl_trunk">SIP Trunk</label>
@@ -28276,19 +28755,19 @@ document.addEventListener('DOMContentLoaded', function() {
       <div id="hm-date-range" style="display:none">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Von *</label>
+            <label class="form-label" data-i18n="tm_lbl_from">Von *</label>
             <input type="date" class="form-input" id="hm-date-from">
           </div>
           <div class="form-group">
-            <label class="form-label">Bis *</label>
+            <label class="form-label" data-i18n="tm_lbl_to">Bis *</label>
             <input type="date" class="form-input" id="hm-date-to">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Wiederholung</label>
+            <label class="form-label" data-i18n="tm_lbl_repeat">Wiederholung</label>
             <select class="form-select" id="hm-repeat-range">
-              <option value="once">Einmalig</option>
+              <option value="once" data-i18n="tm_repeat_once">Einmalig</option>
               <option value="yearly" data-i18n="tm_repeat_yearly_short">Jährlich</option>
             </select>
           </div>
@@ -28329,7 +28808,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div id="hm-vm-config" style="display:none">
           <div class="form-row" style="margin-top:8px">
             <div class="form-group">
-              <label class="form-label">Voicemail-Postfach</label>
+              <label class="form-label" data-i18n="tm_hol_lbl_vm_box">Voicemail-Postfach</label>
               <select class="form-select" id="hm-vm-box">
                 <option>vm_101 (Max Keller)</option>
                 <option>vm_zentrale</option>
@@ -28337,7 +28816,7 @@ document.addEventListener('DOMContentLoaded', function() {
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">VM-Ansage</label>
+              <label class="form-label" data-i18n="tm_hol_lbl_vm_greeting">VM-Ansage</label>
               <select class="form-select" id="hm-vm-greeting">
                 <option>Standard Voicemail</option>
                 <option>Feiertag Voicemail</option>
@@ -28350,15 +28829,15 @@ document.addEventListener('DOMContentLoaded', function() {
         <!-- Forward target (shown when relevant) -->
         <div id="hm-forward-config" style="display:none;margin-top:8px">
           <div class="form-group">
-            <label class="form-label">Weiterleitungsziel</label>
-            <input type="text" class="form-input" id="hm-forward-target" placeholder="+41 79 000 00 00 oder Durchwahl">
+            <label class="form-label" data-i18n="tm_hol_lbl_fwd_target">Weiterleitungsziel</label>
+            <input type="text" class="form-input" id="hm-forward-target" data-i18n-placeholder="up_fw_ph_target" placeholder="+41 79 000 00 00 oder Durchwahl">
           </div>
         </div>
 
         <div class="toggle-row" style="margin-top:10px">
           <div class="toggle-info">
-            <div class="toggle-label">E-Mail-Benachrichtigung an Admin</div>
-            <div class="toggle-desc">Bei Aktivierung der Schaltung benachrichtigen</div>
+            <div class="toggle-label" data-i18n="tm_hol_notify_admin">E-Mail-Benachrichtigung an Admin</div>
+            <div class="toggle-desc" data-i18n="tm_hol_notify_admin_desc">Bei Aktivierung der Schaltung benachrichtigen</div>
           </div>
           <button class="toggle" onclick="this.classList.toggle('on')"></button>
         </div>
@@ -28366,8 +28845,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <!-- Notes -->
       <div class="form-group">
-        <label class="form-label">Notiz (intern)</label>
-        <input type="text" class="form-input" id="hm-notes" placeholder="Interne Bemerkung">
+        <label class="form-label" data-i18n="tm_hol_lbl_notes">Notiz (intern)</label>
+        <input type="text" class="form-input" id="hm-notes" data-i18n-placeholder="tm_ph_ann_desc" placeholder="Interne Bemerkung">
       </div>
 
     </div>
@@ -28376,7 +28855,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <button class="btn btn-secondary" onclick="closeModal('modal-holiday')"><span data-i18n="btn_cancel">Abbrechen</span></button>
       <button class="btn btn-primary" onclick="saveHoliday()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-        Speichern
+        <span data-i18n="btn_save">Speichern</span>
       </button>
     </div>
   </div>
@@ -28906,19 +29385,19 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="modal-overlay" id="modal-ab-import" onclick="if(event.target===this)closeModal('modal-ab-import')">
   <div class="modal modal-wide" style="max-width:680px">
     <div class="modal-header">
-      <div><div class="modal-title">Import & Synchronisation</div><div class="modal-subtitle">Kontakte importieren oder mit Exchange/Outlook verbinden</div></div>
+      <div><div class="modal-title" data-i18n="ab_imp_title">Import & Synchronisation</div><div class="modal-subtitle" data-i18n="ab_imp_sub">Kontakte importieren oder mit Exchange/Outlook verbinden</div></div>
       <button class="modal-close" onclick="closeModal('modal-ab-import')">✕</button>
     </div>
     <div class="modal-body">
-      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;color:var(--text-muted);margin-bottom:10px">Importquelle wählen</div>
+      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;color:var(--text-muted);margin-bottom:10px" data-i18n="ab_imp_choose_src">Importquelle wählen</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
         <div class="import-option selected" id="import-opt-exchange" onclick="selectImportOption('exchange')">
           <div class="import-icon" style="background:#0078d420">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0078d4" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
           </div>
           <div>
-            <div style="font-weight:600;font-size:13.5px">Microsoft Exchange / Outlook</div>
-            <div style="font-size:12px;color:var(--text-muted);margin-top:2px">Exchange Server, Microsoft 365 oder Outlook.com</div>
+            <div style="font-weight:600;font-size:13.5px" data-i18n="ab_imp_exchange">Microsoft Exchange / Outlook</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px" data-i18n="ab_imp_exchange_desc">Exchange Server, Microsoft 365 oder Outlook.com</div>
           </div>
         </div>
         <div class="import-option" id="import-opt-csv" onclick="selectImportOption('csv')">
@@ -28926,8 +29405,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/></svg>
           </div>
           <div>
-            <div style="font-weight:600;font-size:13.5px">CSV / Excel-Import</div>
-            <div style="font-size:12px;color:var(--text-muted);margin-top:2px">Kontaktliste aus Tabellendatei importieren</div>
+            <div style="font-weight:600;font-size:13.5px" data-i18n="ab_imp_csv">CSV / Excel-Import</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px" data-i18n="ab_imp_csv_desc">Kontaktliste aus Tabellendatei importieren</div>
           </div>
         </div>
         <div class="import-option" id="import-opt-vcard" onclick="selectImportOption('vcard')">
@@ -28935,8 +29414,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h2M15 12h2M7 16h10"/></svg>
           </div>
           <div>
-            <div style="font-weight:600;font-size:13.5px">vCard (.vcf)</div>
-            <div style="font-size:12px;color:var(--text-muted);margin-top:2px">Einzelne oder mehrere vCard-Dateien</div>
+            <div style="font-weight:600;font-size:13.5px" data-i18n="ab_imp_vcard">vCard (.vcf)</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px" data-i18n="ab_imp_vcard_desc">Einzelne oder mehrere vCard-Dateien</div>
           </div>
         </div>
         <div class="import-option" id="import-opt-ldap" onclick="selectImportOption('ldap')">
@@ -28944,25 +29423,25 @@ document.addEventListener('DOMContentLoaded', function() {
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5"><circle cx="12" cy="5" r="3"/><path d="M6.8 19c0-2.9 2.3-5.2 5.2-5.2s5.2 2.3 5.2 5.2"/><path d="M3 10c0 1.7 1.3 3 3 3s3-1.3 3-3"/><path d="M15 10c0 1.7 1.3 3 3 3s3-1.3 3-3"/></svg>
           </div>
           <div>
-            <div style="font-weight:600;font-size:13.5px">LDAP-Verzeichnis</div>
-            <div style="font-size:12px;color:var(--text-muted);margin-top:2px">Active Directory oder OpenLDAP</div>
+            <div style="font-weight:600;font-size:13.5px" data-i18n="ab_imp_ldap">LDAP-Verzeichnis</div>
+            <div style="font-size:12px;color:var(--text-muted);margin-top:2px" data-i18n="ab_imp_ldap_desc">Active Directory oder OpenLDAP</div>
           </div>
         </div>
       </div>
 
       <div id="import-panel-exchange">
         <div style="background:var(--surface2);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:10px;font-size:12.5px">
-          <span class="sync-badge sync-ok">● Verbunden</span>
+          <span class="sync-badge sync-ok" data-i18n="ab_imp_connected">● Verbunden</span>
           <span>exchange.firma.ch · sync-service@firma.ch</span>
-          <button class="btn btn-secondary btn-sm" onclick="showToast(t('toast_disconnect'))" style="margin-left:auto">Trennen</button>
+          <button class="btn btn-secondary btn-sm" onclick="showToast(t('toast_disconnect'))" style="margin-left:auto" data-i18n="ab_imp_disconnect">Trennen</button>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Exchange Server / EWS URL</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_ews">Exchange Server / EWS URL</label>
             <input type="text" class="form-input" value="https://exchange.firma.ch/EWS/Exchange.asmx" style="font-family:monospace;font-size:12px">
           </div>
           <div class="form-group">
-            <label class="form-label">Authentifizierung</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_auth">Authentifizierung</label>
             <select class="form-select">
               <option>OAuth 2.0 (Microsoft 365)</option>
               <option>NTLM / Basic Auth</option>
@@ -28972,11 +29451,11 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Benutzer / Service Account</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_user">Benutzer / Service Account</label>
             <input type="text" class="form-input" value="sync-service@firma.ch">
           </div>
           <div class="form-group">
-            <label class="form-label">Sync-Intervall</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_interval">Sync-Intervall</label>
             <select class="form-select">
               <option>Alle 15 Minuten</option>
               <option selected>Stündlich</option>
@@ -28987,14 +29466,14 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Sync-Richtung</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_direction">Sync-Richtung</label>
             <select class="form-select">
               <option>Exchange → Adressbuch (nur lesen)</option>
               <option>Bidirektional</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Globales Adressbuch (GAL)</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_gal">Globales Adressbuch (GAL)</label>
             <select class="form-select">
               <option selected>Global Address List (alle)</option>
               <option>Nur eigene Kontakte</option>
@@ -29015,51 +29494,51 @@ document.addEventListener('DOMContentLoaded', function() {
       <div id="import-panel-csv" style="display:none">
         <div style="border:2px dashed var(--border);border-radius:var(--radius);padding:32px;text-align:center;cursor:pointer" onclick="showToast(t('toast_select_file'))">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" style="margin:0 auto 10px;display:block"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <div style="font-size:14px;font-weight:500;margin-bottom:4px">CSV oder Excel-Datei hierher ziehen</div>
-          <div style="font-size:12.5px;color:var(--text-muted)">oder klicken zum Auswählen · .csv, .xlsx, .xls</div>
+          <div style="font-size:14px;font-weight:500;margin-bottom:4px" data-i18n="ab_imp_csv_drop">CSV oder Excel-Datei hierher ziehen</div>
+          <div style="font-size:12.5px;color:var(--text-muted)" data-i18n="ab_imp_csv_click">oder klicken zum Auswählen · .csv, .xlsx, .xls</div>
         </div>
         <div style="margin-top:12px;font-size:12.5px;color:var(--text-muted)">
-          Erwartete Spalten: <span class="sip-chip">Vorname</span> <span class="sip-chip">Nachname</span> <span class="sip-chip">Firma</span> <span class="sip-chip">Telefon</span> <span class="sip-chip">Mobile</span> <span class="sip-chip">E-Mail</span> <span class="sip-chip">Abteilung</span>
-          <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="showToast(t('toast_template_downloaded'))">Vorlage herunterladen</button>
+          <span data-i18n="ab_imp_csv_cols">Erwartete Spalten:</span> <span class="sip-chip">Vorname</span> <span class="sip-chip">Nachname</span> <span class="sip-chip">Firma</span> <span class="sip-chip">Telefon</span> <span class="sip-chip">Mobile</span> <span class="sip-chip">E-Mail</span> <span class="sip-chip">Abteilung</span>
+          <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="showToast(t('toast_template_downloaded'))" data-i18n="ab_imp_btn_template">Vorlage herunterladen</button>
         </div>
       </div>
 
       <div id="import-panel-vcard" style="display:none">
         <div style="border:2px dashed var(--border);border-radius:var(--radius);padding:32px;text-align:center;cursor:pointer" onclick="showToast(t('toast_select_vcard'))">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" style="margin:0 auto 10px;display:block"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h2M15 12h2M7 16h10"/></svg>
-          <div style="font-size:14px;font-weight:500;margin-bottom:4px">.vcf Datei auswählen</div>
-          <div style="font-size:12.5px;color:var(--text-muted)">Einzelne oder mehrere vCards · vCard 2.1, 3.0, 4.0</div>
+          <div style="font-size:14px;font-weight:500;margin-bottom:4px" data-i18n="ab_imp_vcard_select">.vcf Datei auswählen</div>
+          <div style="font-size:12.5px;color:var(--text-muted)" data-i18n="ab_imp_vcard_hint">Einzelne oder mehrere vCards · vCard 2.1, 3.0, 4.0</div>
         </div>
       </div>
 
       <div id="import-panel-ldap" style="display:none">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">LDAP Server</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_ldap_srv">LDAP Server</label>
             <input type="text" class="form-input" placeholder="ldap://dc.firma.ch:389" style="font-family:monospace;font-size:12px">
           </div>
           <div class="form-group">
-            <label class="form-label">Base DN</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_base_dn">Base DN</label>
             <input type="text" class="form-input" placeholder="DC=firma,DC=ch" style="font-family:monospace;font-size:12px">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Bind DN</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_bind_dn">Bind DN</label>
             <input type="text" class="form-input" placeholder="CN=ldap-sync,OU=Service,DC=firma,DC=ch" style="font-family:monospace;font-size:12px">
           </div>
           <div class="form-group">
-            <label class="form-label">Passwort</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_password">Passwort</label>
             <input type="password" class="form-input" placeholder="••••••••" autocomplete="new-password">
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Filter</label>
+          <label class="form-label" data-i18n="ab_imp_lbl_filter">Filter</label>
           <input type="text" class="form-input" value="(objectClass=person)" style="font-family:monospace;font-size:12px">
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Sync-Intervall</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_interval">Sync-Intervall</label>
             <select class="form-select">
               <option>Alle 15 Minuten</option>
               <option selected>Stündlich</option>
@@ -29067,7 +29546,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Attribut-Mapping</label>
+            <label class="form-label" data-i18n="ab_imp_lbl_attr_map">Attribut-Mapping</label>
             <select class="form-select">
               <option selected>Active Directory (Standard)</option>
               <option>OpenLDAP</option>
@@ -29077,9 +29556,9 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('modal-ab-import')">Abbrechen</button>
-      <button class="btn btn-secondary" onclick="showToast(t('toast_test_connection'))">Verbindung testen</button>
-      <button class="btn btn-primary" onclick="saveAbSync()">Speichern & Synchronisieren</button>
+      <button class="btn btn-secondary" onclick="closeModal('modal-ab-import')" data-i18n="btn_cancel">Abbrechen</button>
+      <button class="btn btn-secondary" onclick="showToast(t('toast_test_connection'))" data-i18n="sm_at_btn_test">Verbindung testen</button>
+      <button class="btn btn-primary" onclick="saveAbSync()" data-i18n="ab_imp_btn_save_sync">Speichern & Synchronisieren</button>
     </div>
   </div>
 </div>
@@ -29088,7 +29567,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="modal-overlay" id="modal-ab-contact" onclick="if(event.target===this)closeModal('modal-ab-contact')">
   <div class="modal" style="max-width:560px">
     <div class="modal-header">
-      <div><div class="modal-title" id="ab-contact-modal-title">Neuer Kontakt</div></div>
+      <div><div class="modal-title" id="ab-contact-modal-title" data-i18n="ab_contact_new">Neuer Kontakt</div></div>
       <button class="modal-close" onclick="closeModal('modal-ab-contact')">✕</button>
     </div>
     <div class="modal-body">
@@ -29104,50 +29583,50 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Firma</label>
+          <label class="form-label" data-i18n="ab_lbl_company">Firma</label>
           <input type="text" class="form-input" id="abc-company" placeholder="Muster AG">
         </div>
         <div class="form-group">
-          <label class="form-label">Abteilung</label>
+          <label class="form-label" data-i18n="ab_lbl_dept">Abteilung</label>
           <input type="text" class="form-input" id="abc-dept" placeholder="Vertrieb">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">Telefon (Büro)</label>
+          <label class="form-label" data-i18n="ab_lbl_phone_office">Telefon (Büro)</label>
           <input type="text" class="form-input" id="abc-phone" placeholder="+41 44 000 00 00">
         </div>
         <div class="form-group">
-          <label class="form-label">Mobile</label>
+          <label class="form-label" data-i18n="ab_lbl_mobile">Mobile</label>
           <input type="text" class="form-input" id="abc-mobile" placeholder="+41 79 000 00 00">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">E-Mail</label>
+          <label class="form-label" data-i18n="ab_lbl_email">E-Mail</label>
           <input type="email" class="form-input" id="abc-email" placeholder="max@firma.ch">
         </div>
         <div class="form-group">
-          <label class="form-label">Gruppe</label>
+          <label class="form-label" data-i18n="ab_lbl_group">Gruppe</label>
           <select class="form-select" id="abc-group">
-            <option value="">Keine Gruppe</option>
-            <option>Intern</option>
-            <option>Kunden</option>
-            <option>Lieferanten</option>
-            <option>Partner</option>
+            <option value="" data-i18n="ab_grp_none">Keine Gruppe</option>
+            <option value="Intern" data-i18n="ab_grp_internal">Intern</option>
+            <option value="Kunden" data-i18n="ab_grp_customers">Kunden</option>
+            <option value="Lieferanten" data-i18n="ab_grp_suppliers">Lieferanten</option>
+            <option value="Partner" data-i18n="ab_grp_partners">Partner</option>
           </select>
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">Notiz</label>
+        <label class="form-label" data-i18n="ab_lbl_note">Notiz</label>
         <input type="text" class="form-input" id="abc-note" placeholder="Interne Bemerkung">
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('modal-ab-contact')">Abbrechen</button>
+      <button class="btn btn-secondary" onclick="closeModal('modal-ab-contact')" data-i18n="btn_cancel">Abbrechen</button>
       <button class="btn btn-primary" onclick="saveAbContact()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-        Speichern
+        <span data-i18n="btn_save">Speichern</span>
       </button>
     </div>
   </div>
@@ -29380,7 +29859,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">Beschreibung (intern)</label>
+        <label class="form-label" data-i18n="tm_lbl_desc_internal">Beschreibung (intern)</label>
         <input type="text" class="form-input" id="ann-desc" data-i18n-placeholder="tm_ph_ann_desc" placeholder="Optionale interne Notiz">
       </div>
       <div class="toggle-row">
@@ -29828,17 +30307,17 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="modal" style="max-width:480px">
     <div class="modal-header">
       <div>
-        <div class="modal-title">Hinweis zur Nummernportierung</div>
-        <div class="modal-subtitle">Portierte Rufnummern werden erst nach Abschluss der Portierung aktiv.</div>
+        <div class="modal-title" data-i18n="shop_port_title">Hinweis zur Nummernportierung</div>
+        <div class="modal-subtitle" data-i18n="shop_port_sub">Portierte Rufnummern werden erst nach Abschluss der Portierung aktiv.</div>
       </div>
       <button class="modal-close" onclick="closeModal('modal-shop-porting-notice')">✕</button>
     </div>
     <div class="modal-body">
-      <p style="font-size:13.5px;line-height:1.6">Für portierte Nummern ist eine LOA-Vollmacht erforderlich. Möchten Sie den Checkout fortsetzen oder einen Portierungsauftrag erfassen?</p>
+      <p style="font-size:13.5px;line-height:1.6" data-i18n="shop_port_body">Für portierte Nummern ist eine LOA-Vollmacht erforderlich. Möchten Sie den Checkout fortsetzen oder einen Portierungsauftrag erfassen?</p>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="shopPortingRequest()">Portierung beantragen</button>
-      <button class="btn btn-primary" onclick="shopPortingContinue()">Checkout fortsetzen</button>
+      <button class="btn btn-secondary" onclick="shopPortingRequest()" data-i18n="shop_port_btn_request">Portierung beantragen</button>
+      <button class="btn btn-primary" onclick="shopPortingContinue()" data-i18n="shop_port_btn_continue">Checkout fortsetzen</button>
     </div>
   </div>
 </div>
@@ -29848,14 +30327,14 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="modal" style="max-width:480px">
     <div class="modal-header">
       <div>
-        <div class="modal-title">Portierungsauftrag</div>
-        <div class="modal-subtitle">Rufnummern und gewünschtes Portierungsdatum</div>
+        <div class="modal-title" data-i18n="shop_port_req_title">Portierungsauftrag</div>
+        <div class="modal-subtitle" data-i18n="shop_port_req_sub">Rufnummern und gewünschtes Portierungsdatum</div>
       </div>
       <button class="modal-close" onclick="closeModal('modal-shop-porting-request')">✕</button>
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <label class="form-label">Rufnummern (eine pro Zeile)</label>
+        <label class="form-label" data-i18n="shop_port_lbl_numbers">Rufnummern (eine pro Zeile)</label>
         <textarea class="form-textarea" id="shop-porting-number" rows="4" placeholder="+41 44 100 00 00"></textarea>
       </div>
       <div class="form-group">
@@ -29864,8 +30343,8 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-secondary" onclick="closeModal('modal-shop-porting-request')">Abbrechen</button>
-      <button class="btn btn-primary" onclick="submitShopPortingRequest()">LOA herunterladen &amp; registrieren</button>
+      <button class="btn btn-secondary" onclick="closeModal('modal-shop-porting-request')" data-i18n="btn_cancel">Abbrechen</button>
+      <button class="btn btn-primary" onclick="submitShopPortingRequest()" data-i18n="shop_port_btn_loa">LOA herunterladen &amp; registrieren</button>
     </div>
   </div>
 </div>
