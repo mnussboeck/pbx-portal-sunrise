@@ -19,18 +19,11 @@ Alternativ: `index.html` per Doppelklick oder Drag & Drop in den Browser ziehen.
 
 ## Demo online (GitHub Pages)
 
-**URL nach Aktivierung:** `https://mnussboeck.github.io/pbx-portal-sunrise/`
+**Live-URL:** [https://mnussboeck.github.io/pbx-portal-sunrise/](https://mnussboeck.github.io/pbx-portal-sunrise/)
 
 Nach jedem `git push` auf `main` aktualisiert sich die Demo automatisch (meist innerhalb von 1–2 Minuten).
 
-### Ersteinrichtung (einmalig)
-
-1. Repository auf GitHub öffnen → **Settings** → **Pages**
-2. **Build and deployment** → Source: **Deploy from a branch**
-3. Branch: `main`, Ordner: `/ (root)` → **Save**
-4. Nach 1–2 Minuten ist die URL oben erreichbar
-
-**Voraussetzung:** GitHub Pages auf **privaten** Repositories erfordert [GitHub Pro](https://github.com/pricing) (oder Team/Enterprise). Auf dem kostenlosen Plan funktioniert Pages nur bei **öffentlichen** Repositories — für diesen UI-Prototyp ohne echte Daten oft vertretbar.
+Das Repository ist **öffentlich** (Voraussetzung für kostenloses GitHub Pages). Nach der Demo kann die Site per Unpublish offline und das Repo wieder auf privat gestellt werden — dann entfällt Pages bis zur erneuten Veröffentlichung oder einem GitHub-Pro-Upgrade.
 
 ### Demo wieder offline nehmen
 
