@@ -3121,7 +3121,7 @@
   <div class="modal" style="max-width:720px">
     <div class="modal-header">
       <div>
-        <div class="modal-title" id="smnp-title">Neue Preisänderung</div>
+        <div class="modal-title" id="smnp-title" data-i18n="res_btn_new_price">Neue Preisänderung</div>
         <div class="modal-subtitle" data-i18n="sm_np_sub">Neue Preise für Produkte des Preiskatalogs festlegen</div>
       </div>
       <button class="modal-close" onclick="closeModal('modal-sm-new-price')">✕</button>
@@ -7599,6 +7599,64 @@ const translations = {
     dev_dect_empty: "Noch keine Handapparate — oben hinzufügen",
     dev_opt_select_line: "— Linie wählen —",
     dev_lbl_line_user: "Linie / Benutzer",
+    sa_nt_ind_services: "Dienstleistung",
+    sa_nt_ind_retail: "Handel",
+    sa_nt_ind_industry: "Industrie",
+    sa_nt_ind_health: "Gesundheit",
+    sa_nt_ind_public: "Öffentlich",
+    sa_nt_ind_it: "IT / Technologie",
+    sa_nt_ind_finance: "Finanzen",
+    sa_nt_ind_education: "Bildung",
+    sa_nt_ind_other: "Andere",
+    sa_nt_lang_de: "Deutsch (CH)",
+    sa_nt_lang_fr: "Français (CH)",
+    sa_nt_lang_it: "Italiano (CH)",
+    sa_nt_lang_en: "English",
+    sa_nt_legacy_hint_id: "Kleinbuchstaben, keine Leerzeichen",
+    sa_nt_pool_in: "im Pool",
+    sa_feat_lbl_rec: "Call Recording",
+    sa_feat_lbl_vm: "Voicemail per E-Mail",
+    sa_feat_lbl_api: "API-Zugang",
+    sa_feat_lbl_cdr: "Statistiken / CDR",
+    hol_ann_default: "Standard Feiertag",
+    hol_ann_xmas: "Weihnachten",
+    hol_ann_ny: "Neujahr",
+    hol_ann_vac_summer: "Betriebsferien Sommer",
+    hol_ann_vac_winter: "Betriebsferien Winter",
+    hol_ann_custom: "Eigene Ansage hochladen…",
+    hol_vm_box_user: "vm_101 (Max Keller)",
+    hol_vm_box_central: "vm_zentrale",
+    hol_vm_box_support: "vm_support",
+    hol_vm_greet_default: "Standard Voicemail",
+    hol_vm_greet_holiday: "Feiertag Voicemail",
+    hol_vm_greet_vacation: "Betriebsferien Voicemail",
+    ab_imp_auth_oauth: "OAuth 2.0 (Microsoft 365)",
+    ab_imp_auth_ntlm: "NTLM / Basic Auth",
+    ab_imp_auth_kerberos: "Kerberos",
+    ab_imp_int_15m: "Alle 15 Minuten",
+    ab_imp_int_hourly: "Stündlich",
+    ab_imp_int_daily: "Täglich (02:00 Uhr)",
+    ab_imp_int_manual: "Manuell",
+    ab_imp_dir_read: "Exchange → Adressbuch (nur lesen)",
+    ab_imp_dir_bidir: "Bidirektional",
+    ab_imp_gal_all: "Global Address List (alle)",
+    ab_imp_gal_own: "Nur eigene Kontakte",
+    ab_imp_gal_groups: "Bestimmte Verteiler",
+    ab_imp_map_ad: "Active Directory (Standard)",
+    ab_imp_map_ldap: "OpenLDAP",
+    dev_layout_line_keys: "Leitungstasten",
+    dev_layout_fkeys: "Funktionstasten",
+    dev_layout_conf: "Konferenz-Linie",
+    dev_layout_dect: "DECT-Linien",
+    up_fw_sched_std: "Bürozeiten Standard (Mo–Fr 08–18)",
+    up_fw_sched_247: "24/7 Notfall",
+    up_fw_sched_custom: "Eigener Zeitplan…",
+    sm_av_prov_tftp: "TFTP/HTTP",
+    sm_av_prov_https: "HTTP/HTTPS",
+    sm_av_prov_tr069: "TR-069",
+    sm_av_prov_rps: "RPS",
+    loc_homeoffice: "Homeoffice",
+    loc_remote: "Remote",
 
   },
   fr: {
@@ -9859,6 +9917,64 @@ const translations = {
     dev_dect_empty: "Aucun combiné — ajouter ci-dessus",
     dev_opt_select_line: "— Choisir une ligne —",
     dev_lbl_line_user: "Ligne / utilisateur",
+    sa_nt_ind_services: "Services",
+    sa_nt_ind_retail: "Commerce",
+    sa_nt_ind_industry: "Industrie",
+    sa_nt_ind_health: "Santé",
+    sa_nt_ind_public: "Public",
+    sa_nt_ind_it: "IT / Technologie",
+    sa_nt_ind_finance: "Finance",
+    sa_nt_ind_education: "Éducation",
+    sa_nt_ind_other: "Autre",
+    sa_nt_lang_de: "Allemand (CH)",
+    sa_nt_lang_fr: "Français (CH)",
+    sa_nt_lang_it: "Italien (CH)",
+    sa_nt_lang_en: "Anglais",
+    sa_nt_legacy_hint_id: "Minuscules, pas d'espaces",
+    sa_nt_pool_in: "dans le pool",
+    sa_feat_lbl_rec: "Enregistrement d'appels",
+    sa_feat_lbl_vm: "Messagerie vocale par e-mail",
+    sa_feat_lbl_api: "Accès API",
+    sa_feat_lbl_cdr: "Statistiques / CDR",
+    hol_ann_default: "Jour férié standard",
+    hol_ann_xmas: "Noël",
+    hol_ann_ny: "Nouvel An",
+    hol_ann_vac_summer: "Vacances d'été",
+    hol_ann_vac_winter: "Vacances d'hiver",
+    hol_ann_custom: "Téléverser une annonce personnalisée…",
+    hol_vm_box_user: "vm_101 (Max Keller)",
+    hol_vm_box_central: "vm_zentrale",
+    hol_vm_box_support: "vm_support",
+    hol_vm_greet_default: "Messagerie vocale standard",
+    hol_vm_greet_holiday: "Messagerie vocale férié",
+    hol_vm_greet_vacation: "Messagerie vocale vacances",
+    ab_imp_auth_oauth: "OAuth 2.0 (Microsoft 365)",
+    ab_imp_auth_ntlm: "NTLM / Basic Auth",
+    ab_imp_auth_kerberos: "Kerberos",
+    ab_imp_int_15m: "Toutes les 15 minutes",
+    ab_imp_int_hourly: "Horaire",
+    ab_imp_int_daily: "Quotidien (02:00)",
+    ab_imp_int_manual: "Manuel",
+    ab_imp_dir_read: "Exchange → annuaire (lecture seule)",
+    ab_imp_dir_bidir: "Bidirectionnel",
+    ab_imp_gal_all: "Global Address List (tous)",
+    ab_imp_gal_own: "Contacts personnels uniquement",
+    ab_imp_gal_groups: "Listes de distribution spécifiques",
+    ab_imp_map_ad: "Active Directory (standard)",
+    ab_imp_map_ldap: "OpenLDAP",
+    dev_layout_line_keys: "Touches de ligne",
+    dev_layout_fkeys: "Touches fonction",
+    dev_layout_conf: "Ligne conférence",
+    dev_layout_dect: "Lignes DECT",
+    up_fw_sched_std: "Heures bureau standard (lun–ven 08–18)",
+    up_fw_sched_247: "Urgence 24/7",
+    up_fw_sched_custom: "Planning personnalisé…",
+    sm_av_prov_tftp: "TFTP/HTTP",
+    sm_av_prov_https: "HTTP/HTTPS",
+    sm_av_prov_tr069: "TR-069",
+    sm_av_prov_rps: "RPS",
+    loc_homeoffice: "Télétravail",
+    loc_remote: "À distance",
 
   },
   it: {
@@ -12119,6 +12235,64 @@ const translations = {
     dev_dect_empty: "Nessun cordless — aggiungi sopra",
     dev_opt_select_line: "— Scegli linea —",
     dev_lbl_line_user: "Linea / utente",
+    sa_nt_ind_services: "Servizi",
+    sa_nt_ind_retail: "Commercio",
+    sa_nt_ind_industry: "Industria",
+    sa_nt_ind_health: "Sanità",
+    sa_nt_ind_public: "Pubblico",
+    sa_nt_ind_it: "IT / Tecnologia",
+    sa_nt_ind_finance: "Finanza",
+    sa_nt_ind_education: "Istruzione",
+    sa_nt_ind_other: "Altro",
+    sa_nt_lang_de: "Tedesco (CH)",
+    sa_nt_lang_fr: "Francese (CH)",
+    sa_nt_lang_it: "Italiano (CH)",
+    sa_nt_lang_en: "Inglese",
+    sa_nt_legacy_hint_id: "Minuscole, senza spazi",
+    sa_nt_pool_in: "nel pool",
+    sa_feat_lbl_rec: "Registrazione chiamate",
+    sa_feat_lbl_vm: "Voicemail via e-mail",
+    sa_feat_lbl_api: "Accesso API",
+    sa_feat_lbl_cdr: "Statistiche / CDR",
+    hol_ann_default: "Festività standard",
+    hol_ann_xmas: "Natale",
+    hol_ann_ny: "Capodanno",
+    hol_ann_vac_summer: "Ferie estive",
+    hol_ann_vac_winter: "Ferie invernali",
+    hol_ann_custom: "Carica annuncio personalizzato…",
+    hol_vm_box_user: "vm_101 (Max Keller)",
+    hol_vm_box_central: "vm_zentrale",
+    hol_vm_box_support: "vm_support",
+    hol_vm_greet_default: "Voicemail standard",
+    hol_vm_greet_holiday: "Voicemail festività",
+    hol_vm_greet_vacation: "Voicemail ferie",
+    ab_imp_auth_oauth: "OAuth 2.0 (Microsoft 365)",
+    ab_imp_auth_ntlm: "NTLM / Basic Auth",
+    ab_imp_auth_kerberos: "Kerberos",
+    ab_imp_int_15m: "Ogni 15 minuti",
+    ab_imp_int_hourly: "Ogni ora",
+    ab_imp_int_daily: "Giornaliero (02:00)",
+    ab_imp_int_manual: "Manuale",
+    ab_imp_dir_read: "Exchange → rubrica (sola lettura)",
+    ab_imp_dir_bidir: "Bidirezionale",
+    ab_imp_gal_all: "Global Address List (tutti)",
+    ab_imp_gal_own: "Solo contatti personali",
+    ab_imp_gal_groups: "Liste di distribuzione specifiche",
+    ab_imp_map_ad: "Active Directory (standard)",
+    ab_imp_map_ldap: "OpenLDAP",
+    dev_layout_line_keys: "Tasti linea",
+    dev_layout_fkeys: "Tasti funzione",
+    dev_layout_conf: "Linea conferenza",
+    dev_layout_dect: "Linee DECT",
+    up_fw_sched_std: "Standard office hours (Mon–Fri 08–18)",
+    up_fw_sched_247: "24/7 emergency",
+    up_fw_sched_custom: "Custom schedule…",
+    sm_av_prov_tftp: "TFTP/HTTP",
+    sm_av_prov_https: "HTTP/HTTPS",
+    sm_av_prov_tr069: "TR-069",
+    sm_av_prov_rps: "RPS",
+    loc_homeoffice: "Home office",
+    loc_remote: "Remote",
 
   },
   en: {
@@ -14379,6 +14553,64 @@ const translations = {
     dev_dect_empty: "No handsets yet — add above",
     dev_opt_select_line: "— Select line —",
     dev_lbl_line_user: "Line / user",
+    sa_nt_ind_services: "Services",
+    sa_nt_ind_retail: "Retail",
+    sa_nt_ind_industry: "Manufacturing",
+    sa_nt_ind_health: "Healthcare",
+    sa_nt_ind_public: "Public sector",
+    sa_nt_ind_it: "IT / Technology",
+    sa_nt_ind_finance: "Finance",
+    sa_nt_ind_education: "Education",
+    sa_nt_ind_other: "Other",
+    sa_nt_lang_de: "German (CH)",
+    sa_nt_lang_fr: "French (CH)",
+    sa_nt_lang_it: "Italian (CH)",
+    sa_nt_lang_en: "English",
+    sa_nt_legacy_hint_id: "Lowercase, no spaces",
+    sa_nt_pool_in: "in pool",
+    sa_feat_lbl_rec: "Call recording",
+    sa_feat_lbl_vm: "Voicemail via email",
+    sa_feat_lbl_api: "API access",
+    sa_feat_lbl_cdr: "Statistics / CDR",
+    hol_ann_default: "Standard holiday",
+    hol_ann_xmas: "Christmas",
+    hol_ann_ny: "New Year",
+    hol_ann_vac_summer: "Summer closure",
+    hol_ann_vac_winter: "Winter closure",
+    hol_ann_custom: "Upload custom announcement…",
+    hol_vm_box_user: "vm_101 (Max Keller)",
+    hol_vm_box_central: "vm_zentrale",
+    hol_vm_box_support: "vm_support",
+    hol_vm_greet_default: "Standard voicemail",
+    hol_vm_greet_holiday: "Holiday voicemail",
+    hol_vm_greet_vacation: "Vacation voicemail",
+    ab_imp_auth_oauth: "OAuth 2.0 (Microsoft 365)",
+    ab_imp_auth_ntlm: "NTLM / Basic Auth",
+    ab_imp_auth_kerberos: "Kerberos",
+    ab_imp_int_15m: "Every 15 minutes",
+    ab_imp_int_hourly: "Hourly",
+    ab_imp_int_daily: "Daily (02:00)",
+    ab_imp_int_manual: "Manual",
+    ab_imp_dir_read: "Exchange → address book (read only)",
+    ab_imp_dir_bidir: "Bidirectional",
+    ab_imp_gal_all: "Global Address List (all)",
+    ab_imp_gal_own: "Own contacts only",
+    ab_imp_gal_groups: "Specific distribution lists",
+    ab_imp_map_ad: "Active Directory (default)",
+    ab_imp_map_ldap: "OpenLDAP",
+    dev_layout_line_keys: "Line keys",
+    dev_layout_fkeys: "Function keys",
+    dev_layout_conf: "Conference line",
+    dev_layout_dect: "DECT lines",
+    up_fw_sched_std: "Standard office hours (Mon–Fri 08–18)",
+    up_fw_sched_247: "24/7 emergency",
+    up_fw_sched_custom: "Custom schedule…",
+    sm_av_prov_tftp: "TFTP/HTTP",
+    sm_av_prov_https: "HTTP/HTTPS",
+    sm_av_prov_tr069: "TR-069",
+    sm_av_prov_rps: "RPS",
+    loc_homeoffice: "Home office",
+    loc_remote: "Remote",
 
   },
 };
@@ -20080,30 +20312,30 @@ function deleteDevice(id) {
 // Phone layout definitions: lines on left side, fkeys grid on right
 const PHONE_LAYOUTS = {
   // Yealink key layouts
-  'y-t43u': { w:160, h:220, lineRows:3,  lineCols:1, fkeyRows:3,  fkeyCols:1, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  'y-t46u': { w:180, h:240, lineRows:4,  lineCols:2, fkeyRows:5,  fkeyCols:2, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  'y-t48u': { w:200, h:260, lineRows:4,  lineCols:2, fkeyRows:10, fkeyCols:3, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  'y-t53w': { w:170, h:230, lineRows:4,  lineCols:1, fkeyRows:4,  fkeyCols:2, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  'y-t54w': { w:190, h:250, lineRows:4,  lineCols:2, fkeyRows:9,  fkeyCols:3, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  'y-t58a': { w:200, h:260, lineRows:4,  lineCols:2, fkeyRows:9,  fkeyCols:3, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  'y-cp965':{ w:200, h:120, lineRows:1,  lineCols:1, fkeyRows:0,  fkeyCols:0, labelLeft:'Konferenz-Linie', labelRight:'' },
-  'y-w73p': { w:80,  h:180, lineRows:4,  lineCols:1, fkeyRows:0,  fkeyCols:0, labelLeft:'DECT-Linien',     labelRight:'' },
+  'y-t43u': { w:160, h:220, lineRows:3,  lineCols:1, fkeyRows:3,  fkeyCols:1, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  'y-t46u': { w:180, h:240, lineRows:4,  lineCols:2, fkeyRows:5,  fkeyCols:2, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  'y-t48u': { w:200, h:260, lineRows:4,  lineCols:2, fkeyRows:10, fkeyCols:3, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  'y-t53w': { w:170, h:230, lineRows:4,  lineCols:1, fkeyRows:4,  fkeyCols:2, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  'y-t54w': { w:190, h:250, lineRows:4,  lineCols:2, fkeyRows:9,  fkeyCols:3, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  'y-t58a': { w:200, h:260, lineRows:4,  lineCols:2, fkeyRows:9,  fkeyCols:3, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  'y-cp965':{ w:200, h:120, lineRows:1,  lineCols:1, fkeyRows:0,  fkeyCols:0, labelLeft:'dev_layout_conf', labelRight:'' },
+  'y-w73p': { w:80,  h:180, lineRows:4,  lineCols:1, fkeyRows:0,  fkeyCols:0, labelLeft:'dev_layout_dect', labelRight:'' },
   // Snom
-  's-d717': { w:160, h:220, lineRows:2,  lineCols:1, fkeyRows:2,  fkeyCols:2, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  's-d725': { w:170, h:230, lineRows:4,  lineCols:1, fkeyRows:4,  fkeyCols:3, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  's-d785': { w:190, h:250, lineRows:4,  lineCols:2, fkeyRows:6,  fkeyCols:3, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  's-d865': { w:180, h:240, lineRows:4,  lineCols:2, fkeyRows:6,  fkeyCols:2, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
+  's-d717': { w:160, h:220, lineRows:2,  lineCols:1, fkeyRows:2,  fkeyCols:2, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  's-d725': { w:170, h:230, lineRows:4,  lineCols:1, fkeyRows:4,  fkeyCols:3, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  's-d785': { w:190, h:250, lineRows:4,  lineCols:2, fkeyRows:6,  fkeyCols:3, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  's-d865': { w:180, h:240, lineRows:4,  lineCols:2, fkeyRows:6,  fkeyCols:2, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
   // Cisco
-  'c-8811': { w:170, h:230, lineRows:3,  lineCols:1, fkeyRows:2,  fkeyCols:3, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  'c-8851': { w:180, h:240, lineRows:3,  lineCols:1, fkeyRows:2,  fkeyCols:3, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  'c-8861': { w:190, h:250, lineRows:3,  lineCols:1, fkeyRows:2,  fkeyCols:3, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
+  'c-8811': { w:170, h:230, lineRows:3,  lineCols:1, fkeyRows:2,  fkeyCols:3, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  'c-8851': { w:180, h:240, lineRows:3,  lineCols:1, fkeyRows:2,  fkeyCols:3, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  'c-8861': { w:190, h:250, lineRows:3,  lineCols:1, fkeyRows:2,  fkeyCols:3, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
   // Poly
-  'p-vvx350':{ w:170, h:230, lineRows:3, lineCols:2, fkeyRows:3,  fkeyCols:2, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  'p-vvx450':{ w:190, h:250, lineRows:4, lineCols:2, fkeyRows:4,  fkeyCols:3, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
+  'p-vvx350':{ w:170, h:230, lineRows:3, lineCols:2, fkeyRows:3,  fkeyCols:2, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  'p-vvx450':{ w:190, h:250, lineRows:4, lineCols:2, fkeyRows:4,  fkeyCols:3, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
   // Fanvil
-  'f-x4u':  { w:160, h:220, lineRows:2, lineCols:1, fkeyRows:2,  fkeyCols:1, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  'f-x6u':  { w:180, h:240, lineRows:3, lineCols:2, fkeyRows:5,  fkeyCols:4, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
-  'f-x7a':  { w:190, h:250, lineRows:3, lineCols:2, fkeyRows:5,  fkeyCols:4, labelLeft:'Leitungstasten', labelRight:'Funktionstasten' },
+  'f-x4u':  { w:160, h:220, lineRows:2, lineCols:1, fkeyRows:2,  fkeyCols:1, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  'f-x6u':  { w:180, h:240, lineRows:3, lineCols:2, fkeyRows:5,  fkeyCols:4, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
+  'f-x7a':  { w:190, h:250, lineRows:3, lineCols:2, fkeyRows:5,  fkeyCols:4, labelLeft:'dev_layout_line_keys', labelRight:'dev_layout_fkeys' },
 };
 
 const KEY_TYPE_COLORS = {
@@ -25658,28 +25890,28 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="form-group">
               <label class="form-label" data-i18n="sa_et_lbl_id">Mandanten-ID</label>
               <input type="text" class="form-input" placeholder="muster-ag" style="font-family:monospace">
-              <span class="form-hint">Kleinbuchstaben, keine Leerzeichen</span>
+              <span class="form-hint" data-i18n="sa_nt_legacy_hint_id">Kleinbuchstaben, keine Leerzeichen</span>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" data-i18n="sa_nt_lbl_industry">Branche</label>
               <select class="form-select">
-                <option>Dienstleistung</option>
-                <option>Handel</option>
-                <option>Industrie</option>
-                <option>Gesundheit</option>
-                <option>Öffentlich</option>
-                <option>Andere</option>
+                <option data-i18n="sa_nt_ind_services">Dienstleistung</option>
+                <option data-i18n="sa_nt_ind_retail">Handel</option>
+                <option data-i18n="sa_nt_ind_industry">Industrie</option>
+                <option data-i18n="sa_nt_ind_health">Gesundheit</option>
+                <option data-i18n="sa_nt_ind_public">Öffentlich</option>
+                <option data-i18n="sa_nt_ind_other">Andere</option>
               </select>
             </div>
             <div class="form-group">
               <label class="form-label" data-i18n="up_lbl_language">Sprache</label>
               <select class="form-select">
-                <option>Deutsch</option>
-                <option>Französisch</option>
-                <option>Italienisch</option>
-                <option>Englisch</option>
+                <option data-i18n="eu_lang_de">Deutsch</option>
+                <option data-i18n="eu_lang_fr">Französisch</option>
+                <option data-i18n="eu_lang_it">Italienisch</option>
+                <option data-i18n="eu_lang_en">English</option>
               </select>
             </div>
           </div>
@@ -25729,7 +25961,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="form-group">
                 <label class="form-label" data-i18n="sa_nt_lbl_num_count">Rufnummern (Anzahl)</label>
                 <input type="number" class="form-input" value="5">
-                <span class="form-hint">357 <span data-i18n="sa_nt_pool_free_nums">freie Nummern</span> im Pool</span>
+                <span class="form-hint">357 <span data-i18n="sa_nt_pool_free_nums">freie Nummern</span> <span data-i18n="sa_nt_pool_in">im Pool</span></span>
               </div>
               <div class="form-group">
                 <label class="form-label" data-i18n="sa_nt_lbl_trunk">SIP Trunk</label>
@@ -25753,35 +25985,35 @@ document.addEventListener('DOMContentLoaded', function() {
           <div style="padding:16px 20px">
             <div class="feature-grid">
               <div class="feature-item">
-                <span>IVR / Auto-Attendant</span>
+                <span data-i18n="nav_ivr">IVR / Auto-Attendant</span>
                 <button class="toggle on" onclick="this.classList.toggle('on')"></button>
               </div>
               <div class="feature-item">
-                <span>Hunt Groups</span>
+                <span data-i18n="nav_huntgroups">Hunt Groups</span>
                 <button class="toggle on" onclick="this.classList.toggle('on')"></button>
               </div>
               <div class="feature-item">
-                <span>Call Recording</span>
+                <span data-i18n="sa_feat_lbl_rec">Call Recording</span>
                 <button class="toggle" onclick="this.classList.toggle('on')"></button>
               </div>
               <div class="feature-item">
-                <span>Warteschlangen</span>
+                <span data-i18n="nav_queues">Warteschlangen</span>
                 <button class="toggle on" onclick="this.classList.toggle('on')"></button>
               </div>
               <div class="feature-item">
-                <span>Voicemail per E-Mail</span>
+                <span data-i18n="sa_feat_lbl_vm">Voicemail per E-Mail</span>
                 <button class="toggle on" onclick="this.classList.toggle('on')"></button>
               </div>
               <div class="feature-item">
-                <span>API-Zugang</span>
+                <span data-i18n="sa_feat_lbl_api">API-Zugang</span>
                 <button class="toggle" onclick="this.classList.toggle('on')"></button>
               </div>
               <div class="feature-item">
-                <span>Statistiken / CDR</span>
+                <span data-i18n="sa_feat_lbl_cdr">Statistiken / CDR</span>
                 <button class="toggle on" onclick="this.classList.toggle('on')"></button>
               </div>
               <div class="feature-item">
-                <span>Fax over IP</span>
+                <span data-i18n="res_feat_foip">Fax over IP</span>
                 <button class="toggle" onclick="this.classList.toggle('on')"></button>
               </div>
             </div>
@@ -26686,9 +26918,9 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="form-group" style="margin-top:6px">
           <label class="form-label" data-i18n="up_fw_lbl_schedule">Zeitplan</label>
           <select class="form-select">
-            <option>Bürozeiten Standard (Mo–Fr 08–18)</option>
-            <option>24/7 Notfall</option>
-            <option>Eigener Zeitplan…</option>
+            <option data-i18n="up_fw_sched_std">Bürozeiten Standard (Mo–Fr 08–18)</option>
+            <option data-i18n="up_fw_sched_247">24/7 Notfall</option>
+            <option data-i18n="up_fw_sched_custom">Eigener Zeitplan…</option>
           </select>
         </div>
       </div>
@@ -27282,7 +27514,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="form-group">
           <label class="form-label" data-i18n="eu_lbl_location">Standort (Hauptarbeitsplatz)</label>
           <select class="form-select" id="eu-location">
-            <option>Zürich</option><option>Bern</option><option>Basel</option><option>Genf</option><option>Homeoffice</option><option>Remote</option>
+            <option>Zürich</option><option>Bern</option><option>Basel</option><option>Genf</option><option data-i18n="loc_homeoffice">Homeoffice</option><option data-i18n="loc_remote">Remote</option>
           </select>
         </div>
       </div>
@@ -27754,7 +27986,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="form-group">
           <label class="form-label" data-i18n="sm_av_prov_method">Provisioning-Methode</label>
-          <select class="form-select"><option>TFTP/HTTP</option><option>HTTP/HTTPS</option><option>TR-069</option><option>RPS</option></select>
+          <select class="form-select"><option data-i18n="sm_av_prov_tftp">TFTP/HTTP</option><option data-i18n="sm_av_prov_https">HTTP/HTTPS</option><option data-i18n="sm_av_prov_tr069">TR-069</option><option data-i18n="sm_av_prov_rps">RPS</option></select>
         </div>
       </div>
       <div class="form-group">
@@ -27950,16 +28182,16 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="form-group">
           <label class="form-label" data-i18n="sa_nt_lbl_industry">Branche</label>
           <select class="form-select" id="nt-industry">
-            <option>Dienstleistung</option><option>Handel</option><option>Industrie</option>
-            <option>Gesundheit</option><option>Öffentlich</option><option>IT / Technologie</option>
-            <option>Finanzen</option><option>Bildung</option><option>Andere</option>
+            <option data-i18n="sa_nt_ind_services">Dienstleistung</option><option data-i18n="sa_nt_ind_retail">Handel</option><option data-i18n="sa_nt_ind_industry">Industrie</option>
+            <option data-i18n="sa_nt_ind_health">Gesundheit</option><option data-i18n="sa_nt_ind_public">Öffentlich</option><option data-i18n="sa_nt_ind_it">IT / Technologie</option>
+            <option data-i18n="sa_nt_ind_finance">Finanzen</option><option data-i18n="sa_nt_ind_education">Bildung</option><option data-i18n="sa_nt_ind_other">Andere</option>
           </select>
         </div>
         <div class="form-group">
           <label class="form-label" data-i18n="sa_nt_lbl_lang">Sprache / Region</label>
           <select class="form-select" id="nt-lang">
-            <option>Deutsch (CH)</option><option>Français (CH)</option>
-            <option>Italiano (CH)</option><option>English</option>
+            <option data-i18n="sa_nt_lang_de">Deutsch (CH)</option><option data-i18n="sa_nt_lang_fr">Français (CH)</option>
+            <option data-i18n="sa_nt_lang_it">Italiano (CH)</option><option data-i18n="sa_nt_lang_en">English</option>
           </select>
         </div>
       </div>
@@ -28277,16 +28509,16 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="form-group">
           <label class="form-label" data-i18n="sa_et_lbl_industry">Branche</label>
           <select class="form-select" id="et-industry">
-            <option>Dienstleistung</option><option>Handel</option><option>Industrie</option>
-            <option>Gesundheit</option><option>Öffentlich</option><option>IT / Technologie</option>
-            <option>Finanzen</option><option>Bildung</option><option>Andere</option>
+            <option data-i18n="sa_nt_ind_services">Dienstleistung</option><option data-i18n="sa_nt_ind_retail">Handel</option><option data-i18n="sa_nt_ind_industry">Industrie</option>
+            <option data-i18n="sa_nt_ind_health">Gesundheit</option><option data-i18n="sa_nt_ind_public">Öffentlich</option><option data-i18n="sa_nt_ind_it">IT / Technologie</option>
+            <option data-i18n="sa_nt_ind_finance">Finanzen</option><option data-i18n="sa_nt_ind_education">Bildung</option><option data-i18n="sa_nt_ind_other">Andere</option>
           </select>
         </div>
         <div class="form-group">
           <label class="form-label" data-i18n="sa_et_lbl_lang">Sprache / Region</label>
           <select class="form-select" id="et-lang">
-            <option>Deutsch (CH)</option><option>Français (CH)</option>
-            <option>Italiano (CH)</option><option>English</option>
+            <option data-i18n="sa_nt_lang_de">Deutsch (CH)</option><option data-i18n="sa_nt_lang_fr">Français (CH)</option>
+            <option data-i18n="sa_nt_lang_it">Italiano (CH)</option><option data-i18n="sa_nt_lang_en">English</option>
           </select>
         </div>
       </div>
@@ -28794,12 +29026,12 @@ document.addEventListener('DOMContentLoaded', function() {
             <label class="form-label" id="hm-action-target-label" data-i18n="tm_hol_lbl_announce">Ansage</label>
             <select class="form-select" id="hm-announcement">
               <option value="" data-i18n="tm_opt_select_announce">— Ansage wählen —</option>
-              <option value="holiday-default">Standard Feiertag</option>
-              <option value="holiday-xmas">Weihnachten</option>
-              <option value="holiday-ny">Neujahr</option>
-              <option value="vacation-summer">Betriebsferien Sommer</option>
-              <option value="vacation-winter">Betriebsferien Winter</option>
-              <option value="custom">Eigene Ansage hochladen…</option>
+              <option value="holiday-default" data-i18n="hol_ann_default">Standard Feiertag</option>
+              <option value="holiday-xmas" data-i18n="hol_ann_xmas">Weihnachten</option>
+              <option value="holiday-ny" data-i18n="hol_ann_ny">Neujahr</option>
+              <option value="vacation-summer" data-i18n="hol_ann_vac_summer">Betriebsferien Sommer</option>
+              <option value="vacation-winter" data-i18n="hol_ann_vac_winter">Betriebsferien Winter</option>
+              <option value="custom" data-i18n="hol_ann_custom">Eigene Ansage hochladen…</option>
             </select>
           </div>
         </div>
@@ -28810,17 +29042,17 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="form-group">
               <label class="form-label" data-i18n="tm_hol_lbl_vm_box">Voicemail-Postfach</label>
               <select class="form-select" id="hm-vm-box">
-                <option>vm_101 (Max Keller)</option>
-                <option>vm_zentrale</option>
-                <option>vm_support</option>
+                <option data-i18n="hol_vm_box_user">vm_101 (Max Keller)</option>
+                <option data-i18n="hol_vm_box_central">vm_zentrale</option>
+                <option data-i18n="hol_vm_box_support">vm_support</option>
               </select>
             </div>
             <div class="form-group">
               <label class="form-label" data-i18n="tm_hol_lbl_vm_greeting">VM-Ansage</label>
               <select class="form-select" id="hm-vm-greeting">
-                <option>Standard Voicemail</option>
-                <option>Feiertag Voicemail</option>
-                <option>Betriebsferien Voicemail</option>
+                <option data-i18n="hol_vm_greet_default">Standard Voicemail</option>
+                <option data-i18n="hol_vm_greet_holiday">Feiertag Voicemail</option>
+                <option data-i18n="hol_vm_greet_vacation">Betriebsferien Voicemail</option>
               </select>
             </div>
           </div>
@@ -29443,9 +29675,9 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="form-group">
             <label class="form-label" data-i18n="ab_imp_lbl_auth">Authentifizierung</label>
             <select class="form-select">
-              <option>OAuth 2.0 (Microsoft 365)</option>
-              <option>NTLM / Basic Auth</option>
-              <option>Kerberos</option>
+              <option data-i18n="ab_imp_auth_oauth">OAuth 2.0 (Microsoft 365)</option>
+              <option data-i18n="ab_imp_auth_ntlm">NTLM / Basic Auth</option>
+              <option data-i18n="ab_imp_auth_kerberos">Kerberos</option>
             </select>
           </div>
         </div>
@@ -29457,10 +29689,10 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="form-group">
             <label class="form-label" data-i18n="ab_imp_lbl_interval">Sync-Intervall</label>
             <select class="form-select">
-              <option>Alle 15 Minuten</option>
-              <option selected>Stündlich</option>
-              <option>Täglich (02:00 Uhr)</option>
-              <option>Manuell</option>
+              <option data-i18n="ab_imp_int_15m">Alle 15 Minuten</option>
+              <option selected data-i18n="ab_imp_int_hourly">Stündlich</option>
+              <option data-i18n="ab_imp_int_daily">Täglich (02:00 Uhr)</option>
+              <option data-i18n="ab_imp_int_manual">Manuell</option>
             </select>
           </div>
         </div>
@@ -29468,16 +29700,16 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="form-group">
             <label class="form-label" data-i18n="ab_imp_lbl_direction">Sync-Richtung</label>
             <select class="form-select">
-              <option>Exchange → Adressbuch (nur lesen)</option>
-              <option>Bidirektional</option>
+              <option data-i18n="ab_imp_dir_read">Exchange → Adressbuch (nur lesen)</option>
+              <option data-i18n="ab_imp_dir_bidir">Bidirektional</option>
             </select>
           </div>
           <div class="form-group">
             <label class="form-label" data-i18n="ab_imp_lbl_gal">Globales Adressbuch (GAL)</label>
             <select class="form-select">
-              <option selected>Global Address List (alle)</option>
-              <option>Nur eigene Kontakte</option>
-              <option>Bestimmte Verteiler</option>
+              <option selected data-i18n="ab_imp_gal_all">Global Address List (alle)</option>
+              <option data-i18n="ab_imp_gal_own">Nur eigene Kontakte</option>
+              <option data-i18n="ab_imp_gal_groups">Bestimmte Verteiler</option>
             </select>
           </div>
         </div>
@@ -29498,7 +29730,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <div style="font-size:12.5px;color:var(--text-muted)" data-i18n="ab_imp_csv_click">oder klicken zum Auswählen · .csv, .xlsx, .xls</div>
         </div>
         <div style="margin-top:12px;font-size:12.5px;color:var(--text-muted)">
-          <span data-i18n="ab_imp_csv_cols">Erwartete Spalten:</span> <span class="sip-chip">Vorname</span> <span class="sip-chip">Nachname</span> <span class="sip-chip">Firma</span> <span class="sip-chip">Telefon</span> <span class="sip-chip">Mobile</span> <span class="sip-chip">E-Mail</span> <span class="sip-chip">Abteilung</span>
+          <span data-i18n="ab_imp_csv_cols">Erwartete Spalten:</span> <span class="sip-chip" data-i18n="sa_nt_lbl_first">Vorname</span> <span class="sip-chip" data-i18n="sa_nt_lbl_last">Nachname</span> <span class="sip-chip" data-i18n="ab_lbl_company">Firma</span> <span class="sip-chip" data-i18n="ab_lbl_phone_office">Telefon</span> <span class="sip-chip" data-i18n="ab_lbl_mobile">Mobile</span> <span class="sip-chip" data-i18n="ab_lbl_email">E-Mail</span> <span class="sip-chip" data-i18n="ab_lbl_dept">Abteilung</span>
           <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="showToast(t('toast_template_downloaded'))" data-i18n="ab_imp_btn_template">Vorlage herunterladen</button>
         </div>
       </div>
@@ -29540,16 +29772,16 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="form-group">
             <label class="form-label" data-i18n="ab_imp_lbl_interval">Sync-Intervall</label>
             <select class="form-select">
-              <option>Alle 15 Minuten</option>
-              <option selected>Stündlich</option>
-              <option>Täglich (02:00 Uhr)</option>
+              <option data-i18n="ab_imp_int_15m">Alle 15 Minuten</option>
+              <option selected data-i18n="ab_imp_int_hourly">Stündlich</option>
+              <option data-i18n="ab_imp_int_daily">Täglich (02:00 Uhr)</option>
             </select>
           </div>
           <div class="form-group">
             <label class="form-label" data-i18n="ab_imp_lbl_attr_map">Attribut-Mapping</label>
             <select class="form-select">
-              <option selected>Active Directory (Standard)</option>
-              <option>OpenLDAP</option>
+              <option selected data-i18n="ab_imp_map_ad">Active Directory (Standard)</option>
+              <option data-i18n="ab_imp_map_ldap">OpenLDAP</option>
             </select>
           </div>
         </div>
