@@ -2175,7 +2175,7 @@
         <div class="page-subtitle" data-i18n="provisioning_subtitle">Endgeräte verwalten · MAC-Adressen · Linien- und Tastenkonfiguration</div>
       </div>
       <div class="page-actions">
-        <button class="btn btn-secondary" onclick="showToast('Alle Geräte neu provisionieren')">
+        <button class="btn btn-secondary" onclick="showToast(t('ta_toast_reprov_all'))">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
           <span data-i18n="ta_btn_reprov_all">Alle neu provisionieren</span>
         </button>
@@ -2756,7 +2756,7 @@
           <div style="padding:10px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-muted);border-bottom:1px solid var(--border)">Gruppen</div>
           <div id="ab-groups-list"></div>
           <div style="padding:10px 14px;border-top:1px solid var(--border)">
-            <button class="btn btn-secondary btn-sm" style="width:100%" onclick="showToast('Neue Gruppe erstellen')">+ Neue Gruppe</button>
+            <button class="btn btn-secondary btn-sm" style="width:100%" onclick="showToast(t('ta_toast_new_group'))">+ Neue Gruppe</button>
           </div>
         </div>
 
@@ -4020,7 +4020,7 @@ function switchSaAccount(accountId) {
   updateTaSidebarBranding(partner);
   updateUpBranding(partner);
 
-  showToast('SA-Kontext: ' + partner.shortName + ' (' + acc.name + ')');
+  showToast(tf('sa_toast_context', { partner: partner.shortName, account: acc.name }));
 }
 
 function updateRoleBarBranding(partner) {
@@ -4034,7 +4034,7 @@ function updateTaSidebarBranding(partner) {
   var logoTextEl = document.querySelector('.sidebar .logo-text');
   if (logoTextEl) logoTextEl.textContent = partner.shortName;
   var logoSubEl = document.querySelector('.sidebar .logo-sub');
-  if (logoSubEl) logoSubEl.textContent = 'CloudPBX';
+  if (logoSubEl) logoSubEl.textContent = t('brand_cloudpbx');
   // Logo img — if WL has logoDataUrl use it, otherwise hide img and show text
   var logoImg = document.querySelector('.sidebar .sidebar-logo img');
   if (logoImg) {
@@ -4073,9 +4073,9 @@ function updateSaDesign(partner) {
   var saLogoText = document.querySelector('#sa-sidebar-nav .logo-text');
   if (saLogoText) saLogoText.textContent = partner.shortName;
   var saLogoBadge = document.querySelector('#sa-sidebar-nav .sa-badge');
-  if (saLogoBadge) saLogoBadge.textContent = 'ADMIN';
+  if (saLogoBadge) saLogoBadge.textContent = t('brand_admin_badge');
   var saLogoSub = document.querySelector('#sa-sidebar-nav .logo-sub');
-  if (saLogoSub) saLogoSub.textContent = 'Mandanten-Verwaltung';
+  if (saLogoSub) saLogoSub.textContent = t('brand_tenant_mgmt');
 }
 
 // ══ Whitelabel Partner Data ══
@@ -4241,7 +4241,7 @@ function generateConfigTemplate(deviceId) {
 
 function downloadConfigTemplate(deviceId) {
   var d = TENANT_DEVICES.find(function(x){ return x.id === deviceId; });
-  if (!d) { showToast('Gerät nicht gefunden'); return; }
+  if (!d) { showToast(t('ta_toast_dev_not_found')); return; }
   var content = generateConfigTemplate(deviceId);
   var mac = (d.mac || 'device').replace(/:/g,'').toLowerCase();
   var blob = new Blob([content], { type: 'text/plain' });
@@ -4251,7 +4251,7 @@ function downloadConfigTemplate(deviceId) {
   a.download = 'config_' + mac + '.cfg';
   a.click();
   URL.revokeObjectURL(url);
-  showToast('Konfigurationsvorlage heruntergeladen: config_' + mac + '.cfg');
+  showToast(tf('ta_toast_cfg_downloaded', { mac: mac }));
 }
 
 function handleConfigUpload(input, deviceId) {
@@ -4273,7 +4273,7 @@ function handleConfigUpload(input, deviceId) {
       statusEl.querySelector && (statusEl.querySelector('.dev-config-date') || {}).textContent;
     }
     renderDevicesTable();
-    showToast('Custom Config hochgeladen: ' + file.name + ' (' + Math.round(file.size/1024*10)/10 + ' KB)');
+    showToast(tf('ta_toast_cfg_uploaded', { name: file.name, size: Math.round(file.size/1024*10)/10 }));
   };
   reader.readAsText(file);
 }
@@ -4285,11 +4285,11 @@ function removeCustomConfig(deviceId) {
   delete d.customConfigName;
   delete d.customConfigDate;
   var nameEl = document.getElementById('dev-config-filename');
-  if (nameEl) nameEl.textContent = 'Keine Custom Config';
+  if (nameEl) nameEl.textContent = t('lbl_no_custom_config');
   var statusEl = document.getElementById('dev-config-status');
   if (statusEl) statusEl.style.display = 'none';
   renderDevicesTable();
-  showToast('Custom Config entfernt – Standardkonfiguration aktiv');
+  showToast(t('ta_toast_cfg_removed'));
 }
 
 function toggleAltFirmware(btn) {
@@ -4343,7 +4343,7 @@ function openFirmwareModal(id) {
   editingFwId = id || null;
   var fw = id ? FIRMWARE_CATALOG.find(function(f){ return f.id === id; }) : null;
   var titleEl = document.getElementById('fw-modal-title');
-  if (titleEl) titleEl.textContent = fw ? 'Firmware bearbeiten' : 'Firmware hochladen';
+  if (titleEl) titleEl.textContent = fw ? t('sm_fw_modal_edit') : t('sm_fw_modal_upload');
   var set = function(elId, v) { var el = document.getElementById(elId); if (el) el.value = v || ''; };
   set('fw-vendor',  fw ? fw.vendor  : '');
   set('fw-version', fw ? fw.version : '');
@@ -4362,7 +4362,7 @@ function saveFirmware() {
   var version = document.getElementById('fw-version')?.value?.trim();
   var status  = document.getElementById('fw-status')?.value || 'beta';
   var notes   = document.getElementById('fw-notes')?.value?.trim() || '';
-  if (!vendor || !version) { showToast('Hersteller und Version erforderlich'); return; }
+  if (!vendor || !version) { showToast(t('sm_toast_fw_vendor_req')); return; }
 
   if (editingFwId) {
     var fw = FIRMWARE_CATALOG.find(function(f){ return f.id === editingFwId; });
@@ -4377,7 +4377,7 @@ function saveFirmware() {
   }
   renderFirmwareTable();
   closeModal('modal-sm-firmware');
-  showToast(editingFwId ? 'Firmware aktualisiert' : 'Firmware hochgeladen');
+  showToast(editingFwId ? t('sm_toast_fw_updated') : t('sm_toast_fw_uploaded'));
 }
 
 function setDefaultFirmware(id) {
@@ -4389,15 +4389,15 @@ function setDefaultFirmware(id) {
   // Update DEVICE_CATALOG entries for this vendor
   DEVICE_CATALOG.forEach(function(d){ if (d.vendor === fw.vendor) d.firmware = fw.version; });
   renderFirmwareTable();
-  showToast('Default-Firmware für ' + fw.vendor + ' gesetzt: ' + fw.version);
+  showToast(tf('sm_toast_fw_default_set', { vendor: fw.vendor, version: fw.version }));
 }
 
 function deleteFirmware(id) {
   var fw = FIRMWARE_CATALOG.find(function(f){ return f.id === id; });
-  if (!fw || fw.default) { showToast('Default-Firmware kann nicht gelöscht werden'); return; }
+  if (!fw || fw.default) { showToast(t('sm_toast_fw_no_delete')); return; }
   FIRMWARE_CATALOG.splice(FIRMWARE_CATALOG.indexOf(fw), 1);
   renderFirmwareTable();
-  showToast('Firmware gelöscht: ' + fw.version);
+  showToast(tf('sm_toast_fw_deleted', { version: fw.version }));
 }
 
 // ── TA: populate firmware selector ─────────────────────────────────────────
@@ -4600,12 +4600,12 @@ function saveSmWl() {
   renderSmWlTable();
   renderSmWlStats();
   closeModal('modal-sm-whitelabel');
-  showToast(editingWlId ? 'Whitelabel Partner gespeichert' : 'Neuer Whitelabel Partner erfasst');
+  showToast(editingWlId ? t('sm_wl_toast_saved') : t('sm_wl_toast_created'));
 }
 
 function previewWlDesign(id) {
   applyWhitelabelDesign(id);
-  showToast('Whitelabel-Design «' + getWhitelabelPartner(id).shortName + '» aktiv — Klicke auf Super Admin um es im SA zu sehen');
+  showToast(tf('sm_wl_toast_design_active', { name: getWhitelabelPartner(id).shortName }));
 }
 
 function switchApbTab(tab) {
@@ -5103,7 +5103,7 @@ function renderTable(data) {
       <td>
         <div class="actions-cell">
           <button class="btn btn-secondary btn-sm" data-action="edit-user" data-user-id="${u.id}">${t('btn_edit')}</button>
-          <button class="btn btn-danger btn-sm" onclick="showToast('${u.first} ${u.last}')">${t('btn_deactivate')}</button>
+          <button class="btn btn-danger btn-sm" onclick="showToast(t('eu_toast_deactivated'))">${t('btn_deactivate')}</button>
         </div>
       </td>
     </tr>
@@ -7355,6 +7355,98 @@ const translations = {
     sm_fraud_toast_note: "Bitte Analyse-Notiz eingeben",
     sm_fraud_toast_unblocked: "Mandant entsperrt · Analyse gespeichert",
     sm_fraud_history_toast: "History: {name}",
+    ta_toast_reprov_all: "Alle Geräte neu provisionieren",
+    ta_toast_new_group: "Neue Gruppe erstellen",
+    sa_toast_context: "SA-Kontext: {partner} ({account})",
+    ta_toast_dev_not_found: "Gerät nicht gefunden",
+    ta_toast_cfg_downloaded: "Konfigurationsvorlage heruntergeladen: config_{mac}.cfg",
+    ta_toast_cfg_uploaded: "Custom Config hochgeladen: {name} ({size} KB)",
+    ta_toast_cfg_removed: "Custom Config entfernt – Standardkonfiguration aktiv",
+    lbl_no_custom_config: "Keine Custom Config",
+    sm_toast_fw_vendor_req: "Hersteller und Version erforderlich",
+    sm_toast_fw_updated: "Firmware aktualisiert",
+    sm_toast_fw_uploaded: "Firmware hochgeladen",
+    sm_toast_fw_default_set: "Default-Firmware für {vendor} gesetzt: {version}",
+    sm_toast_fw_no_delete: "Default-Firmware kann nicht gelöscht werden",
+    sm_toast_fw_deleted: "Firmware gelöscht: {version}",
+    sm_fw_modal_edit: "Firmware bearbeiten",
+    sm_fw_modal_upload: "Firmware hochladen",
+    sm_wl_toast_saved: "Whitelabel Partner gespeichert",
+    sm_wl_toast_created: "Neuer Whitelabel Partner erfasst",
+    sm_wl_toast_design_active: "Whitelabel-Design «{name}» aktiv — Klicke auf Super Admin um es im SA zu sehen",
+    sm_toast_price_saved: "Preiskatalog gespeichert · Shop wird aktualisiert",
+    sa_toast_order_details: "Details: {id}",
+    sa_toast_order_approved: "Bestellung {id} genehmigt · Mandant wird benachrichtigt",
+    sa_toast_order_rejected: "Bestellung {id} abgelehnt",
+    ta_toast_ab_sync_done: "✓ Synchronisation abgeschlossen · {n} Kontakte aktualisiert",
+    ta_toast_ab_sync_start: "Exchange-Sync gestartet…",
+    ta_toast_ab_sync_complete: "✓ Sync abgeschlossen",
+    ta_toast_ab_vcard: "vCard-Export wird generiert…",
+    ab_sync_running: "⧗ Läuft…",
+    ab_sync_ok: "● Synchronisiert",
+    ab_sync_last: "Letzte Sync: gerade eben",
+    toast_loa_downloaded: "LOA heruntergeladen",
+    ta_toast_devices_reprov: "{n} Gerät(e) wird/werden automatisch neu provisioniert…",
+    ta_toast_reprov_btn: "Neu provisionieren",
+    ta_toast_fw_update_start: "Firmware Update gestartet",
+    ucc_toast_enter_num: "Bitte Nummer eingeben",
+    ucc_toast_in_call: "Bereits im Gespräch",
+    ucc_toast_call_ended: "Gespräch beendet",
+    ucc_toast_muted: "Mikrofon stumm",
+    ucc_toast_unmuted: "Mikrofon aktiv",
+    ucc_toast_held: "Gespräch gehalten",
+    ucc_toast_resumed: "Gespräch fortgesetzt",
+    ucc_toast_dtmf: "DTMF Tastatur",
+    ucc_toast_transfer: "Transfer: Nummer eingeben",
+    ucc_toast_rejected: "Anruf abgelehnt",
+    ucc_toast_status: "Status: {status}",
+    ucc_status_ringing: "Klingelt…",
+    ucc_status_connected: "Verbunden",
+    ucc_status_held: "Gehalten…",
+    ucc_presence_online: "Online",
+    ucc_presence_away: "Abwesend",
+    ucc_presence_dnd: "Nicht stören",
+    ucc_presence_offline: "Offline",
+    ucc_toast_settings: "Einstellungen",
+    ucc_toast_new_chat: "Neue Konversation",
+    ucc_toast_all_read: "Alle gelesen",
+    sa_toast_tenant_blocked: "{name} gesperrt",
+    sa_toast_tenant_reactivated: "{name} reaktiviert",
+    ta_toast_callback: "Rückruf: {number}",
+    shop_toast_enter_number: "Bitte Rufnummer eingeben",
+    shop_toast_porting: "Portierungsauftrag registriert · LOA heruntergeladen",
+    toast_export_started: "Export gestartet",
+    toast_disconnect: "Verbindung getrennt",
+    toast_select_file: "Datei auswählen…",
+    toast_template_downloaded: "Vorlage heruntergeladen",
+    toast_select_vcard: "vCard auswählen…",
+    toast_test_connection: "Verbindung wird getestet…",
+    toast_tts_preview: "Text-to-Speech Vorschau wird generiert…",
+    brand_cloudpbx: "CloudPBX",
+    brand_admin_badge: "ADMIN",
+    brand_tenant_mgmt: "Mandanten-Verwaltung",
+    role_ctx_super: "Super-Admin Konsole",
+    role_ctx_tenant: "Tenant: {name}",
+    role_ctx_user: "Benutzer · {name}",
+    role_ctx_user_portal: "Benutzer-Portal",
+    role_ctx_sm: "Service Management",
+    role_ctx_ucc: "UCC Client · {name} ({ext})",
+    up_rec_status_recording: "Aufnahme läuft…",
+    up_rec_status_ready: "Aufnahme beendet — bereit zum Speichern",
+    cdr_subtitle_fmt: "Anrufprotokoll · {privacy}",
+    cdr_privacy_full: "Vollnummern sichtbar",
+    cdr_privacy_anon: "Datenschutz aktiv — Nummern anonymisiert",
+    cdr_anon_badge: "Anonymisiert",
+    cdr_pager_fmt: "Zeige {from}–{to} von {total} Einträgen",
+    cdr_kpi_total: "Anrufe total",
+    cdr_kpi_avg_duration: "Ø Gesprächsdauer",
+    cdr_type_internal: "Intern",
+    cdr_status_answered: "Angenommen",
+    cdr_miss_rate_fmt: "{rate}% Verpasst-Quote",
+    ab_toast_call: "Anruf: {phone}",
+    ab_btn_call_title: "Anrufen",
+    sa_toast_cdr_full: "{name}: CDR Nummern vollständig",
+    sa_toast_cdr_anon: "{name}: CDR Nummern anonymisiert",
 
   },
   fr: {
@@ -9371,6 +9463,98 @@ const translations = {
     sm_fraud_toast_note: "Veuillez saisir une note d'analyse",
     sm_fraud_toast_unblocked: "Mandant débloqué · analyse enregistrée",
     sm_fraud_history_toast: "Historique : {name}",
+    ta_toast_reprov_all: "Reprovisionnement de tous les appareils",
+    ta_toast_new_group: "Créer un nouveau groupe",
+    sa_toast_context: "Contexte SA : {partner} ({account})",
+    ta_toast_dev_not_found: "Appareil introuvable",
+    ta_toast_cfg_downloaded: "Modèle de configuration téléchargé : config_{mac}.cfg",
+    ta_toast_cfg_uploaded: "Config personnalisée téléchargée : {name} ({size} Ko)",
+    ta_toast_cfg_removed: "Config personnalisée supprimée – configuration standard active",
+    lbl_no_custom_config: "Aucune config personnalisée",
+    sm_toast_fw_vendor_req: "Fabricant et version requis",
+    sm_toast_fw_updated: "Firmware mis à jour",
+    sm_toast_fw_uploaded: "Firmware téléchargé",
+    sm_toast_fw_default_set: "Firmware par défaut pour {vendor} définie : {version}",
+    sm_toast_fw_no_delete: "La firmware par défaut ne peut pas être supprimée",
+    sm_toast_fw_deleted: "Firmware supprimée : {version}",
+    sm_fw_modal_edit: "Modifier le firmware",
+    sm_fw_modal_upload: "Télécharger le firmware",
+    sm_wl_toast_saved: "Partenaire whitelabel enregistré",
+    sm_wl_toast_created: "Nouveau partenaire whitelabel créé",
+    sm_wl_toast_design_active: "Design whitelabel «{name}» actif — cliquez sur Super Admin pour le voir dans le SA",
+    sm_toast_price_saved: "Catalogue de prix enregistré · boutique mise à jour",
+    sa_toast_order_details: "Détails : {id}",
+    sa_toast_order_approved: "Commande {id} approuvée · le mandant sera notifié",
+    sa_toast_order_rejected: "Commande {id} refusée",
+    ta_toast_ab_sync_done: "✓ Synchronisation terminée · {n} contacts mis à jour",
+    ta_toast_ab_sync_start: "Synchronisation Exchange démarrée…",
+    ta_toast_ab_sync_complete: "✓ Sync terminée",
+    ta_toast_ab_vcard: "Export vCard en cours…",
+    ab_sync_running: "⧗ En cours…",
+    ab_sync_ok: "● Synchronisé",
+    ab_sync_last: "Dernière sync : à l'instant",
+    toast_loa_downloaded: "LOA téléchargée",
+    ta_toast_devices_reprov: "{n} appareil(s) en cours de reprovisionnement automatique…",
+    ta_toast_reprov_btn: "Reprovisionner",
+    ta_toast_fw_update_start: "Mise à jour firmware démarrée",
+    ucc_toast_enter_num: "Veuillez saisir un numéro",
+    ucc_toast_in_call: "Déjà en communication",
+    ucc_toast_call_ended: "Appel terminé",
+    ucc_toast_muted: "Microphone coupé",
+    ucc_toast_unmuted: "Microphone actif",
+    ucc_toast_held: "Appel en attente",
+    ucc_toast_resumed: "Appel repris",
+    ucc_toast_dtmf: "Clavier DTMF",
+    ucc_toast_transfer: "Transfert : saisir le numéro",
+    ucc_toast_rejected: "Appel refusé",
+    ucc_toast_status: "Statut : {status}",
+    ucc_status_ringing: "Sonnerie…",
+    ucc_status_connected: "Connecté",
+    ucc_status_held: "En attente…",
+    ucc_presence_online: "En ligne",
+    ucc_presence_away: "Absent",
+    ucc_presence_dnd: "Ne pas déranger",
+    ucc_presence_offline: "Hors ligne",
+    ucc_toast_settings: "Paramètres",
+    ucc_toast_new_chat: "Nouvelle conversation",
+    ucc_toast_all_read: "Tout lu",
+    sa_toast_tenant_blocked: "{name} suspendu",
+    sa_toast_tenant_reactivated: "{name} réactivé",
+    ta_toast_callback: "Rappel : {number}",
+    shop_toast_enter_number: "Veuillez saisir un numéro",
+    shop_toast_porting: "Demande de portage enregistrée · LOA téléchargée",
+    toast_export_started: "Export démarré",
+    toast_disconnect: "Connexion déconnectée",
+    toast_select_file: "Sélectionner un fichier…",
+    toast_template_downloaded: "Modèle téléchargé",
+    toast_select_vcard: "Sélectionner vCard…",
+    toast_test_connection: "Test de connexion en cours…",
+    toast_tts_preview: "Génération de l'aperçu synthèse vocale…",
+    brand_cloudpbx: "CloudPBX",
+    brand_admin_badge: "ADMIN",
+    brand_tenant_mgmt: "Gestion des mandants",
+    role_ctx_super: "Console Super-Admin",
+    role_ctx_tenant: "Mandant : {name}",
+    role_ctx_user: "Utilisateur · {name}",
+    role_ctx_user_portal: "Portail utilisateur",
+    role_ctx_sm: "Service Management",
+    role_ctx_ucc: "Client UCC · {name} ({ext})",
+    up_rec_status_recording: "Enregistrement en cours…",
+    up_rec_status_ready: "Enregistrement terminé — prêt à enregistrer",
+    cdr_subtitle_fmt: "Journal d'appels · {privacy}",
+    cdr_privacy_full: "Numéros complets visibles",
+    cdr_privacy_anon: "Protection des données active — numéros anonymisés",
+    cdr_anon_badge: "Anonymisé",
+    cdr_pager_fmt: "Affichage {from}–{to} sur {total} entrées",
+    cdr_kpi_total: "Appels total",
+    cdr_kpi_avg_duration: "Durée moyenne",
+    cdr_type_internal: "Interne",
+    cdr_status_answered: "Répondu",
+    cdr_miss_rate_fmt: "{rate}% taux de manqués",
+    ab_toast_call: "Appel : {phone}",
+    ab_btn_call_title: "Appeler",
+    sa_toast_cdr_full: "{name} : numéros CDR complets",
+    sa_toast_cdr_anon: "{name} : numéros CDR anonymisés",
 
   },
   it: {
@@ -11387,6 +11571,98 @@ const translations = {
     sm_fraud_toast_note: "Inserire nota di analisi",
     sm_fraud_toast_unblocked: "Mandante sbloccato · analisi salvata",
     sm_fraud_history_toast: "Cronologia: {name}",
+    ta_toast_reprov_all: "Riprovisionamento di tutti i dispositivi",
+    ta_toast_new_group: "Crea nuovo gruppo",
+    sa_toast_context: "Contesto SA: {partner} ({account})",
+    ta_toast_dev_not_found: "Dispositivo non trovato",
+    ta_toast_cfg_downloaded: "Modello di configurazione scaricato: config_{mac}.cfg",
+    ta_toast_cfg_uploaded: "Config personalizzata caricata: {name} ({size} KB)",
+    ta_toast_cfg_removed: "Config personalizzata rimossa – configurazione standard attiva",
+    lbl_no_custom_config: "Nessuna config personalizzata",
+    sm_toast_fw_vendor_req: "Produttore e versione richiesti",
+    sm_toast_fw_updated: "Firmware aggiornato",
+    sm_toast_fw_uploaded: "Firmware caricato",
+    sm_toast_fw_default_set: "Firmware predefinito per {vendor} impostato: {version}",
+    sm_toast_fw_no_delete: "Il firmware predefinito non può essere eliminato",
+    sm_toast_fw_deleted: "Firmware eliminato: {version}",
+    sm_fw_modal_edit: "Modifica firmware",
+    sm_fw_modal_upload: "Carica firmware",
+    sm_wl_toast_saved: "Partner whitelabel salvato",
+    sm_wl_toast_created: "Nuovo partner whitelabel creato",
+    sm_wl_toast_design_active: "Design whitelabel «{name}» attivo — clicca su Super Admin per vederlo nel SA",
+    sm_toast_price_saved: "Listino prezzi salvato · negozio aggiornato",
+    sa_toast_order_details: "Dettagli: {id}",
+    sa_toast_order_approved: "Ordine {id} approvato · il tenant sarà notificato",
+    sa_toast_order_rejected: "Ordine {id} rifiutato",
+    ta_toast_ab_sync_done: "✓ Sincronizzazione completata · {n} contatti aggiornati",
+    ta_toast_ab_sync_start: "Sync Exchange avviata…",
+    ta_toast_ab_sync_complete: "✓ Sync completata",
+    ta_toast_ab_vcard: "Esportazione vCard in corso…",
+    ab_sync_running: "⧗ In corso…",
+    ab_sync_ok: "● Sincronizzato",
+    ab_sync_last: "Ultima sync: adesso",
+    toast_loa_downloaded: "LOA scaricata",
+    ta_toast_devices_reprov: "{n} dispositivo/i in reprovisioning automatico…",
+    ta_toast_reprov_btn: "Riprovisiona",
+    ta_toast_fw_update_start: "Aggiornamento firmware avviato",
+    ucc_toast_enter_num: "Inserire un numero",
+    ucc_toast_in_call: "Già in chiamata",
+    ucc_toast_call_ended: "Chiamata terminata",
+    ucc_toast_muted: "Microfono disattivato",
+    ucc_toast_unmuted: "Microfono attivo",
+    ucc_toast_held: "Chiamata in attesa",
+    ucc_toast_resumed: "Chiamata ripresa",
+    ucc_toast_dtmf: "Tastiera DTMF",
+    ucc_toast_transfer: "Trasferimento: inserire numero",
+    ucc_toast_rejected: "Chiamata rifiutata",
+    ucc_toast_status: "Stato: {status}",
+    ucc_status_ringing: "Squilla…",
+    ucc_status_connected: "Connesso",
+    ucc_status_held: "In attesa…",
+    ucc_presence_online: "Online",
+    ucc_presence_away: "Assente",
+    ucc_presence_dnd: "Non disturbare",
+    ucc_presence_offline: "Offline",
+    ucc_toast_settings: "Impostazioni",
+    ucc_toast_new_chat: "Nuova conversazione",
+    ucc_toast_all_read: "Tutto letto",
+    sa_toast_tenant_blocked: "{name} sospeso",
+    sa_toast_tenant_reactivated: "{name} riattivato",
+    ta_toast_callback: "Richiamata: {number}",
+    shop_toast_enter_number: "Inserire un numero di telefono",
+    shop_toast_porting: "Richiesta di porting registrata · LOA scaricata",
+    toast_export_started: "Esportazione avviata",
+    toast_disconnect: "Connessione disconnessa",
+    toast_select_file: "Seleziona file…",
+    toast_template_downloaded: "Modello scaricato",
+    toast_select_vcard: "Seleziona vCard…",
+    toast_test_connection: "Test connessione in corso…",
+    toast_tts_preview: "Generazione anteprima sintesi vocale…",
+    brand_cloudpbx: "CloudPBX",
+    brand_admin_badge: "ADMIN",
+    brand_tenant_mgmt: "Gestione tenant",
+    role_ctx_super: "Console Super-Admin",
+    role_ctx_tenant: "Tenant: {name}",
+    role_ctx_user: "Utente · {name}",
+    role_ctx_user_portal: "Portale utente",
+    role_ctx_sm: "Service Management",
+    role_ctx_ucc: "Client UCC · {name} ({ext})",
+    up_rec_status_recording: "Registrazione in corso…",
+    up_rec_status_ready: "Registrazione terminata — pronta per il salvataggio",
+    cdr_subtitle_fmt: "Registro chiamate · {privacy}",
+    cdr_privacy_full: "Numeri completi visibili",
+    cdr_privacy_anon: "Protezione dati attiva — numeri anonimizzati",
+    cdr_anon_badge: "Anonimizzato",
+    cdr_pager_fmt: "Visualizzazione {from}–{to} di {total} voci",
+    cdr_kpi_total: "Chiamate totali",
+    cdr_kpi_avg_duration: "Durata media",
+    cdr_type_internal: "Interno",
+    cdr_status_answered: "Risposto",
+    cdr_miss_rate_fmt: "{rate}% tasso persi",
+    ab_toast_call: "Chiamata: {phone}",
+    ab_btn_call_title: "Chiama",
+    sa_toast_cdr_full: "{name}: numeri CDR completi",
+    sa_toast_cdr_anon: "{name}: numeri CDR anonimizzati",
 
   },
   en: {
@@ -13403,6 +13679,98 @@ const translations = {
     sm_fraud_toast_note: "Please enter analysis note",
     sm_fraud_toast_unblocked: "Tenant unblocked · analysis saved",
     sm_fraud_history_toast: "History: {name}",
+    ta_toast_reprov_all: "Reprovisioning all devices",
+    ta_toast_new_group: "Create new group",
+    sa_toast_context: "SA context: {partner} ({account})",
+    ta_toast_dev_not_found: "Device not found",
+    ta_toast_cfg_downloaded: "Config template downloaded: config_{mac}.cfg",
+    ta_toast_cfg_uploaded: "Custom config uploaded: {name} ({size} KB)",
+    ta_toast_cfg_removed: "Custom config removed – default configuration active",
+    lbl_no_custom_config: "No custom config",
+    sm_toast_fw_vendor_req: "Vendor and version required",
+    sm_toast_fw_updated: "Firmware updated",
+    sm_toast_fw_uploaded: "Firmware uploaded",
+    sm_toast_fw_default_set: "Default firmware for {vendor} set: {version}",
+    sm_toast_fw_no_delete: "Default firmware cannot be deleted",
+    sm_toast_fw_deleted: "Firmware deleted: {version}",
+    sm_fw_modal_edit: "Edit firmware",
+    sm_fw_modal_upload: "Upload firmware",
+    sm_wl_toast_saved: "Whitelabel partner saved",
+    sm_wl_toast_created: "New whitelabel partner created",
+    sm_wl_toast_design_active: "Whitelabel design «{name}» active — click Super Admin to view in SA",
+    sm_toast_price_saved: "Price catalog saved · shop updated",
+    sa_toast_order_details: "Details: {id}",
+    sa_toast_order_approved: "Order {id} approved · tenant will be notified",
+    sa_toast_order_rejected: "Order {id} rejected",
+    ta_toast_ab_sync_done: "✓ Sync complete · {n} contacts updated",
+    ta_toast_ab_sync_start: "Exchange sync started…",
+    ta_toast_ab_sync_complete: "✓ Sync complete",
+    ta_toast_ab_vcard: "Generating vCard export…",
+    ab_sync_running: "⧗ Running…",
+    ab_sync_ok: "● Synchronized",
+    ab_sync_last: "Last sync: just now",
+    toast_loa_downloaded: "LOA downloaded",
+    ta_toast_devices_reprov: "{n} device(s) being automatically reprovisioned…",
+    ta_toast_reprov_btn: "Reprovision",
+    ta_toast_fw_update_start: "Firmware update started",
+    ucc_toast_enter_num: "Please enter a number",
+    ucc_toast_in_call: "Already on a call",
+    ucc_toast_call_ended: "Call ended",
+    ucc_toast_muted: "Microphone muted",
+    ucc_toast_unmuted: "Microphone active",
+    ucc_toast_held: "Call on hold",
+    ucc_toast_resumed: "Call resumed",
+    ucc_toast_dtmf: "DTMF keypad",
+    ucc_toast_transfer: "Transfer: enter number",
+    ucc_toast_rejected: "Call declined",
+    ucc_toast_status: "Status: {status}",
+    ucc_status_ringing: "Ringing…",
+    ucc_status_connected: "Connected",
+    ucc_status_held: "On hold…",
+    ucc_presence_online: "Online",
+    ucc_presence_away: "Away",
+    ucc_presence_dnd: "Do not disturb",
+    ucc_presence_offline: "Offline",
+    ucc_toast_settings: "Settings",
+    ucc_toast_new_chat: "New conversation",
+    ucc_toast_all_read: "All read",
+    sa_toast_tenant_blocked: "{name} suspended",
+    sa_toast_tenant_reactivated: "{name} reactivated",
+    ta_toast_callback: "Callback: {number}",
+    shop_toast_enter_number: "Please enter a phone number",
+    shop_toast_porting: "Porting request registered · LOA downloaded",
+    toast_export_started: "Export started",
+    toast_disconnect: "Connection disconnected",
+    toast_select_file: "Select file…",
+    toast_template_downloaded: "Template downloaded",
+    toast_select_vcard: "Select vCard…",
+    toast_test_connection: "Testing connection…",
+    toast_tts_preview: "Generating text-to-speech preview…",
+    brand_cloudpbx: "CloudPBX",
+    brand_admin_badge: "ADMIN",
+    brand_tenant_mgmt: "Tenant management",
+    role_ctx_super: "Super-Admin console",
+    role_ctx_tenant: "Tenant: {name}",
+    role_ctx_user: "User · {name}",
+    role_ctx_user_portal: "User portal",
+    role_ctx_sm: "Service Management",
+    role_ctx_ucc: "UCC Client · {name} ({ext})",
+    up_rec_status_recording: "Recording in progress…",
+    up_rec_status_ready: "Recording finished — ready to save",
+    cdr_subtitle_fmt: "Call log · {privacy}",
+    cdr_privacy_full: "Full numbers visible",
+    cdr_privacy_anon: "Privacy active — numbers anonymized",
+    cdr_anon_badge: "Anonymized",
+    cdr_pager_fmt: "Showing {from}–{to} of {total} entries",
+    cdr_kpi_total: "Total calls",
+    cdr_kpi_avg_duration: "Avg. call duration",
+    cdr_type_internal: "Internal",
+    cdr_status_answered: "Answered",
+    cdr_miss_rate_fmt: "{rate}% missed rate",
+    ab_toast_call: "Call: {phone}",
+    ab_btn_call_title: "Call",
+    sa_toast_cdr_full: "{name}: CDR numbers full",
+    sa_toast_cdr_anon: "{name}: CDR numbers anonymized",
 
   },
 };
@@ -14382,7 +14750,7 @@ function renderSaPricingTable(tbodyId, items, fields) {
 }
 
 function savePricing() {
-  showToast('Preiskatalog gespeichert · Shop wird aktualisiert');
+  showToast(t('sm_toast_price_saved'));
   // Re-render shop if visible
   if (currentRole === 'tenant') {
     renderShopNumbers(); renderShopFeatures(); renderShopUsers();
@@ -14415,7 +14783,7 @@ function renderSaOrders(statusFilter) {
         (o.status === 'pending'
           ? '<button class="btn btn-primary btn-sm" onclick="approveOrder(\'' + o.id + '\')">' + t('res_btn_approve') + '</button>' +
             '<button class="btn btn-danger btn-sm" onclick="rejectOrder(\'' + o.id + '\')">' + t('res_btn_reject') + '</button>'
-          : '<button class="btn btn-secondary btn-sm" onclick="showToast(\'Details: ' + o.id + '\')">' + t('res_btn_details') + '</button>'
+          : '<button class="btn btn-secondary btn-sm" onclick="showToast(tf(\'sa_toast_order_details\', { id: \'' + o.id + '\' }))">' + t('res_btn_details') + '</button>'
         ) +
       '</div></td>';
     tbody.appendChild(tr);
@@ -14432,7 +14800,7 @@ function approveOrder(orderId) {
   if (o) { o.status = 'approved'; }
   renderSaOrders();
   updateOrdersBadge();
-  showToast('Bestellung ' + orderId + ' genehmigt · Mandant wird benachrichtigt');
+  showToast(tf('sa_toast_order_approved', { id: orderId }));
 }
 
 function rejectOrder(orderId) {
@@ -14440,7 +14808,7 @@ function rejectOrder(orderId) {
   if (o) { o.status = 'rejected'; }
   renderSaOrders();
   updateOrdersBadge();
-  showToast('Bestellung ' + orderId + ' abgelehnt');
+  showToast(tf('sa_toast_order_rejected', { id: orderId }));
 }
 
 function updateOrdersBadge() {
@@ -15754,7 +16122,7 @@ function renderSmOrders(statusFilter) {
       '<td><div class="actions-cell">' +
         (o.status==='pending'
           ? '<button class="btn btn-primary btn-sm" onclick="approveOrder(\'' + o.id + '\')">' + t('res_btn_approve') + '</button><button class="btn btn-danger btn-sm" onclick="rejectOrder(\'' + o.id + '\')">' + t('res_btn_reject') + '</button>'
-          : '<button class="btn btn-secondary btn-sm" onclick="showToast(\'Details\')">' + t('res_btn_details') + '</button>') +
+          : '<button class="btn btn-secondary btn-sm" onclick="showToast(tf(\'sa_toast_order_details\', { id: \'' + o.id + '\' }))">' + t('res_btn_details') + '</button>') +
       '</div></td>';
     tbody.appendChild(tr);
   });
@@ -15956,11 +16324,11 @@ function renderAbContacts() {
           '<div class="contact-meta">' + c.company + (c.dept?' · '+c.dept:'') + (c.phone?' · '+c.phone:'') + '</div>' +
         '</div>' +
         '<div class="contact-actions">' +
-          (c.phone ? '<a href="tel:' + c.phone + '" class="btn btn-secondary btn-sm" title="Anrufen" onclick="event.stopPropagation();showToast(\'Anruf: ' + c.phone + '\')">' +
+          (c.phone ? '<a href="tel:' + c.phone + '" class="btn btn-secondary btn-sm" title="' + t('ab_btn_call_title') + '" onclick="event.stopPropagation();showToast(tf(\'ab_toast_call\', { phone: \'' + c.phone + '\' }))">' +
             '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>' +
           '</a>' : '') +
-          '<button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openAbContactModal(\'' + c.id + '\')">Bearbeiten</button>' +
-          '<button class="btn btn-danger btn-sm" onclick="event.stopPropagation();deleteAbContact(\'' + c.id + '\')">Löschen</button>' +
+          '<button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();openAbContactModal(\'' + c.id + '\')">' + t('btn_edit') + '</button>' +
+          '<button class="btn btn-danger btn-sm" onclick="event.stopPropagation();deleteAbContact(\'' + c.id + '\')">' + t('btn_delete') + '</button>' +
         '</div>';
       el.appendChild(div);
     });
@@ -16068,28 +16436,28 @@ function saveAbSync() {
   showToast(t('ta_toast_ab_settings'));
   const status = document.getElementById('ab-sync-status');
   const time   = document.getElementById('ab-sync-time');
-  if (status) { status.className='sync-badge sync-pending'; status.textContent='⧗ Läuft…'; }
+  if (status) { status.className='sync-badge sync-pending'; status.textContent=t('ab_sync_running'); }
   setTimeout(() => {
-    if (status) { status.className='sync-badge sync-ok'; status.textContent='● Synchronisiert'; }
-    if (time)   time.textContent = 'Letzte Sync: gerade eben';
-    showToast('✓ Synchronisation abgeschlossen · ' + abContacts.filter(c=>c.source==='exchange').length + ' Kontakte aktualisiert');
+    if (status) { status.className='sync-badge sync-ok'; status.textContent=t('ab_sync_ok'); }
+    if (time)   time.textContent = t('ab_sync_last');
+    showToast(tf('ta_toast_ab_sync_done', { n: abContacts.filter(c=>c.source==='exchange').length }));
   }, 2500);
 }
 
 function triggerAbSync() {
   const status = document.getElementById('ab-sync-status');
   const time   = document.getElementById('ab-sync-time');
-  if (status) { status.className='sync-badge sync-pending'; status.textContent='⧗ Läuft…'; }
-  showToast('Exchange-Sync gestartet…');
+  if (status) { status.className='sync-badge sync-pending'; status.textContent=t('ab_sync_running'); }
+  showToast(t('ta_toast_ab_sync_start'));
   setTimeout(() => {
-    if (status) { status.className='sync-badge sync-ok'; status.textContent='● Synchronisiert'; }
-    if (time)   time.textContent = 'Letzte Sync: gerade eben';
-    showToast('✓ Sync abgeschlossen');
+    if (status) { status.className='sync-badge sync-ok'; status.textContent=t('ab_sync_ok'); }
+    if (time)   time.textContent = t('ab_sync_last');
+    showToast(t('ta_toast_ab_sync_complete'));
   }, 2000);
 }
 
 function exportAb() {
-  showToast('vCard-Export wird generiert…');
+  showToast(t('ta_toast_ab_vcard'));
 }
 
 function openContactModal(id) { openAbContactModal(id); }
@@ -16890,7 +17258,7 @@ function downloadLoaFromPool() {
   const a    = document.createElement('a');
   a.href = url; a.download = 'LOA_Portierung_Pool.html';
   a.click(); URL.revokeObjectURL(url);
-  showToast('LOA heruntergeladen');
+  showToast(t('toast_loa_downloaded'));
 }
 
 
@@ -18977,7 +19345,7 @@ function openDeviceModal(deviceId) {
     if (cfgName)   cfgName.textContent = d.customConfigName;
     if (cfgStatus) cfgStatus.style.display = 'flex';
   } else {
-    if (cfgName)   cfgName.textContent = 'Keine Custom Config';
+    if (cfgName)   cfgName.textContent = t('lbl_no_custom_config');
     if (cfgStatus) cfgStatus.style.display = 'none';
   }
   // Store current deviceId for config upload handler
@@ -19462,10 +19830,7 @@ function reprovisionByUser(userId) {
   }
 
   if (affected.length > 0) {
-    setTimeout(() => showToast(
-      affected.length + ' Gerät' + (affected.length!==1?'e':'') +
-      ' werden automatisch neu provisioniert…'
-    ), 300);
+    setTimeout(() => showToast(tf('ta_toast_devices_reprov', { n: affected.length })), 300);
   }
 }
 
@@ -21458,8 +21823,8 @@ function renderProvisionedDevices() {
       '</td>' +
       '<td>' + (statusBadge[pd.status]||pd.status) + '</td>' +
       '<td><div class="actions-cell">' +
-        '<button class="btn btn-secondary btn-sm" onclick="showToast(\'Neu provisionieren\')">Reprov.</button>' +
-        (pd.status==='outdated' ? '<button class="btn btn-primary btn-sm" onclick="showToast(\'Firmware Update gestartet\')">FW Update</button>' : '') +
+        '<button class="btn btn-secondary btn-sm" onclick="showToast(t(\'ta_toast_reprov_btn\'))">' + t('ta_toast_reprov_btn') + '</button>' +
+        (pd.status==='outdated' ? '<button class="btn btn-primary btn-sm" onclick="showToast(t(\'ta_toast_fw_update_start\'))">FW Update</button>' : '') +
       '</div></td>';
     tbody.appendChild(tr);
   });
@@ -21584,12 +21949,12 @@ function initiateCall() {
   if (uccCallState !== 'idle') return;
   const num  = dpBuffer;
   const name = document.getElementById('dp-name')?.textContent || num;
-  if (!num) { showToast('Bitte Nummer eingeben'); return; }
+  if (!num) { showToast(t('ucc_toast_enter_num')); return; }
   startOutboundCall(num, name || num);
 }
 
 function callContact(ext, name) {
-  if (uccCallState !== 'idle') { showToast('Bereits im Gespräch'); return; }
+  if (uccCallState !== 'idle') { showToast(t('ucc_toast_in_call')); return; }
   dpBuffer = ext;
   const dpEl = document.getElementById('dp-number');
   if (dpEl) dpEl.textContent = ext;
@@ -21607,7 +21972,7 @@ function startOutboundCall(num, name) {
   const av = document.getElementById('ac-avatar'); if(av) av.textContent = initials;
   const nm = document.getElementById('ac-name');   if(nm) nm.textContent = name;
   const no = document.getElementById('ac-number'); if(no) no.textContent = num;
-  const st = document.getElementById('ac-status'); if(st) st.textContent = 'Klingelt…';
+  const st = document.getElementById('ac-status'); if(st) st.textContent = t('ucc_status_ringing');
   const ti = document.getElementById('ac-timer');  if(ti) ti.style.display = 'none';
 
   // Simulate answer after 2.5s
@@ -21619,7 +21984,7 @@ function startOutboundCall(num, name) {
 function connectCall() {
   uccCallState   = 'connected';
   uccCallSeconds = 0;
-  const st = document.getElementById('ac-status'); if(st) st.textContent = 'Verbunden';
+  const st = document.getElementById('ac-status'); if(st) st.textContent = t('ucc_status_connected');
   const ti = document.getElementById('ac-timer');  if(ti) ti.style.display = 'block';
   const overlay = document.getElementById('active-call-overlay');
   if (overlay) overlay.className = 'active-call-overlay connected';
@@ -21642,14 +22007,14 @@ function hangUp() {
   if (overlay) overlay.className = 'active-call-overlay';
   const ti = document.getElementById('ac-timer'); if(ti) ti.textContent = '0:00';
   dpClear();
-  showToast('Gespräch beendet');
+  showToast(t('ucc_toast_call_ended'));
 }
 
 function toggleMute() {
   uccMuted = !uccMuted;
   const btn = document.getElementById('ac-mute-btn');
   if (btn) btn.classList.toggle('toggled', uccMuted);
-  showToast(uccMuted ? 'Mikrofon stumm' : 'Mikrofon aktiv');
+  showToast(uccMuted ? t('ucc_toast_muted') : t('ucc_toast_unmuted'));
 }
 
 function toggleHold() {
@@ -21657,7 +22022,7 @@ function toggleHold() {
   const btn  = document.getElementById('ac-hold-btn');
   const stat = document.getElementById('ac-status');
   if (btn)  btn.classList.toggle('toggled', uccHeld);
-  if (stat) stat.textContent = uccHeld ? 'Gehalten…' : 'Verbunden';
+  if (stat) stat.textContent = uccHeld ? t('ucc_status_held') : t('ucc_status_connected');
   if (uccHeld) clearInterval(uccCallTimer);
   else {
     uccCallTimer = setInterval(() => {
@@ -21667,11 +22032,11 @@ function toggleHold() {
       if (t) t.textContent = m + ':' + String(s).padStart(2,'0');
     }, 1000);
   }
-  showToast(uccHeld ? 'Gespräch gehalten' : 'Gespräch fortgesetzt');
+  showToast(uccHeld ? t('ucc_toast_held') : t('ucc_toast_resumed'));
 }
 
-function toggleKeypad() { showToast('DTMF Tastatur'); }
-function transferCall()  { showToast('Transfer: Nummer eingeben'); }
+function toggleKeypad() { showToast(t('ucc_toast_dtmf')); }
+function transferCall()  { showToast(t('ucc_toast_transfer')); }
 
 // ── Incoming call simulation ──
 function simulateIncomingCall() {
@@ -21714,7 +22079,7 @@ function acceptCall() {
 function declineCall() {
   document.getElementById('incoming-toast').classList.remove('show');
   uccCallState = 'idle';
-  showToast('Anruf abgelehnt');
+  showToast(t('ucc_toast_rejected'));
 }
 
 // ── Presence list ──
@@ -21725,7 +22090,7 @@ function renderPresenceList(contacts) {
   const groups = { online:[], away:[], dnd:[], offline:[] };
   contacts.forEach(c => (groups[c.status] || groups.offline).push(c));
   const order = ['online','away','dnd','offline'];
-  const labels = { online:'Online', away:'Abwesend', dnd:'Nicht stören', offline:'Offline' };
+  const labels = { online: t('ucc_presence_online'), away: t('ucc_presence_away'), dnd: t('ucc_presence_dnd'), offline: t('ucc_presence_offline') };
 
   order.forEach(status => {
     if (!groups[status].length) return;
@@ -21885,7 +22250,7 @@ function cycleUccStatus() {
   const labels = { online:'Online', away:'Abwesend', dnd:'Nicht stören', offline:'Offline' };
   if (dot) dot.style.background = STATUS_COLORS[status];
   if (lbl) lbl.textContent = labels[status];
-  showToast('Status: ' + labels[status]);
+  showToast(tf('ucc_toast_status', { status: labels[status] }));
 }
 
 // ── Event delegation additions ──
@@ -22411,9 +22776,9 @@ function renderCDR() {
   const subtitle = document.getElementById('cdr-subtitle');
   const notice   = document.getElementById('cdr-privacy-notice');
   const topBadge = document.getElementById('cdr-top-anon-badge');
-  if (subtitle) subtitle.textContent = 'Anrufprotokoll · ' + (showFull ? 'Vollnummern sichtbar' : 'Datenschutz aktiv — Nummern anonymisiert');
+  if (subtitle) subtitle.textContent = tf('cdr_subtitle_fmt', { privacy: showFull ? t('cdr_privacy_full') : t('cdr_privacy_anon') });
   if (notice)   notice.style.display = showFull ? 'none' : 'flex';
-  if (topBadge) topBadge.innerHTML = showFull ? '' : '<span class="anon-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Anonymisiert</span>';
+  if (topBadge) topBadge.innerHTML = showFull ? '' : '<span class="anon-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>' + t('cdr_anon_badge') + '</span>';
 
   populateCDRUserFilter();
   populateCDRUserFilter();
@@ -22441,18 +22806,18 @@ function renderCDRKPIs(data, days) {
   const missRate = total > 0 ? Math.round(missed / total * 100) : 0;
 
   const cards = [
-    { label:'Anrufe total',      val:total,     icon:'#5E94CF', bg:'#eef3f7', svg:'<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>' },
-    { label:'Eingehend',         val:inbound,   icon:'#2d8653', bg:'#eaf5ee', svg:'<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>' },
-    { label:'Ausgehend',         val:outbound,  icon:'#008187', bg:'#e0f0f0', svg:'<line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>' },
-    { label:'Verpasst',          val:missed,    icon:'#DA291C', bg:'#fdecea', svg:'<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>' },
-    { label:'Ø Gesprächsdauer',  val:avgStr,    icon:'#DE849E', bg:'#fdf0f5', svg:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>' },
+    { label: t('cdr_kpi_total'),      val:total,     icon:'#5E94CF', bg:'#eef3f7', svg:'<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>' },
+    { label: t('up_filter_inbound'),         val:inbound,   icon:'#2d8653', bg:'#eaf5ee', svg:'<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>' },
+    { label: t('up_filter_outbound'),         val:outbound,  icon:'#008187', bg:'#e0f0f0', svg:'<line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>' },
+    { label: t('stat_missed'),          val:missed,    icon:'#DA291C', bg:'#fdecea', svg:'<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>' },
+    { label: t('cdr_kpi_avg_duration'),  val:avgStr,    icon:'#DE849E', bg:'#fdf0f5', svg:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>' },
   ];
   el.innerHTML = cards.map(c =>
     '<div class="stat-card">' +
       '<div>' +
         '<div class="stat-label">' + c.label + '</div>' +
         '<div class="stat-value" style="font-size:24px">' + c.val + '</div>' +
-        (c.label === 'Verpasst' ? '<div class="stat-delta" style="color:var(--sunrise-red)">' + missRate + '% Verpasst-Quote</div>' : '') +
+        (c.val === missed ? '<div class="stat-delta" style="color:var(--sunrise-red)">' + tf('cdr_miss_rate_fmt', { rate: missRate }) + '</div>' : '') +
       '</div>' +
       '<div class="stat-icon" style="background:' + c.bg + '">' +
         '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="' + c.icon + '" stroke-width="2">' + c.svg + '</svg>' +
@@ -22530,12 +22895,16 @@ function renderDonut(data) {
   if (!svg || !leg) return;
 
   const counts = {
-    'Eingehend':  data.filter(r => r.type === 'inbound').length,
-    'Ausgehend':  data.filter(r => r.type === 'outbound').length,
-    'Verpasst':   data.filter(r => r.type === 'missed').length,
-    'Intern':     data.filter(r => r.type === 'internal').length,
+    [t('up_filter_inbound')]:  data.filter(r => r.type === 'inbound').length,
+    [t('up_filter_outbound')]: data.filter(r => r.type === 'outbound').length,
+    [t('stat_missed')]:        data.filter(r => r.type === 'missed').length,
+    [t('cdr_type_internal')]:  data.filter(r => r.type === 'internal').length,
   };
-  const colors = { 'Eingehend':'#5E94CF', 'Ausgehend':'#99B2A7', 'Verpasst':'#DA291C', 'Intern':'#DE849E' };
+  const colors = {};
+  colors[t('up_filter_inbound')]  = '#5E94CF';
+  colors[t('up_filter_outbound')] = '#99B2A7';
+  colors[t('stat_missed')]        = '#DA291C';
+  colors[t('cdr_type_internal')]  = '#DE849E';
   const total = Object.values(counts).reduce((s,v) => s+v, 0) || 1;
 
   let startAngle = -Math.PI / 2;
@@ -22637,7 +23006,7 @@ function renderCDRTable(data) {
   if (!tbody) return;
 
   const page20 = data.slice(0, 20);
-  if (info) info.textContent = 'Zeige 1–' + Math.min(20, data.length) + ' von ' + data.length + ' Einträgen';
+  if (info) info.textContent = tf('cdr_pager_fmt', { from: 1, to: Math.min(20, data.length), total: data.length });
 
   const dirIcon = {
     inbound:  '<div class="call-direction inbound" style="width:24px;height:24px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></div>',
@@ -22646,10 +23015,10 @@ function renderCDRTable(data) {
     internal: '<div class="call-direction" style="width:24px;height:24px;background:#fdf0f5;color:#DE849E"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg></div>',
   };
 
-  const typeLabel = {inbound:'Eingehend', outbound:'Ausgehend', missed:'Verpasst', internal:'Intern'};
+  const typeLabel = {inbound: t('up_filter_inbound'), outbound: t('up_filter_outbound'), missed: t('stat_missed'), internal: t('cdr_type_internal')};
   const statusBadge = {
-    'Angenommen': '<span class="badge badge-green">Angenommen</span>',
-    'Verpasst':   '<span class="badge badge-red">Verpasst</span>',
+    'Angenommen': '<span class="badge badge-green">' + t('cdr_status_answered') + '</span>',
+    'Verpasst':   '<span class="badge badge-red">' + t('stat_missed') + '</span>',
   };
 
   tbody.innerHTML = '';
@@ -22680,7 +23049,7 @@ function filterCDRTable(q) {
   }
   renderCDRTable(filteredCDR);
   const info = document.getElementById('cdr-pager-info');
-  if (info) info.textContent = 'Zeige 1–' + Math.min(20, filteredCDR.length) + ' von ' + filteredCDR.length + ' Einträgen';
+  if (info) info.textContent = tf('cdr_pager_fmt', { from: 1, to: Math.min(20, filteredCDR.length), total: filteredCDR.length });
 }
 
 function filterCDRByType(type) {
@@ -22770,7 +23139,7 @@ renderFeatureMatrix = function() {
 function toggleTenantFullNumbers(tenantIdx, btn) {
   tenants[tenantIdx].showFullNumbers = !tenants[tenantIdx].showFullNumbers;
   btn.classList.toggle('on', tenants[tenantIdx].showFullNumbers);
-  showToast(tenants[tenantIdx].name + ': CDR Nummern ' + (tenants[tenantIdx].showFullNumbers ? 'vollständig' : 'anonymisiert'));
+  showToast(tenants[tenantIdx].showFullNumbers ? tf('sa_toast_cdr_full', { name: tenants[tenantIdx].name }) : tf('sa_toast_cdr_anon', { name: tenants[tenantIdx].name }));
 }
 
 
@@ -23943,7 +24312,7 @@ function toggleRecording() {
     card.classList.add('recording');
     btn.className = 'rec-btn stop';
     btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>';
-    status.textContent = 'Aufnahme läuft…';
+    status.textContent = t('up_rec_status_recording');
     actions.style.display = 'none';
     recInterval = setInterval(() => {
       recSeconds++;
@@ -23968,7 +24337,7 @@ function stopRecording() {
   card.classList.remove('recording');
   btn.className = 'rec-btn start';
   btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>';
-  status.textContent = 'Aufnahme beendet — bereit zum Speichern';
+  status.textContent = t('up_rec_status_ready');
   actions.style.display = 'flex';
 }
 
@@ -24029,7 +24398,7 @@ function switchRole(role) {
     if(saBar)     saBar.style.display  = 'flex';
     if(saMain)    saMain.style.display = 'flex';
     if(pillSuper) pillSuper.className  = 'role-pill super';
-    if(roleCtx)   roleCtx.textContent = 'Super-Admin Konsole';
+    if(roleCtx)   roleCtx.textContent = t('role_ctx_super');
     renderTenantTable();
     showSaPage('sa-dashboard', null);
 
@@ -24056,14 +24425,14 @@ function switchRole(role) {
     }
     if(pillTenant) pillTenant.className     = 'role-pill tenant active';
     const tenant = tenants.find(t=>t.id===currentTenantId);
-    if(roleCtx) roleCtx.textContent = tenant ? 'Tenant: '+tenant.name : 'Tenant-Admin';
+    if(roleCtx) roleCtx.textContent = tenant ? tf('role_ctx_tenant', { name: tenant.name }) : 'Tenant-Admin';
     updateTenantContext(tenant);
 
   } else if (role === 'user') {
     if(upMain)   upMain.style.display   = 'flex';
     if(pillUser) pillUser.className     = 'role-pill user-pill active';
     const tenant = tenants.find(t=>t.id===currentTenantId);
-    if(roleCtx) roleCtx.textContent = tenant ? 'Benutzer · '+tenant.name : 'Benutzer-Portal';
+    if(roleCtx) roleCtx.textContent = tenant ? tf('role_ctx_user', { name: tenant.name }) : t('role_ctx_user_portal');
     renderRecentCalls();
     renderUpPersonalSchedules();
     renderUserFilterLists(1);
@@ -24080,12 +24449,12 @@ function switchRole(role) {
     const pillSm2 = document.getElementById('pill-sm');
     if (pillSm2) pillSm2.style.cssText = 'background:linear-gradient(135deg,#5E94CF,#008187);color:#fff;border-color:#5E94CF';
     const roleCtx2 = document.getElementById('role-bar-context');
-    if (roleCtx2) roleCtx2.textContent = 'Service Management';
+    if (roleCtx2) roleCtx2.textContent = t('role_ctx_sm');
     showSmPage('sm-overview', null);
   } else if (role === 'ucc') {
     if(uccShell) uccShell.classList.add('active');
     if(pillUcc)  pillUcc.style.cssText  = 'background:#5E94CF;color:#fff;border-color:#5E94CF';
-    if(roleCtx)  roleCtx.textContent   = 'UCC Client · Max Keller (101)';
+    if(roleCtx)  roleCtx.textContent   = tf('role_ctx_ucc', { name: 'Max Keller', ext: '101' });
     if(typeof renderPresenceList==='function') renderPresenceList(UCC_CONTACTS);
     if(typeof renderUccVoicemail==='function') renderUccVoicemail();
     if(typeof renderUccHistory==='function')   renderUccHistory(null);
@@ -24320,9 +24689,9 @@ document.addEventListener('click', function(e) {
   const name = btn.dataset.name;
   if (action === 'open-tenant' && id) openTenantAsAdmin(id);
   if (action === 'edit-tenant') openEditTenant(btn.dataset.id || btn.closest('[data-id]')?.dataset.id || '');
-  if (action === 'suspend-tenant') showToast(name + ' gesperrt');
-  if (action === 'reactivate-tenant') showToast(name + ' reaktiviert');
-  if (action === 'callback') showToast('Rückruf: ' + btn.dataset.number);
+  if (action === 'suspend-tenant') showToast(tf('sa_toast_tenant_blocked', { name: name }));
+  if (action === 'reactivate-tenant') showToast(tf('sa_toast_tenant_reactivated', { name: name }));
+  if (action === 'callback') showToast(tf('ta_toast_callback', { number: btn.dataset.number }));
   if (action === 'toggle-pw-vis') togglePwVis(btn.dataset.target, btn);
   if (action === 'edit-user') openEditUser(parseInt(btn.dataset.userId));
 });
@@ -24334,7 +24703,7 @@ document.addEventListener('click', function(e) {
 function submitShopPortingRequest() {
   const num  = document.getElementById('shop-porting-number')?.value?.trim();
   const date = document.getElementById('shop-porting-date')?.value;
-  if (!num) { showToast('Bitte Rufnummer eingeben'); return; }
+  if (!num) { showToast(t('shop_toast_enter_number')); return; }
 
   const loaHtml =
     '<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8">' +
@@ -24357,7 +24726,7 @@ function submitShopPortingRequest() {
   a.click(); URL.revokeObjectURL(url);
 
   closeModal('modal-shop-porting-request');
-  showToast('Portierungsauftrag registriert · LOA heruntergeladen');
+  showToast(t('shop_toast_porting'));
 }
 
 
@@ -25123,7 +25492,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="card-title">Alle provisionierten Geräte</div>
           <div class="card-subtitle">Plattformweit · mit Provisionierungs-Status</div>
         </div>
-        <button class="btn btn-secondary" onclick="showToast('Export gestartet')">Export CSV</button>
+        <button class="btn btn-secondary" onclick="showToast(t('toast_export_started'))">Export CSV</button>
       </div>
       <div class="table-wrap">
         <table>
@@ -25226,16 +25595,16 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="page-header">
       <div>
         <div class="page-title" data-i18n="sa_page_orders">Bestellungen</div>
-        <div class="page-subtitle">Eingehende Shop-Bestellungen aller Mandanten</div>
+        <div class="page-subtitle" data-i18n="sa_page_orders_sub">Shop-Bestellungen aller Mandanten</div>
       </div>
       <div class="page-actions">
         <select class="filter-select" onchange="filterOrders(this.value)">
-          <option value="">Alle Status</option>
-          <option value="pending">Ausstehend</option>
-          <option value="approved">Genehmigt</option>
-          <option value="rejected">Abgelehnt</option>
+          <option value="" data-i18n="res_filter_all_status">Alle</option>
+          <option value="pending" data-i18n="order_status_pending">Ausstehend</option>
+          <option value="approved" data-i18n="order_status_approved">Genehmigt</option>
+          <option value="rejected" data-i18n="order_status_rejected">Abgelehnt</option>
         </select>
-        <button class="btn btn-secondary" onclick="showToast('Export gestartet')">Export CSV</button>
+        <button class="btn btn-secondary" onclick="showToast(t('toast_export_started'))"><span data-i18n="ta_btn_export_csv">Export CSV</span></button>
       </div>
     </div>
     <div class="card">
@@ -25243,14 +25612,14 @@ document.addEventListener('DOMContentLoaded', function() {
         <table>
           <thead>
             <tr>
-              <th>Bestellnr.</th>
-              <th>Datum</th>
-              <th>Mandant</th>
-              <th>Inhalt</th>
-              <th>Einmalig</th>
-              <th>Monatlich</th>
-              <th>Status</th>
-              <th style="text-align:right">Aktionen</th>
+              <th data-i18n="res_th_order_id">Bestellnr.</th>
+              <th data-i18n="res_th_date">Datum</th>
+              <th data-i18n="th_tenant">Mandant</th>
+              <th data-i18n="res_th_content">Inhalt</th>
+              <th data-i18n="res_th_onetime">Einmalig</th>
+              <th data-i18n="res_th_monthly">Monatlich</th>
+              <th data-i18n="th_status">Status</th>
+              <th style="text-align:right" data-i18n="th_actions">Aktionen</th>
             </tr>
           </thead>
           <tbody id="sa-orders-tbody"></tbody>
@@ -26501,7 +26870,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       </button>
       <div class="ucc-sidebar-spacer"></div>
-      <button class="ucc-icon-btn" onclick="showToast('Einstellungen')" title="Einstellungen">
+      <button class="ucc-icon-btn" onclick="showToast(t('ucc_toast_settings'))" title="Einstellungen">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M12 2v2M12 20v2M20 12h2M2 12h2M17.66 17.66l-1.41-1.41M6.34 6.34L4.93 4.93"/></svg>
       </button>
       <!-- User avatar -->
@@ -26631,7 +27000,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="ucc-panel">
           <div class="ucc-panel-header">
             <div class="ucc-panel-title">Nachrichten</div>
-            <button class="btn btn-primary btn-sm" onclick="showToast('Neue Konversation')" style="border-radius:16px;padding:4px 12px;font-size:12px">Neu</button>
+            <button class="btn btn-primary btn-sm" onclick="showToast(t('ucc_toast_new_chat'))" style="border-radius:16px;padding:4px 12px;font-size:12px">Neu</button>
           </div>
           <div class="ucc-panel-body" id="chat-list"></div>
         </div>
@@ -26668,7 +27037,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="page-title" style="font-size:18px">Voicemail</div>
                 <div class="page-subtitle">Postfach vm_101 · 3 neue Nachrichten</div>
               </div>
-              <button class="btn btn-secondary btn-sm" onclick="showToast('Alle gelesen');document.getElementById('ucc-btn-voicemail').querySelector('.ucc-icon-badge').style.display='none'">Alle gelesen</button>
+              <button class="btn btn-secondary btn-sm" onclick="showToast(t('ucc_toast_all_read'));document.getElementById('ucc-btn-voicemail').querySelector('.ucc-icon-badge').style.display='none'">Alle gelesen</button>
             </div>
             <div class="card">
               <div class="vm-list" id="ucc-vm-list"></div>
@@ -28408,7 +28777,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div style="background:var(--surface2);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:10px;font-size:12.5px">
           <span class="sync-badge sync-ok">● Verbunden</span>
           <span>exchange.firma.ch · sync-service@firma.ch</span>
-          <button class="btn btn-secondary btn-sm" onclick="showToast('Verbindung getrennt')" style="margin-left:auto">Trennen</button>
+          <button class="btn btn-secondary btn-sm" onclick="showToast(t('toast_disconnect'))" style="margin-left:auto">Trennen</button>
         </div>
         <div class="form-row">
           <div class="form-group">
@@ -28467,19 +28836,19 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
 
       <div id="import-panel-csv" style="display:none">
-        <div style="border:2px dashed var(--border);border-radius:var(--radius);padding:32px;text-align:center;cursor:pointer" onclick="showToast('Datei auswählen…')">
+        <div style="border:2px dashed var(--border);border-radius:var(--radius);padding:32px;text-align:center;cursor:pointer" onclick="showToast(t('toast_select_file'))">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" style="margin:0 auto 10px;display:block"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
           <div style="font-size:14px;font-weight:500;margin-bottom:4px">CSV oder Excel-Datei hierher ziehen</div>
           <div style="font-size:12.5px;color:var(--text-muted)">oder klicken zum Auswählen · .csv, .xlsx, .xls</div>
         </div>
         <div style="margin-top:12px;font-size:12.5px;color:var(--text-muted)">
           Erwartete Spalten: <span class="sip-chip">Vorname</span> <span class="sip-chip">Nachname</span> <span class="sip-chip">Firma</span> <span class="sip-chip">Telefon</span> <span class="sip-chip">Mobile</span> <span class="sip-chip">E-Mail</span> <span class="sip-chip">Abteilung</span>
-          <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="showToast('Vorlage heruntergeladen')">Vorlage herunterladen</button>
+          <button class="btn btn-secondary btn-sm" style="margin-left:8px" onclick="showToast(t('toast_template_downloaded'))">Vorlage herunterladen</button>
         </div>
       </div>
 
       <div id="import-panel-vcard" style="display:none">
-        <div style="border:2px dashed var(--border);border-radius:var(--radius);padding:32px;text-align:center;cursor:pointer" onclick="showToast('vCard auswählen…')">
+        <div style="border:2px dashed var(--border);border-radius:var(--radius);padding:32px;text-align:center;cursor:pointer" onclick="showToast(t('toast_select_vcard'))">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" style="margin:0 auto 10px;display:block"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h2M15 12h2M7 16h10"/></svg>
           <div style="font-size:14px;font-weight:500;margin-bottom:4px">.vcf Datei auswählen</div>
           <div style="font-size:12.5px;color:var(--text-muted)">Einzelne oder mehrere vCards · vCard 2.1, 3.0, 4.0</div>
@@ -28532,7 +28901,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('modal-ab-import')">Abbrechen</button>
-      <button class="btn btn-secondary" onclick="showToast('Verbindung wird getestet…')">Verbindung testen</button>
+      <button class="btn btn-secondary" onclick="showToast(t('toast_test_connection'))">Verbindung testen</button>
       <button class="btn btn-primary" onclick="saveAbSync()">Speichern & Synchronisieren</button>
     </div>
   </div>
@@ -28827,7 +29196,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="form-group">
         <label class="form-label" data-i18n="tm_lbl_audio_file">Audiodatei</label>
-        <div style="border:2px dashed var(--border);border-radius:var(--radius-sm);padding:20px;text-align:center;cursor:pointer;transition:all 0.15s" onmouseover="this.style.borderColor='var(--sunrise-red)'" onmouseout="this.style.borderColor='var(--border)'" onclick="showToast('Datei auswählen…')">
+        <div style="border:2px dashed var(--border);border-radius:var(--radius-sm);padding:20px;text-align:center;cursor:pointer;transition:all 0.15s" onmouseover="this.style.borderColor='var(--sunrise-red)'" onmouseout="this.style.borderColor='var(--border)'" onclick="showToast(t('toast_select_file'))">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" style="margin:0 auto 8px;display:block"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 010 7.07"/></svg>
           <div style="font-size:13.5px;font-weight:500;margin-bottom:3px" id="ann-file-label" data-i18n="tm_ann_file_pick">Audiodatei wählen oder hierher ziehen</div>
           <div style="font-size:12px;color:var(--text-muted)" data-i18n="tm_ann_file_types">.wav · .mp3 · .ogg · max. 10 MB</div>
@@ -28868,7 +29237,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </select>
           </div>
         </div>
-        <button class="btn btn-secondary btn-sm" onclick="showToast('Text-to-Speech Vorschau wird generiert…')">
+        <button class="btn btn-secondary btn-sm" onclick="showToast(t('toast_tts_preview'))">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           <span data-i18n="tm_ann_preview">Vorschau anhören</span>
         </button>
